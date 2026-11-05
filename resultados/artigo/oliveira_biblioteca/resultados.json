@@ -1,0 +1,758 @@
+{
+  "resumo": [
+    [
+      "Razão área líquida/bruta",
+      0.5365,
+      ""
+    ],
+    [
+      "E do material (área líquida)",
+      5221.0,
+      "MPa"
+    ],
+    [
+      "Nós da malha",
+      1458,
+      ""
+    ],
+    [
+      "Elementos (triângulos T3)",
+      2756,
+      ""
+    ],
+    [
+      "Tempo de isolamento (140/180 °C na face não exposta)",
+      35.0,
+      "min"
+    ],
+    [
+      "Tração máxima (estado plano generalizado)",
+      2.174,
+      "MPa"
+    ],
+    [
+      "Tração p99",
+      2.083,
+      "MPa"
+    ],
+    [
+      "Tempo de cálculo",
+      0.01402,
+      "min"
+    ]
+  ],
+  "tabelas": [
+    {
+      "titulo": "Temperaturas ao longo do ensaio",
+      "colunas": [
+        "tempo (min)",
+        "gás (°C)",
+        "face não exposta (média) (°C)"
+      ],
+      "linhas": [
+        [
+          0.0,
+          20.0,
+          20.0
+        ],
+        [
+          1.0,
+          349.2,
+          20.0
+        ],
+        [
+          2.0,
+          444.5,
+          20.0
+        ],
+        [
+          3.0,
+          502.3,
+          20.0
+        ],
+        [
+          4.0,
+          543.9,
+          20.1
+        ],
+        [
+          5.0,
+          576.4,
+          20.2
+        ],
+        [
+          6.0,
+          603.1,
+          20.4
+        ],
+        [
+          7.0,
+          625.8,
+          20.7
+        ],
+        [
+          8.0,
+          645.5,
+          21.1
+        ],
+        [
+          9.0,
+          662.8,
+          21.7
+        ],
+        [
+          10.0,
+          678.4,
+          22.6
+        ],
+        [
+          11.0,
+          692.5,
+          23.7
+        ],
+        [
+          12.0,
+          705.4,
+          25.2
+        ],
+        [
+          13.0,
+          717.3,
+          27.1
+        ],
+        [
+          14.0,
+          728.3,
+          29.3
+        ],
+        [
+          15.0,
+          738.6,
+          32.0
+        ],
+        [
+          16.0,
+          748.2,
+          35.2
+        ],
+        [
+          17.0,
+          757.2,
+          38.8
+        ],
+        [
+          18.0,
+          765.7,
+          42.9
+        ],
+        [
+          19.0,
+          773.7,
+          47.5
+        ],
+        [
+          20.0,
+          781.4,
+          52.6
+        ],
+        [
+          21.0,
+          788.6,
+          58.1
+        ],
+        [
+          22.0,
+          795.6,
+          64.1
+        ],
+        [
+          23.0,
+          802.2,
+          70.5
+        ],
+        [
+          24.0,
+          808.5,
+          77.2
+        ],
+        [
+          25.0,
+          814.6,
+          84.3
+        ],
+        [
+          26.0,
+          820.5,
+          91.7
+        ],
+        [
+          27.0,
+          826.1,
+          99.4
+        ],
+        [
+          28.0,
+          831.5,
+          107.1
+        ],
+        [
+          29.0,
+          836.7,
+          115.0
+        ],
+        [
+          30.0,
+          841.8,
+          123.0
+        ],
+        [
+          31.0,
+          846.7,
+          130.9
+        ],
+        [
+          32.0,
+          851.4,
+          138.9
+        ],
+        [
+          33.0,
+          856.0,
+          146.9
+        ],
+        [
+          34.0,
+          860.5,
+          154.8
+        ],
+        [
+          35.0,
+          864.8,
+          162.6
+        ]
+      ]
+    }
+  ],
+  "figuras": [
+    {
+      "arquivo": "secao_T.png",
+      "titulo": "Temperatura na seção no fim"
+    },
+    {
+      "arquivo": "secao_s1.png",
+      "titulo": "Tensão principal máxima na seção"
+    }
+  ],
+  "arquivos": [
+    {
+      "nome": "temperaturas_2d.csv",
+      "descricao": "Temperaturas ao longo do ensaio"
+    },
+    {
+      "nome": "secao.vtk",
+      "descricao": "campos 3D para o ParaView"
+    }
+  ],
+  "avisos": [],
+  "visual": "visual.json",
+  "projeto": {
+    "nome": "Prisma BCEPQ",
+    "versao": "0.10",
+    "geometria": {
+      "bloco_biblioteca": "personalizado",
+      "comprimento_bloco": 201,
+      "largura": 100,
+      "altura_fiada": 100,
+      "forma_furo": "retangular",
+      "diametro_furo": 84,
+      "furos_por_bloco": 3,
+      "furos_largura": 2,
+      "furos_altura": 4,
+      "parede_externa": 16,
+      "septo": 16,
+      "parede_leito": 8,
+      "parede_topo": 16,
+      "celulas_parede": 0,
+      "parede_minima": 8,
+      "grauteamento": "nenhum",
+      "blocos_por_fiada": 1,
+      "n_fiadas": 10,
+      "amarracao": "contrafiada",
+      "tipo_junta": "seca",
+      "espessura_junta": 2,
+      "assentamento": "total",
+      "juntas_verticais_preenchidas": true,
+      "capeamento": true,
+      "espessura_placa": 25
+    },
+    "ceramica": {
+      "material_biblioteca": "concreto_nbr15220",
+      "k": 1.75,
+      "rho": 2400,
+      "c": 1000,
+      "E_bloco_bruto": 2801,
+      "nu": 0.2,
+      "alfa": 10.0,
+      "tabela_k": [
+        [
+          20,
+          1.951
+        ],
+        [
+          120,
+          1.721
+        ],
+        [
+          220,
+          1.513
+        ],
+        [
+          320,
+          1.325
+        ],
+        [
+          420,
+          1.159
+        ],
+        [
+          520,
+          1.015
+        ],
+        [
+          620,
+          0.892
+        ],
+        [
+          720,
+          0.79
+        ],
+        [
+          820,
+          0.71
+        ],
+        [
+          920,
+          0.651
+        ],
+        [
+          1020,
+          0.613
+        ],
+        [
+          1120,
+          0.597
+        ]
+      ],
+      "tabela_E_fator": [
+        [
+          20,
+          1.0
+        ],
+        [
+          100,
+          0.625
+        ],
+        [
+          200,
+          0.4318
+        ],
+        [
+          300,
+          0.3036
+        ],
+        [
+          400,
+          0.1875
+        ],
+        [
+          500,
+          0.1
+        ],
+        [
+          600,
+          0.045
+        ],
+        [
+          700,
+          0.03
+        ],
+        [
+          800,
+          0.015
+        ],
+        [
+          900,
+          0.008
+        ],
+        [
+          1000,
+          0.004
+        ],
+        [
+          1100,
+          0.001
+        ],
+        [
+          1200,
+          0.001
+        ]
+      ],
+      "tabela_eps_termica": [
+        [
+          20,
+          0.0002
+        ],
+        [
+          40,
+          0.1815
+        ],
+        [
+          60,
+          0.365
+        ],
+        [
+          80,
+          0.5518
+        ],
+        [
+          100,
+          0.743
+        ],
+        [
+          120,
+          0.9397
+        ],
+        [
+          140,
+          1.1431
+        ],
+        [
+          160,
+          1.3542
+        ],
+        [
+          180,
+          1.5741
+        ],
+        [
+          200,
+          1.804
+        ],
+        [
+          220,
+          2.0449
+        ],
+        [
+          240,
+          2.298
+        ],
+        [
+          260,
+          2.5642
+        ],
+        [
+          280,
+          2.8449
+        ],
+        [
+          300,
+          3.141
+        ],
+        [
+          320,
+          3.4537
+        ],
+        [
+          340,
+          3.784
+        ],
+        [
+          360,
+          4.1331
+        ],
+        [
+          380,
+          4.5021
+        ],
+        [
+          400,
+          4.892
+        ],
+        [
+          420,
+          5.304
+        ],
+        [
+          440,
+          5.7392
+        ],
+        [
+          460,
+          6.1987
+        ],
+        [
+          480,
+          6.6836
+        ],
+        [
+          500,
+          7.195
+        ],
+        [
+          520,
+          7.734
+        ],
+        [
+          540,
+          8.3017
+        ],
+        [
+          560,
+          8.8992
+        ],
+        [
+          580,
+          9.5276
+        ],
+        [
+          600,
+          10.188
+        ],
+        [
+          620,
+          10.8815
+        ],
+        [
+          640,
+          11.6093
+        ],
+        [
+          660,
+          12.3724
+        ],
+        [
+          680,
+          13.1719
+        ],
+        [
+          700,
+          14.009
+        ],
+        [
+          1200,
+          14.0
+        ]
+      ],
+      "tabela_c": [
+        [
+          20,
+          900
+        ],
+        [
+          100,
+          900
+        ],
+        [
+          200,
+          1000
+        ],
+        [
+          400,
+          1100
+        ],
+        [
+          1200,
+          1100
+        ]
+      ],
+      "tabela_rho": [],
+      "argamassa_biblioteca": "1:1:6",
+      "arg_fc": 4.2,
+      "arg_ft": 0.78,
+      "arg_E": 4033,
+      "arg_nu": 0.2,
+      "arg_k": 1.15,
+      "arg_rho": 2000,
+      "arg_c": 1000,
+      "arg_alfa": 10.0,
+      "graute_biblioteca": "G1",
+      "gra_fc": 17.7,
+      "gra_ft": 2.04,
+      "gra_E": 26100,
+      "gra_nu": 0.2,
+      "gra_k": 1.75,
+      "gra_rho": 2400,
+      "gra_c": 1000,
+      "gra_en1992": true,
+      "gra_alfa": 10.0
+    },
+    "modelo": {
+      "analise": "secao_2d",
+      "elemento": "T3",
+      "lei_parede": "bcepq",
+      "fator_resistencia_parede": 1.0,
+      "fator_rigidez_parede": 1.0,
+      "E_junta": 84.4,
+      "calibrar_junta": false,
+      "E_prisma_alvo": 1100,
+      "modelo_ceramica": "dano_mazars",
+      "ft": 0.66,
+      "fc": 2.48,
+      "du_t": 0.018,
+      "du_c": 0.33,
+      "tabela_ft_fator": [
+        [
+          20,
+          1.0
+        ],
+        [
+          100,
+          1.0
+        ],
+        [
+          600,
+          0.0
+        ],
+        [
+          1200,
+          0.0
+        ]
+      ],
+      "tabela_fc_fator": [
+        [
+          20,
+          1.0
+        ],
+        [
+          100,
+          1.0
+        ],
+        [
+          200,
+          0.95
+        ],
+        [
+          300,
+          0.85
+        ],
+        [
+          400,
+          0.75
+        ],
+        [
+          500,
+          0.6
+        ],
+        [
+          600,
+          0.45
+        ],
+        [
+          700,
+          0.3
+        ],
+        [
+          800,
+          0.15
+        ],
+        [
+          900,
+          0.08
+        ],
+        [
+          1000,
+          0.04
+        ],
+        [
+          1100,
+          0.01
+        ],
+        [
+          1200,
+          0.0
+        ]
+      ],
+      "mu": 0.6,
+      "desvio_folga": 0.028,
+      "contato_inicial": 20,
+      "comprimento_corr": 40,
+      "E_contato": 3907,
+      "semente": 1,
+      "fluencia": true,
+      "k_tr_bloco": 0.0,
+      "tabela_fluencia_bloco": [],
+      "k_tr_argamassa": 2.0,
+      "k_tr_graute": 0.0
+    },
+    "ensaio": {
+      "tipo": "iso834",
+      "T_inicial": 20,
+      "taxa": 5,
+      "T_alvo": 600,
+      "patamar": 30,
+      "taxa_resfriamento": 2,
+      "patamar_final": 60,
+      "duracao_iso": 150,
+      "h_conveccao": 25,
+      "emissividade": 0.8,
+      "emissividade_furos": 0.9,
+      "carga": 97.9,
+      "carga_assentamento": 2,
+      "apoio_base": "articulado",
+      "apoio_topo": "articulado",
+      "excentricidade_topo": 0,
+      "excentricidade_base": 0,
+      "imperfeicao": 450,
+      "niveis_carga": 5
+    },
+    "malha": {
+      "h": 4,
+      "dz": 20,
+      "n_elementos": 32,
+      "dt": 30,
+      "delta_max": 0.8,
+      "incremento": 0.02,
+      "tol_u": 0.0001,
+      "tol_d": 0.005,
+      "n_campos_rampa": 6,
+      "n_campos_patamar": 2,
+      "intervalo_iso": 5
+    },
+    "sensibilidade": {
+      "trajetorias": 10,
+      "niveis": 4,
+      "semente": 1,
+      "processos": 0,
+      "malha_rapida": true,
+      "var_k": true,
+      "faixa_k": 20.0,
+      "var_c": true,
+      "faixa_c": 15.0,
+      "var_eps_furos": true,
+      "min_eps_furos": 0.7,
+      "max_eps_furos": 0.95,
+      "var_h": true,
+      "min_h": 15.0,
+      "max_h": 35.0,
+      "var_eps": true,
+      "min_eps": 0.6,
+      "max_eps": 0.95,
+      "var_alfa": true,
+      "min_alfa": 4.0,
+      "max_alfa": 8.0,
+      "var_ktr": true,
+      "min_ktr": 0.0,
+      "max_ktr": 2.35,
+      "var_res": true,
+      "faixa_res": 15.0,
+      "var_rig": true,
+      "faixa_rig": 25.0,
+      "var_imp": true,
+      "min_imp": 1000.0,
+      "max_imp": 250.0,
+      "var_exc": true,
+      "min_exc": -10.0,
+      "max_exc": 10.0
+    }
+  }
+}

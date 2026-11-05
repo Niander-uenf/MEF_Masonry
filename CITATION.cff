@@ -1,0 +1,44 @@
+# Citation metadata for MEF_Masonry. Fill the fields marked TO-FILL before the first release.
+cff-version: 1.2.0
+message: "If you use MEF_Masonry, please cite the paper and the archived version of the software."
+title: "MEF_Masonry: an open finite element program for block masonry in fire"
+type: software
+version: 1.0.0
+date-released: "2026-12-01"   # TO-FILL: date of the GitHub release
+authors:
+  - family-names: Cerqueira
+    given-names: Niander Aguiar
+    email: niander@uenf.br
+    affiliation: "Universidade Estadual do Norte Fluminense Darcy Ribeiro (UENF)"
+    # orcid: "https://orcid.org/TO-FILL"
+  # TO-FILL: co-authors, same fields
+repository-code: "https://github.com/Niander-uenf/MEF_Masonry"
+# doi: "10.5281/zenodo.TO-FILL"                             # TO-FILL after the Zenodo archive
+license: BSD-3-Clause
+keywords:
+  - masonry
+  - fire
+  - finite element method
+  - dry-stacked masonry
+  - damage mechanics
+  - sensitivity analysis
+abstract: >-
+  Open-source Python program for the thermal and thermo-mechanical analysis of
+  block masonry in fire, from the unit section to the full-scale wall: 2D and 3D
+  transient heat transfer with cavity radiation, a 3D damage model with crack
+  closure, dry joints with random initial gaps, transient creep, a corotational
+  wall model with fibre sections, Morris screening and a browser interface.
+preferred-citation:
+  type: article
+  title: "MEF_Masonry: an open finite element program for thermal and thermo-mechanical analysis of block masonry in fire"
+  authors:
+    - family-names: Cerqueira
+      given-names: Niander Aguiar
+    - family-names: Madalena
+      given-names: Jonathan de Andrade Paula
+    - family-names: Sá
+      given-names: Bernard Silva Corrêa de
+    # TO-FILL: confirm author order and any further co-authors
+  journal: "Advances in Engineering Software"
+  year: 2026            # TO-FILL
+  # volume, start, doi: TO-FILL after acceptance

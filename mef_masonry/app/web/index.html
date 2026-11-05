@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEF_Masonry</title>
+<link rel="stylesheet" href="/web/app.css">
+</head>
+<body>
+<header class="topo">
+  <div class="marca">
+    <span class="logo" aria-hidden="true">▦</span>
+    <div>
+      <div class="titulo">MEF_Masonry</div>
+      <div class="subtitulo">alvenaria de blocos em temperatura · <span id="versao"></span></div>
+    </div>
+  </div>
+  <div class="projeto-barra">
+    <label class="rotulo-inline">Projeto <input id="nome-projeto" type="text" value="Prisma BCEPQ"></label>
+    <select id="predefinidos" title="Carregar um projeto pronto"><option value="">Projetos prontos…</option></select>
+    <button id="bt-novo" class="secundario" title="Valores padrão">Novo</button>
+    <button id="bt-abrir" class="secundario">Abrir…</button>
+    <button id="bt-salvar" class="secundario">Salvar</button>
+    <input id="arquivo-abrir" type="file" accept=".json" hidden>
+  </div>
+</header>
+
+<div class="corpo">
+  <nav class="menu" id="menu" aria-label="Etapas">
+    <div class="grupo-menu">Entradas</div>
+    <button data-pagina="geometria" class="ativo"><span>1</span> Geometria</button>
+    <button data-pagina="ceramica"><span>2</span> Materiais</button>
+    <button data-pagina="modelo"><span>3</span> Modelos e elementos</button>
+    <button data-pagina="ensaio"><span>4</span> Ensaio e carga</button>
+    <button data-pagina="malha"><span>5</span> Malha e solução</button>
+    <button data-pagina="sensibilidade" hidden><span>6</span> Sensibilidade</button>
+    <div class="grupo-menu">Cálculo</div>
+    <button data-pagina="executar"><span>▶</span> Executar</button>
+    <button data-pagina="resultados"><span>≡</span> Resultados</button>
+    <button data-pagina="pos"><span>◈</span> Pós-processador</button>
+    <button data-pagina="historico"><span>↺</span> Análises anteriores</button>
+    <div class="estado-menu" id="estado-menu"></div>
+  </nav>
+
+  <main id="principal">
+    <section class="pagina" id="pg-formulario">
+      <div class="cabecalho-pagina">
+        <h1 id="form-titulo"></h1>
+        <p id="form-descricao" class="descricao"></p>
+      </div>
+      <form id="formulario" class="formulario" autocomplete="off" onsubmit="return false"></form>
+      <div id="previa-malha" class="cartao previa" hidden>
+        <div class="cartao-cabecalho">
+          <h2>Pré-visualização da malha</h2>
+          <button id="bt-previa" class="secundario">Atualizar</button>
+        </div>
+        <p id="previa-info" class="nota"></p>
+        <img id="previa-img" alt="Malha da seção e corte vertical">
+      </div>
+      <div class="navegacao-etapas">
+        <button id="bt-anterior" class="secundario">← Anterior</button>
+        <button id="bt-proximo">Próximo →</button>
+      </div>
+    </section>
+
+    <section class="pagina" id="pg-executar" hidden>
+      <div class="cabecalho-pagina">
+        <h1>Executar</h1>
+        <p class="descricao">Confira o resumo, rode a análise e acompanhe o registro.</p>
+      </div>
+      <div class="grade-2">
+        <div class="cartao">
+          <h2>Resumo do projeto</h2>
+          <dl id="resumo-projeto" class="lista-resumo"></dl>
+          <ul id="erros-validacao" class="erros"></ul>
+          <div class="acoes">
+            <button id="bt-executar" class="primario grande">▶ Executar análise</button>
+            <button id="bt-cancelar" class="perigo" hidden>Cancelar</button>
+          </div>
+        </div>
+        <div class="cartao">
+          <div class="cartao-cabecalho">
+            <h2>Andamento</h2>
+            <span id="cronometro" class="cronometro"></span>
+          </div>
+          <div id="situacao" class="situacao">Nenhuma análise em andamento.</div>
+          <pre id="registro" class="registro" aria-live="polite"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="pagina" id="pg-resultados" hidden>
+      <div class="cabecalho-pagina">
+        <h1>Resultados</h1>
+        <p class="descricao" id="res-origem">Rode uma análise ou abra uma anterior.</p>
+      </div>
+      <div id="res-conteudo"></div>
+    </section>
+
+    <section class="pagina pos" id="pg-pos" hidden>
+      <div class="pos-layout">
+        <aside class="pos-controles" id="pos-controles">
+          <h2>Pós-processador</h2>
+          <p class="nota" id="pos-origem">Sem resultado carregado.</p>
+          <label>Estado<select id="pos-estado"></select></label>
+          <input id="pos-estado-slider" type="range" min="0" max="0" value="0" aria-label="Estado">
+          <label>Campo<select id="pos-campo"></select></label>
+          <label>Mapa de cores
+            <select id="pos-mapa">
+              <option value="auto">automático</option>
+              <option value="viridis">viridis</option>
+              <option value="inferno">inferno</option>
+              <option value="divergente">azul–vermelho</option>
+              <option value="dano">dano</option>
+              <option value="cinza">cinza</option>
+            </select>
+          </label>
+          <div class="linha-2">
+            <label>Mínimo<input id="pos-min" type="number" step="any"></label>
+            <label>Máximo<input id="pos-max" type="number" step="any"></label>
+          </div>
+          <label class="marcar"><input id="pos-auto" type="checkbox" checked> escala automática</label>
+          <fieldset>
+            <legend>Forma</legend>
+            <label class="marcar"><input id="pos-deformada" type="checkbox"> deformada</label>
+            <label>Fator de escala<input id="pos-escala" type="number" value="50" step="any" min="0"></label>
+            <label class="marcar"><input id="pos-espelhar" type="checkbox" checked> espelhar a simetria</label>
+            <label class="marcar"><input id="pos-arestas" type="checkbox" checked> arestas dos elementos</label>
+          </fieldset>
+          <fieldset>
+            <legend>Cortes (mostra elementos com centro antes do plano)</legend>
+            <label class="corte"><input type="checkbox" id="corte-x"> x <input type="range" id="corte-x-v" min="0" max="100" value="50"></label>
+            <label class="corte"><input type="checkbox" id="corte-y"> y <input type="range" id="corte-y-v" min="0" max="100" value="50"></label>
+            <label class="corte"><input type="checkbox" id="corte-z"> z <input type="range" id="corte-z-v" min="0" max="100" value="50"></label>
+          </fieldset>
+          <fieldset>
+            <legend>Materiais</legend>
+            <div id="pos-materiais"></div>
+          </fieldset>
+          <div class="acoes-pos">
+            <button class="secundario" data-vista="iso">Isométrica</button>
+            <button class="secundario" data-vista="frente">Frente</button>
+            <button class="secundario" data-vista="lado">Lado</button>
+            <button class="secundario" data-vista="topo">Topo</button>
+          </div>
+          <button id="pos-png" class="secundario largo">Salvar imagem PNG</button>
+        </aside>
+        <div class="pos-tela">
+          <canvas id="pos-canvas"></canvas>
+          <div class="legenda" id="pos-legenda" hidden>
+            <div class="legenda-titulo" id="legenda-titulo"></div>
+            <div class="legenda-barra" id="legenda-barra"></div>
+            <div class="legenda-valores"><span id="legenda-min"></span><span id="legenda-meio"></span><span id="legenda-max"></span></div>
+          </div>
+          <div class="pos-dica">arraste: girar · Shift+arraste ou botão direito: mover · roda: zoom · duplo clique: valor no ponto</div>
+          <div class="pos-sonda" id="pos-sonda" hidden></div>
+          <div class="pos-vazio" id="pos-vazio">Abra um resultado em <b>Resultados</b> ou <b>Análises anteriores</b>.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pagina" id="pg-historico" hidden>
+      <div class="cabecalho-pagina">
+        <h1>Análises anteriores</h1>
+        <p class="descricao">Gravadas em <code id="pasta-res"></code>.</p>
+      </div>
+      <div class="cartao"><table class="tabela" id="tab-historico"></table></div>
+    </section>
+  </main>
+</div>
+<script src="/web/visualizador.js"></script>
+<script src="/web/app.js"></script>
+</body>
+</html>

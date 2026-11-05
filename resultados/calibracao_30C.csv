@@ -1,0 +1,6 @@
+etapa,desvio_folga_mm,fc_MPa,E_corda_MPa,carga_maxima_kN
+etapa 1,0.0240,,1205.7,
+etapa 1,0.0320,,1047.5,
+etapa 2,0.0290,5.760,,229.18
+etapa 2,0.0290,2.481,,98.76
+calibrado,0.0290,2.481,1100,98.76

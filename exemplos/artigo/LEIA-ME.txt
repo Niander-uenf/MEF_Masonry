@@ -1,0 +1,14 @@
+Estudos do artigo sobre o programa (Advances in Engineering Software)
+
+Rode da pasta do pacote; os resultados vão para resultados/artigo/.
+
+  python exemplos/artigo/conv_parede.py            seção 5.1: convergência da parede BCEPQ (malha, elementos, passo); ~15 min em 2 núcleos
+  python exemplos/artigo/benchmark_ansys.py        seção 6: comparação com o modelo ANSYS do prisma BCEPQ (Sá, 2025); ~6 min
+                                                   (--rapido: só as malhas de 10 mm, ~15 s)
+  python exemplos/artigo/speedup.py                seção 5.3: ganho do paralelo (8 rodadas da parede, 1 e 2 processos); ~4 min
+  python exemplos/artigo/oliveira.py               seção 7.3: isolamento das paredes de Oliveira et al. (2021), três hipóteses; ~1 min
+  python exemplos/artigo/oliveira_sensibilidade.py seção 7.3: umidade, emissividade, malha, seção maciça e homogênea; ~2 min
+  python exemplos/artigo/abacos.py                 seção 8.2: ábacos de projeto (5 alturas × 3 valores de α × 9 níveis de carga); ~10 min
+
+O estudo de sensibilidade da seção 8.1 é o projeto pronto "Parede BCEPQ 2,94 × 3,00 m — sensibilidade no ISO 834"
+(resultados em resultados/sensibilidade_parede_bcepq/).

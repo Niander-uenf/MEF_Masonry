@@ -1,0 +1,13 @@
+roteiro,o que verifica,casos ok,tempo (s),situação
+01,Térmica e termoelástica linear (W6),36/36,12.4,ok
+01 H8,Os mesmos casos com o hexaedro H8,36/36,26.0,ok
+01 W15,Os mesmos casos com a cunha quadrática W15,36/36,129.0,ok
+06,Não linear: dano e juntas com atrito (W6),11/11,2.6,ok
+06 H8,Não linear com H8,11/11,2.5,ok
+06 W15,Não linear com W15,11/11,10.5,ok
+10,Modo Parede,10/10,2.6,ok
+11,"c(T), junta de argamassa e biblioteca",12/12,18.3,ok
+12,Células retangulares e graute,15/15,0.6,ok
+13,Furos horizontais,12/12,8.2,ok
+14,Fluência transitória,19/19,150.3,ok
+15,Sensibilidade (Morris),31/31,62.7,ok

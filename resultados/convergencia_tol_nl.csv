@@ -1,0 +1,3 @@
+malha_mm,tol_u,tol_d,T_C,nos,gl_livres,elementos_ceramica,pico_kN,delta_pico_mm,E_corda_MPa,contato_no_pico_pct,incrementos,sem_convergir,tempo_min
+12x20,0.0001,0.005,30.0,15080,20162,7290,98.65,0.34,1210.0,91.4,26,0,3.6
+12x20,2e-05,0.001,30.0,15080,20162,7290,98.54,0.34,1210.0,91.5,26,0,5.0

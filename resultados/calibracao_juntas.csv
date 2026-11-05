@@ -1,0 +1,11 @@
+grandeza,origem,valor
+E do bloco (área bruta),"experimental (BPQ, n = 6)",2801
+E do material cerâmico (área líquida),"derivado: E_bloco / 0,717",3907
+E do prisma seco 5ID (blocos inteiros),"experimental (BPQ, n = 4)",1216
+E do prisma seco 5HD (meio-bloco alternado),"experimental (BPQ, n = 4)",1001
+E do prisma = 600 fpk,"NBR 16868-1, fpk = 1.68 MPa (UFV, 30 °C)",1007
+E da junta: associação em série,"teórico, base 108 mm com 2 juntas",91.0
+E da junta: calibrado no MEF,numérico 3D,84.4
+E do prisma no terço central,"numérico 3D, junta calibrada",1100
+E do prisma entre placas,"numérico 3D, junta calibrada",1046
+Rigidez normal da junta k_n = E_j/t,numérico 3D (N/mm³),42.2

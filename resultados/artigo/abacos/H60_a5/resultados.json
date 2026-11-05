@@ -1,0 +1,617 @@
+{
+  "resumo": [
+    [
+      "Razão área líquida/bruta",
+      0.7173,
+      ""
+    ],
+    [
+      "Altura da parede",
+      3600.0,
+      "mm"
+    ],
+    [
+      "Esbeltez H/t",
+      25.71,
+      ""
+    ],
+    [
+      "Fibras na seção",
+      992,
+      ""
+    ],
+    [
+      "Resistência da alvenaria a 20 °C (área bruta)",
+      1.68,
+      "MPa"
+    ],
+    [
+      "Fluência transitória: k_tr do bloco, da argamassa e do graute",
+      "nula (k_tr = 0)",
+      ""
+    ],
+    [
+      "Capacidade da parede a 20 °C",
+      512.1,
+      "kN"
+    ],
+    [
+      "Capacidade por metro a 20 °C",
+      174.2,
+      "kN/m"
+    ],
+    [
+      "Fator de redução (capacidade / resistência da seção)",
+      0.7406,
+      ""
+    ],
+    [
+      "Tempo de isolamento (140/180 °C na face não exposta)",
+      112.0,
+      "min"
+    ],
+    [
+      "Carga aplicada",
+      100,
+      "kN"
+    ],
+    [
+      "Carga aplicada por metro",
+      34.01,
+      "kN/m"
+    ],
+    [
+      "Carga / capacidade a 20 °C",
+      19.53,
+      "%"
+    ],
+    [
+      "Tempo de resistência (perda de equilíbrio)",
+      39.03,
+      "min"
+    ],
+    [
+      "Critério de contração axial (EN 1363-1)",
+      "não atingido",
+      ""
+    ],
+    [
+      "Flecha máxima no fim",
+      -52.56,
+      "mm"
+    ],
+    [
+      "Altura da fibra mais comprimida no fim",
+      1775.0,
+      "mm"
+    ],
+    [
+      "Tempo de cálculo",
+      0.8084,
+      "min"
+    ]
+  ],
+  "tabelas": [
+    {
+      "titulo": "Histórico do ISO 834 sob carga",
+      "colunas": [
+        "tempo (min)",
+        "flecha no meio (mm)",
+        "flecha máxima (mm)",
+        "deslocamento do topo (mm)"
+      ],
+      "linhas": [
+        [
+          0.0,
+          -0.914,
+          -0.914,
+          -0.7275
+        ],
+        [
+          1.0,
+          -2.11,
+          -2.11,
+          -0.6567
+        ],
+        [
+          2.0,
+          -3.969,
+          -3.969,
+          -0.5472
+        ],
+        [
+          3.0,
+          -6.458,
+          -6.458,
+          -0.3998
+        ],
+        [
+          4.0,
+          -9.66,
+          -9.66,
+          -0.1821
+        ],
+        [
+          5.0,
+          -12.913,
+          -12.913,
+          0.045
+        ],
+        [
+          6.0,
+          -15.965,
+          -15.965,
+          0.2572
+        ],
+        [
+          7.0,
+          -18.808,
+          -18.808,
+          0.449
+        ],
+        [
+          8.0,
+          -21.391,
+          -21.391,
+          0.619
+        ],
+        [
+          9.0,
+          -23.714,
+          -23.714,
+          0.7671
+        ],
+        [
+          10.0,
+          -25.812,
+          -25.812,
+          0.8966
+        ],
+        [
+          11.0,
+          -27.716,
+          -27.716,
+          1.0105
+        ],
+        [
+          12.0,
+          -29.453,
+          -29.453,
+          1.1111
+        ],
+        [
+          13.0,
+          -31.049,
+          -31.049,
+          1.201
+        ],
+        [
+          14.0,
+          -32.525,
+          -32.525,
+          1.2824
+        ],
+        [
+          15.0,
+          -33.893,
+          -33.893,
+          1.3559
+        ],
+        [
+          16.0,
+          -35.203,
+          -35.203,
+          1.4239
+        ],
+        [
+          17.0,
+          -36.501,
+          -36.501,
+          1.4887
+        ],
+        [
+          18.0,
+          -37.715,
+          -37.715,
+          1.5479
+        ],
+        [
+          19.0,
+          -38.85,
+          -38.85,
+          1.6022
+        ],
+        [
+          20.0,
+          -39.915,
+          -39.915,
+          1.6526
+        ],
+        [
+          21.0,
+          -40.942,
+          -40.942,
+          1.7011
+        ],
+        [
+          22.0,
+          -41.921,
+          -41.921,
+          1.7473
+        ],
+        [
+          23.0,
+          -42.839,
+          -42.839,
+          1.7909
+        ],
+        [
+          24.0,
+          -43.702,
+          -43.702,
+          1.8321
+        ],
+        [
+          25.0,
+          -44.516,
+          -44.516,
+          1.8714
+        ],
+        [
+          26.0,
+          -45.283,
+          -45.283,
+          1.9092
+        ],
+        [
+          27.0,
+          -46.007,
+          -46.007,
+          1.9457
+        ],
+        [
+          28.0,
+          -46.69,
+          -46.69,
+          1.9812
+        ],
+        [
+          29.0,
+          -47.337,
+          -47.337,
+          2.016
+        ],
+        [
+          30.0,
+          -47.955,
+          -47.955,
+          2.0502
+        ],
+        [
+          31.0,
+          -48.562,
+          -48.562,
+          2.084
+        ],
+        [
+          32.0,
+          -49.14,
+          -49.14,
+          2.1178
+        ],
+        [
+          33.0,
+          -49.69,
+          -49.69,
+          2.1515
+        ],
+        [
+          34.0,
+          -50.219,
+          -50.219,
+          2.1851
+        ],
+        [
+          35.0,
+          -50.733,
+          -50.733,
+          2.2187
+        ],
+        [
+          36.0,
+          -51.222,
+          -51.222,
+          2.2524
+        ],
+        [
+          37.0,
+          -51.684,
+          -51.684,
+          2.2864
+        ],
+        [
+          38.0,
+          -52.12,
+          -52.12,
+          2.3208
+        ],
+        [
+          39.0,
+          -52.545,
+          -52.545,
+          2.3556
+        ],
+        [
+          39.031,
+          -52.565,
+          -52.565,
+          2.3566
+        ]
+      ]
+    },
+    {
+      "titulo": "Tempo de resistência × carga",
+      "colunas": [
+        "carga / capacidade a frio (%)",
+        "carga (kN)",
+        "carga (kN/m)",
+        "tempo de resistência (min)"
+      ],
+      "linhas": [
+        [
+          10.0,
+          51.2,
+          17.42,
+          61.3
+        ],
+        [
+          20.0,
+          102.4,
+          34.83,
+          38.3
+        ],
+        [
+          30.0,
+          153.6,
+          52.25,
+          26.9
+        ],
+        [
+          40.0,
+          204.8,
+          69.67,
+          19.2
+        ],
+        [
+          50.0,
+          256.0,
+          87.08,
+          13.5
+        ],
+        [
+          60.0,
+          307.2,
+          104.5,
+          10.1
+        ],
+        [
+          70.0,
+          358.4,
+          121.92,
+          7.5
+        ],
+        [
+          80.0,
+          409.6,
+          139.34,
+          4.9
+        ],
+        [
+          90.0,
+          460.9,
+          156.75,
+          2.4
+        ]
+      ]
+    }
+  ],
+  "figuras": [
+    {
+      "arquivo": "malha.png",
+      "titulo": "Seção de fibras e esquema da parede"
+    },
+    {
+      "arquivo": "parede_flecha.png",
+      "titulo": "Flecha e deslocamento do topo ao longo do ISO 834"
+    },
+    {
+      "arquivo": "parede_deformada.png",
+      "titulo": "Deformada e temperaturas através da espessura"
+    },
+    {
+      "arquivo": "parede_tempo_carga.png",
+      "titulo": "Tempo de resistência × nível de carga"
+    },
+    {
+      "arquivo": "secao_T.png",
+      "titulo": "Temperatura na seção no fim do ISO 834"
+    }
+  ],
+  "arquivos": [
+    {
+      "nome": "parede_historico.csv",
+      "descricao": "Histórico do ISO 834 sob carga"
+    },
+    {
+      "nome": "parede_tempo_carga.csv",
+      "descricao": "Tempo de resistência × carga"
+    }
+  ],
+  "avisos": [
+    "Modelo de faixa vertical: as bordas verticais da parede não restringem a flexão. Material homogeneizado pelas curvas do prisma aquecido a 5 °C/min (ensaio em regime permanente); sem fluência transitória (k_tr = 0 ou desligada); não inclui lascamento nem a estanqueidade (E).",
+    "Deformação térmica por α = 5.0×10⁻⁶/°C (provisório): a flecha térmica e o tempo de resistência dependem diretamente desse valor."
+  ],
+  "visual": "visual.json",
+  "projeto": {
+    "nome": "Prisma BCEPQ",
+    "versao": "0.10",
+    "geometria": {
+      "bloco_biblioteca": "bcepq",
+      "comprimento_bloco": 280,
+      "largura": 140,
+      "altura_fiada": 60,
+      "forma_furo": "circular",
+      "diametro_furo": 84,
+      "furos_por_bloco": 2,
+      "furos_largura": 2,
+      "furos_altura": 4,
+      "parede_externa": 25,
+      "septo": 25,
+      "parede_leito": 8,
+      "parede_topo": 25,
+      "celulas_parede": 0,
+      "parede_minima": 8,
+      "grauteamento": "nenhum",
+      "blocos_por_fiada": 10.5,
+      "n_fiadas": 60,
+      "amarracao": "contrafiada",
+      "tipo_junta": "seca",
+      "espessura_junta": 2,
+      "assentamento": "total",
+      "juntas_verticais_preenchidas": true,
+      "capeamento": true,
+      "espessura_placa": 25
+    },
+    "ceramica": {
+      "material_biblioteca": "bcepq",
+      "k": 0.52,
+      "rho": 1210,
+      "c": 1285,
+      "E_bloco_bruto": 2801,
+      "nu": 0.18,
+      "alfa": 5.0,
+      "tabela_k": [],
+      "tabela_E_fator": [],
+      "tabela_eps_termica": [],
+      "tabela_c": [],
+      "tabela_rho": [],
+      "argamassa_biblioteca": "1:1:6",
+      "arg_fc": 4.2,
+      "arg_ft": 0.78,
+      "arg_E": 4033,
+      "arg_nu": 0.2,
+      "arg_k": 1.15,
+      "arg_rho": 2000,
+      "arg_c": 1000,
+      "arg_alfa": 10.0,
+      "graute_biblioteca": "G1",
+      "gra_fc": 17.7,
+      "gra_ft": 2.04,
+      "gra_E": 26100,
+      "gra_nu": 0.2,
+      "gra_k": 1.75,
+      "gra_rho": 2400,
+      "gra_c": 1000,
+      "gra_en1992": true,
+      "gra_alfa": 10.0
+    },
+    "modelo": {
+      "analise": "parede",
+      "elemento": "W6",
+      "lei_parede": "bcepq",
+      "fator_resistencia_parede": 1.0,
+      "fator_rigidez_parede": 1.0,
+      "E_junta": 84.4,
+      "calibrar_junta": false,
+      "E_prisma_alvo": 1100,
+      "modelo_ceramica": "dano_mazars",
+      "ft": 0.66,
+      "fc": 2.48,
+      "du_t": 0.018,
+      "du_c": 0.33,
+      "tabela_ft_fator": [],
+      "tabela_fc_fator": [],
+      "mu": 0.6,
+      "desvio_folga": 0.028,
+      "contato_inicial": 20,
+      "comprimento_corr": 40,
+      "E_contato": 3907,
+      "semente": 1,
+      "fluencia": true,
+      "k_tr_bloco": 0.0,
+      "tabela_fluencia_bloco": [],
+      "k_tr_argamassa": 2.0,
+      "k_tr_graute": 0.0
+    },
+    "ensaio": {
+      "tipo": "iso834",
+      "T_inicial": 20,
+      "taxa": 5,
+      "T_alvo": 600,
+      "patamar": 30,
+      "taxa_resfriamento": 2,
+      "patamar_final": 60,
+      "duracao_iso": 240,
+      "h_conveccao": 25,
+      "emissividade": 0.8,
+      "emissividade_furos": 0.9,
+      "carga": 100,
+      "carga_assentamento": 2,
+      "apoio_base": "articulado",
+      "apoio_topo": "articulado",
+      "excentricidade_topo": 0,
+      "excentricidade_base": 0,
+      "imperfeicao": 450,
+      "niveis_carga": 9
+    },
+    "malha": {
+      "h": 10,
+      "dz": 20,
+      "n_elementos": 16,
+      "dt": 30,
+      "delta_max": 0.8,
+      "incremento": 0.02,
+      "tol_u": 0.0001,
+      "tol_d": 0.005,
+      "n_campos_rampa": 6,
+      "n_campos_patamar": 2,
+      "intervalo_iso": 5
+    },
+    "sensibilidade": {
+      "trajetorias": 10,
+      "niveis": 4,
+      "semente": 1,
+      "processos": 0,
+      "malha_rapida": true,
+      "var_k": true,
+      "faixa_k": 20.0,
+      "var_c": true,
+      "faixa_c": 15.0,
+      "var_eps_furos": true,
+      "min_eps_furos": 0.7,
+      "max_eps_furos": 0.95,
+      "var_h": true,
+      "min_h": 15.0,
+      "max_h": 35.0,
+      "var_eps": true,
+      "min_eps": 0.6,
+      "max_eps": 0.95,
+      "var_alfa": true,
+      "min_alfa": 4.0,
+      "max_alfa": 8.0,
+      "var_ktr": true,
+      "min_ktr": 0.0,
+      "max_ktr": 2.35,
+      "var_res": true,
+      "faixa_res": 15.0,
+      "var_rig": true,
+      "faixa_rig": 25.0,
+      "var_imp": true,
+      "min_imp": 1000.0,
+      "max_imp": 250.0,
+      "var_exc": true,
+      "min_exc": -10.0,
+      "max_exc": 10.0
+    }
+  }
+}

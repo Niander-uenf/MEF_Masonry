@@ -1,0 +1,37 @@
+caso,grandeza,MEF,analítico/referência,erro,tolerância,unidade,situação
+V1 3D (H8) dt=60s,"T no centro, Fo = 0.05",34.1276,31.7846,2.34,6,°C,OK
+V1 3D (H8) dt=60s,"T no centro, Fo = 0.1",62.7984,58.8959,3.9,6,°C,OK
+V1 3D (H8) dt=60s,"T no centro, Fo = 0.2",160.107,159.782,0.324,6,°C,OK
+V1 3D (H8) dt=60s,"T no centro, Fo = 0.5",389.241,388.657,0.584,6,°C,OK
+V1 3D (H8) dt=60s,"T no centro, Fo = 1.0",537.639,538.453,-0.814,6,°C,OK
+V1 3D (H8) dt=15s,"T no centro, Fo = 0.05",32.3383,31.7846,0.554,2,°C,OK
+V1 3D (H8) dt=15s,"T no centro, Fo = 0.1",59.9321,58.8959,1.04,2,°C,OK
+V1 3D (H8) dt=15s,"T no centro, Fo = 0.2",160.49,159.782,0.707,2,°C,OK
+V1 3D (H8) dt=15s,"T no centro, Fo = 0.5",388.631,388.657,-0.0257,2,°C,OK
+V1 3D (H8) dt=15s,"T no centro, Fo = 1.0",538.215,538.453,-0.239,2,°C,OK
+V1 2D (triângulos) dt=60s,"T no centro, Fo = 0.05",34.1667,31.7846,2.38,6,°C,OK
+V1 2D (triângulos) dt=60s,"T no centro, Fo = 0.1",62.8401,58.8959,3.94,6,°C,OK
+V1 2D (triângulos) dt=60s,"T no centro, Fo = 0.2",160.1,159.782,0.318,6,°C,OK
+V1 2D (triângulos) dt=60s,"T no centro, Fo = 0.5",389.213,388.657,0.556,6,°C,OK
+V1 2D (triângulos) dt=60s,"T no centro, Fo = 1.0",537.622,538.453,-0.831,6,°C,OK
+V1 2D (triângulos) dt=15s,"T no centro, Fo = 0.05",32.3692,31.7846,0.585,2,°C,OK
+V1 2D (triângulos) dt=15s,"T no centro, Fo = 0.1",59.9716,58.8959,1.08,2,°C,OK
+V1 2D (triângulos) dt=15s,"T no centro, Fo = 0.2",160.479,159.782,0.697,2,°C,OK
+V1 2D (triângulos) dt=15s,"T no centro, Fo = 0.5",388.601,388.657,-0.0556,2,°C,OK
+V1 2D (triângulos) dt=15s,"T no centro, Fo = 1.0",538.197,538.453,-0.256,2,°C,OK
+V2 prato rígido,deslocamento do topo (mm),-0.051196,-0.051196,-1.72e-13,0.1,%,OK
+V2 prato rígido,expansão lateral (mm),0.00460764,0.00460764,1.84e-13,0.1,%,OK
+V2 prato rígido,tensão szz média (MPa),-1,-1,-1.63e-13,0.1,%,OK
+V2 pressão no topo,deslocamento do topo (mm),-0.051196,-0.051196,1.32e-14,0.1,%,OK
+V2 pressão no topo,expansão lateral (mm),0.00460764,0.00460764,7.35e-14,0.1,%,OK
+V2 pressão no topo,tensão szz média (MPa),-1,-1,-1.16e-14,0.1,%,OK
+V3,alongamento livre (mm),0.6,0.6,-3.61e-14,0.1,%,OK
+V3,maior |tensão| (MPa),1.33346e-13,0,1.33e-13,0.001,MPa,OK
+V4,encurtamento total (mm),0.154234,0.154234,-2.06e-12,0.1,%,OK
+V4,módulo equivalente (MPa),1932.13,1932.13,2.07e-12,0.1,%,OK
+V5,sxx: maior erro / (E alfa dT0),4.68964,4.67849,0.161,3,%,OK
+V5,szz: maior erro / (E alfa dT0),4.68972,4.67849,0.161,3,%,OK
+V6,sx: maior erro / (E alfa dT0),5.05184,5.01718,0.493,3,%,OK
+V6,sz: maior erro / (E alfa dT0),5.05189,5.01718,0.494,3,%,OK
+V7,T mínima da seção no fim (°C),362.688,363.281,-0.593,1,°C,OK
+V7,T média nodal no fim (°C),476.05,476.114,-0.064,1,°C,OK
