@@ -4,7 +4,7 @@ message: "If you use MEF_Masonry, please cite the paper and the archived version
 title: "MEF_Masonry: an open finite element program for block masonry in fire"
 type: software
 version: 1.0.0
-date-released: "2026-12-01"   # TO-FILL: date of the GitHub release
+date-released: "2026-11-05"
 authors:
   - family-names: Cerqueira
     given-names: Niander Aguiar
