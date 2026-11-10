@@ -1,7 +1,7 @@
 {
   "title": "MEF_Masonry: an open finite element program for block masonry in fire",
   "upload_type": "software",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Open-source Python program for the thermal and thermo-mechanical analysis of block masonry in fire, from the unit section to the full-scale wall: 2D and 3D transient heat transfer with cavity radiation, a 3D damage model with crack closure, dry joints with random initial gaps, transient creep, a corotational wall model with fibre sections, Morris global sensitivity analysis and a browser interface. Includes 240 automated verification cases and the scripts and results of the companion paper in Advances in Engineering Software.",
   "creators": [
     {

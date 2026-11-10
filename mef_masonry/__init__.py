@@ -25,4 +25,4 @@ Módulos:
   estudos     calibração das juntas, ensaio da UFV em 3D, estudos da seção
   saida       VTK (ParaView), CSV e figuras
 """
-__version__ = "1.0.0"
+__version__ = "1.0.1"

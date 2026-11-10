@@ -162,7 +162,8 @@ def fig2():
                 b.append(t(px(i) + 5, y + 4, "0", 11.5, QUIET))
     yb = yr(n - 1) + 34
     b.append(t(x0, yb, "Bars: μ* (mean absolute elementary effect over the input range); lines: 95% bootstrap interval.", 11, QUIET))
-    save("Fig2_morris", svg(760, yb + 14, "".join(b)), 190)
+    b.append(t(x0, yb + 19, "Illustrative: the wall model has not yet been validated against a loaded wall test.", 11, INK, "start", "bold"))
+    save("Fig2_morris", svg(760, yb + 30, "".join(b)), 190)
 
 
 # ---------------- Figure 3: design chart ----------------
@@ -203,7 +204,8 @@ def fig3():
                     b.append(f"<circle cx='{xx:.2f}' cy='{yy:.2f}' r='2.6' fill='{ACC}' fill-opacity='{op(h):.2f}'/>")
     b.append(t(left + (3 * pw + 2 * gap) / 2, Y(0) + 40, "Load level, % of the cold capacity of each wall", 11.5, QUIET, "middle"))
     b.append(t(left, Y(0) + 62, "Triangles: no failure within 240 min", 11.5, QUIET))
-    save("Fig3_design_chart", svg(760, int(Y(0) + 74), "".join(b)), 190)
+    b.append(t(left, Y(0) + 81, "Illustrative, not fire ratings: the wall model has not yet been validated against a loaded wall test.", 11.5, INK, "start", "bold"))
+    save("Fig3_design_chart", svg(760, int(Y(0) + 92), "".join(b)), 190)
 
 
 if __name__ == "__main__":

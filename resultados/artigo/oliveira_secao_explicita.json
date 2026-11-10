@@ -1,0 +1,46 @@
+{
+ "celula_mm": [
+  45.666666666666664,
+  84,
+  68
+ ],
+ "fator_forma_2D": 0.30462478530485737,
+ "fator_forma_3D": 0.16974984791782824,
+ "eps_efetiva_2D": 0.39902463547835804,
+ "eps_efetiva_3D": 0.24389835336387058,
+ "referencia": {
+  "eps_furos": 0.9,
+  "fator_k_septos": 1.0,
+  "I_min": 42.5
+ },
+ "F_2D": {
+  "eps_furos": 0.39902463547835804,
+  "fator_k_septos": 1.0,
+  "I_min": 58.5
+ },
+ "F_3D": {
+  "eps_furos": 0.24389835336387058,
+  "fator_k_septos": 1.0,
+  "I_min": 68.5
+ },
+ "sem_radiacao": {
+  "eps_furos": 0.0,
+  "fator_k_septos": 1.0,
+  "I_min": 136.5
+ },
+ "septos_metade": {
+  "eps_furos": 0.9,
+  "fator_k_septos": 0.5,
+  "I_min": 44.0
+ },
+ "F_3D_septos_metade": {
+  "eps_furos": 0.24389835336387058,
+  "fator_k_septos": 0.5,
+  "I_min": 77.0
+ },
+ "sem_radiacao_septos_metade": {
+  "eps_furos": 0.0,
+  "fator_k_septos": 0.5,
+  "I_min": null
+ }
+}

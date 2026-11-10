@@ -1,0 +1,165 @@
+{
+ "rodadas": 120,
+ "rodadas_truncadas": 59,
+ "R_como_no_artigo": [
+  {
+   "parametro": "α",
+   "mu_estrela": 253.49,
+   "mu": -253.49,
+   "sigma": 125.88
+  },
+  {
+   "parametro": "excentr.",
+   "mu_estrela": 156.82,
+   "mu": 156.82,
+   "sigma": 142.67
+  },
+  {
+   "parametro": "imperf.",
+   "mu_estrela": 54.6,
+   "mu": -54.6,
+   "sigma": 70.12
+  },
+  {
+   "parametro": "k_tr",
+   "mu_estrela": 23.92,
+   "mu": 23.92,
+   "sigma": 41.03
+  },
+  {
+   "parametro": "f_rig",
+   "mu_estrela": 19.94,
+   "mu": 19.94,
+   "sigma": 31.73
+  },
+  {
+   "parametro": "k",
+   "mu_estrela": 9.68,
+   "mu": -9.55,
+   "sigma": 20.09
+  },
+  {
+   "parametro": "ε face",
+   "mu_estrela": 9.14,
+   "mu": -9.14,
+   "sigma": 16.99
+  },
+  {
+   "parametro": "c",
+   "mu_estrela": 8.16,
+   "mu": 8.16,
+   "sigma": 10.88
+  },
+  {
+   "parametro": "ε furos",
+   "mu_estrela": 3.21,
+   "mu": 3.21,
+   "sigma": 4.43
+  },
+  {
+   "parametro": "f_res",
+   "mu_estrela": 2.21,
+   "mu": 1.71,
+   "sigma": 4.12
+  },
+  {
+   "parametro": "h",
+   "mu_estrela": 0.32,
+   "mu": -0.32,
+   "sigma": 0.4
+  }
+ ],
+ "R_sem_rodadas_truncadas": [
+  {
+   "parametro": "α",
+   "mu_estrela": 176.39,
+   "mu": -176.39,
+   "sigma": 130.11
+  },
+  {
+   "parametro": "k_tr",
+   "mu_estrela": 47.84,
+   "mu": 47.84,
+   "sigma": 48.54
+  },
+  {
+   "parametro": "imperf.",
+   "mu_estrela": 44.7,
+   "mu": -44.7,
+   "sigma": 17.54
+  },
+  {
+   "parametro": "f_rig",
+   "mu_estrela": 39.88,
+   "mu": 39.88,
+   "sigma": 35.65
+  },
+  {
+   "parametro": "c",
+   "mu_estrela": 20.4,
+   "mu": 20.4,
+   "sigma": 4.73
+  },
+  {
+   "parametro": "k",
+   "mu_estrela": 19.36,
+   "mu": -19.11,
+   "sigma": 26.08
+  },
+  {
+   "parametro": "ε face",
+   "mu_estrela": 18.29,
+   "mu": -18.29,
+   "sigma": 21.0
+  },
+  {
+   "parametro": "ε furos",
+   "mu_estrela": 6.41,
+   "mu": 6.41,
+   "sigma": 4.3
+  },
+  {
+   "parametro": "f_res",
+   "mu_estrela": 4.42,
+   "mu": 3.41,
+   "sigma": 5.56
+  },
+  {
+   "parametro": "h",
+   "mu_estrela": 0.53,
+   "mu": -0.53,
+   "sigma": 0.39
+  },
+  {
+   "parametro": "excentr.",
+   "mu_estrela": null,
+   "mu": null,
+   "sigma": null
+  }
+ ],
+ "efeitos_validos_por_parametro_sem_truncadas": {
+  "k": 5,
+  "c": 4,
+  "ε furos": 5,
+  "h": 6,
+  "ε face": 5,
+  "α": 4,
+  "k_tr": 5,
+  "f_res": 5,
+  "f_rig": 5,
+  "imperf.": 2,
+  "excentr.": 0
+ },
+ "k_tr_na_rodada_nominal": {
+  "k_tr = 0": {
+   "R": 210.890625,
+   "R_censurado": false,
+   "I": 112.0
+  },
+  "k_tr = 2.35": {
+   "R": 223.828125,
+   "R_censurado": false,
+   "I": 112.0
+  }
+ }
+}

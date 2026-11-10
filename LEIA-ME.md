@@ -24,6 +24,21 @@ do patamar). Hoje trata de alvenarias de vários blocos e, na versão 1.0, cobre
 As seções abaixo descrevem cada etapa, da mais recente (versão 1.0, com o
 novo nome) para a mais antiga (modo Parede, 0.5).
 
+## Versão 1.0.1: estudos da revisão do artigo
+
+O solver não mudou. Entram três roteiros em `exemplos/artigo/`, com os resultados em
+`resultados/artigo/`, e as figuras 2 e 3 passam a dizer que são ilustrativas:
+
+- `oliveira_secao_explicita.py`: o modelo de placas paralelas infinitas das cavidades
+  superestima a troca por radiação em células finitas. Com o fator de forma entre as
+  cascas (emissividade efetiva ε′, com ε′/(2 − ε′) = F ε/(2 − ε)), o isolamento da parede
+  de Oliveira et al. (2021) passa de 42,5 min para 58,5 min (fator 2D) e 68,5 min (fator 3D),
+  contra 65 a 82 min nos ensaios. Para usar a correção num projeto, informe ε′ como
+  emissividade das paredes dos furos.
+- `morris_verificacoes.py`: a triagem da parede BCEPQ sem os efeitos que envolvem rodadas
+  sem ruína, e a parede nominal com k_tr = 2,35 (224 min, contra 211 min com k_tr = 0).
+- `morris_alfa_estreito.py`: a mesma triagem com α de 5 a 7 ×10⁻⁶/°C.
+
 ## Versão 1.0: o programa passa a se chamar MEF_Masonry
 
 O programa nasceu para o BCEPQ, mas hoje calcula blocos maciços, cerâmicos

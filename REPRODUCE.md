@@ -16,8 +16,9 @@ an Intel Xeon at 2.8 GHz.
 | Section 5.3 | Parallel speed-up | `python exemplos/artigo/speedup.py` | printed | 4 min |
 | Tables 7 and 8, Section 6 | Comparison with the ANSYS model of the BCEPQ prism (Sá, 2025) | `python exemplos/artigo/benchmark_ansys.py` (ANSYS input files in `dados/ansys_prisma_bcepq/`) | `resultados/artigo/benchmark_ansys.json` | 6 min |
 | Table 9, Section 7.1 | Hot compression of BCEPQ prisms | `python exemplos/07_ensaio_ufv_nao_linear.py --calibrado --temperaturas 30 600 800 1000` | `resultados/nl_resumo_calibrado.csv` | 40 min |
-| Table 10, Section 7.3 | Insulation of the walls of Oliveira et al. (2021a) | `python exemplos/artigo/oliveira.py`, `python exemplos/artigo/oliveira_sensibilidade.py` and, for the moisture moved to the unexposed shell, `python exemplos/artigo/oliveira_umidade_migrada.py` | `resultados/artigo/oliveira*.json` | 3 min |
+| Table 10, Section 7.3 | Insulation of the walls of Oliveira et al. (2021a) | `python exemplos/artigo/oliveira.py`, `python exemplos/artigo/oliveira_sensibilidade.py`, `python exemplos/artigo/oliveira_umidade_migrada.py` (moisture moved to the unexposed shell) and `python exemplos/artigo/oliveira_secao_explicita.py` (view factors of the cells, conduction of the webs) | `resultados/artigo/oliveira*.json` | 3 min |
 | Fig. 2, Table 11, Section 8.1 | Morris screening of the BCEPQ wall | Interface: ready-made project "Parede BCEPQ 2,94 × 3,00 m — sensibilidade no ISO 834" | `resultados/sensibilidade_parede_bcepq/` | 12 min |
+| Sections 3.5 and 8.1 | Checks of the screening: runs without failure excluded, transient creep coefficient 2.35 in the nominal wall, range of α narrowed to 5 to 7 × 10⁻⁶/°C | `python exemplos/artigo/morris_verificacoes.py` and `python exemplos/artigo/morris_alfa_estreito.py` | `resultados/artigo/morris_verificacoes.json`, `resultados/artigo/morris_alfa_5_7/` | 2 min and 12 min |
 | Fig. 3, Section 8.2 | Illustrative fire-resistance charts | `python exemplos/artigo/abacos.py` | `resultados/artigo/abacos/` | 10 min |
 
 Figures 1 to 3 are drawn from these results by `python exemplos/artigo/figuras.py`,

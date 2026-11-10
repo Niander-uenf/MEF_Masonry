@@ -3,8 +3,8 @@ cff-version: 1.2.0
 message: "If you use MEF_Masonry, please cite the paper and the archived version of the software."
 title: "MEF_Masonry: an open finite element program for block masonry in fire"
 type: software
-version: 1.0.0
-date-released: "2026-11-05"
+version: 1.0.1
+date-released: "2026-11-10"
 authors:
   - family-names: Cerqueira
     given-names: Niander Aguiar
@@ -12,7 +12,7 @@ authors:
     affiliation: "Universidade Estadual do Norte Fluminense Darcy Ribeiro (UENF)"
     # orcid: "https://orcid.org/TO-FILL"
 repository-code: "https://github.com/Niander-uenf/MEF_Masonry"
-doi: "10.5281/zenodo.23991397"
+doi: "10.5281/zenodo.23991396"
 license: BSD-3-Clause
 keywords:
   - masonry

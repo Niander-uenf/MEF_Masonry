@@ -12,9 +12,9 @@ perforated clay bricks, with dry or mortar joints.
 
 | | |
 |---|---|
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | Paper | [TO FILL: citation of the paper in Advances in Engineering Software, once accepted] |
-| Archive | Zenodo, https://doi.org/10.5281/zenodo.23991397 (version 1.0.0) |
+| Archive | Zenodo, https://doi.org/10.5281/zenodo.23991396 (all versions; version 1.0.0 is https://doi.org/10.5281/zenodo.23991397) |
 | Licence | BSD-3-Clause, see [LICENSE](LICENSE) |
 | Contact | Niander Aguiar Cerqueira, Universidade Estadual do Norte Fluminense Darcy Ribeiro (UENF), niander@uenf.br |
 

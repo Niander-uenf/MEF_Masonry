@@ -1,0 +1,12 @@
+parâmetro,faixa,μ* (kN),IC 95% de μ*,μ (kN),σ (kN),σ/μ*,comportamento
+Excentricidade da carga (topo e base),-10 a 10 mm,147.78,"89,6 a 202,8",140.04,109.03,0.74,quase monotônico
+Resistência da alvenaria (fator na lei),±15%,147.68,"130,9 a 165,0",147.68,28.86,0.2,monotônico
+Imperfeição inicial (H dividida por),H/1000 a H/250,87.47,"71,9 a 103,4",-63.31,69.39,0.79,quase monotônico
+Rigidez da alvenaria (fator na lei),±25%,25.14,"15,9 a 33,5",25.14,15.33,0.61,quase monotônico
+Convecção na face exposta,15 a 35 W/m²·K,0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
+Condutividade térmica do bloco,±20%,0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
+Emissividade das paredes dos furos,"0,7 a 0,95",0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
+Calor específico do bloco,±15%,0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
+Fluência transitória do bloco (k_tr),"0 a 2,35",0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
+Dilatação térmica do bloco,5 a 7 ×10⁻⁶/°C,0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
+Emissividade da superfície,"0,6 a 0,95",0.0,"0,0 a 0,0",0.0,0.0,—,efeito pequeno
