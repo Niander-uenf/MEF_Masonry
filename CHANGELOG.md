@@ -3,6 +3,12 @@
 Details of each version, with examples and verification cases, are in
 [LEIA-ME.md](LEIA-ME.md) (Portuguese).
 
+## 1.0.1
+- Solver unchanged. Studies added during the review of the paper, in `exemplos/artigo/` with results in `resultados/artigo/`:
+  `oliveira_umidade_migrada.py` (moisture moved to the unexposed shell), `oliveira_secao_explicita.py` (view factors of the cells and conduction of the webs),
+  `morris_verificacoes.py` (Morris effects without the runs that did not fail; nominal wall with k_tr = 2.35) and `morris_alfa_estreito.py` (screening with α from 5 to 7 × 10⁻⁶/°C).
+- Figures 2 and 3 state that they are illustrative.
+
 ## 1.0.0
 - The program is renamed MEF_Masonry (package `mef_masonry`); `mef_bcepq` stays as an alias for old scripts, and old projects and browser data still open.
 - Scripts and results of the paper in `exemplos/artigo/` and `resultados/artigo/`, with `REPRODUCE.md` and the figure script.
