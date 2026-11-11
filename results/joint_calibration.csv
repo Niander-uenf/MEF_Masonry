@@ -1,0 +1,11 @@
+quantity,origin,value
+E of the unit (gross area),"experimental (BPQ, n = 6)",2801
+E of the ceramic material (net area),derived: E_unit / 0.717,3907
+E of the dry prism 5ID (whole units),"experimental (BPQ, n = 4)",1216
+E of the dry prism 5HD (alternating half units),"experimental (BPQ, n = 4)",1001
+E of the prism = 600 fpk,"NBR 16868-1, fpk = 1.68 MPa (UFV, 30 °C)",1007
+E of the joint: series association,"theoretical, base 108 mm with 2 joints",91.0
+E of the joint: calibrated in the FEM,numerical 3D,84.4
+E of the prism in the middle third,"numerical 3D, calibrated joint",1100
+E of the prism between platens,"numerical 3D, calibrated joint",1046
+Normal stiffness of the joint k_n = E_j/t,numerical 3D (N/mm³),42.2

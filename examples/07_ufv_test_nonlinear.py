@@ -95,7 +95,7 @@ for T_target in a.temperatures:
     save_csv(os.path.join(OUT_DIR, f"nl_load_displacement_{int(T_target)}C{a.label}.csv"),
                [[f"{p.label * 1e3:.4f}", f"{p.load_N / 1e3:.3f}", f"{-p.eps_ext * 1e3:.4f}", f"{100 * p.contact:.1f}",
                  f"{100 * p.damaged_vol:.2f}"] for p in hist],
-               ["delta_mm", "load_kN", "middle_third_strain_permil", "joint_contact_pct", "ceramica_d_maior_0.5_pct"])
+               ["delta_mm", "load_kN", "middle_third_strain_permil", "joint_contact_pct", "ceramic_d_above_0.5_pct"])
     gap_el = np.full(len(m.conn3), np.nan); gap_el[mod.id_glob[mod.ij]] = mod.gap * 1e3
     save_vtk(os.path.join(OUT_DIR, "vtk", f"nl_prism_{int(T_target)}C{a.label}.vtk"), m,
                node_data={"T_C": mod.T, "u_mm": mod.u.reshape(-1, 3) * 1e3},

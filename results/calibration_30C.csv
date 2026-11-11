@@ -1,0 +1,6 @@
+stage,gap_std_mm,fc_MPa,E_chord_MPa,max_load_kN
+stage 1,0.0240,,1204.7,
+stage 1,0.0320,,1047.4,
+stage 2,0.0290,5.760,,229.19
+stage 2,0.0290,2.481,,98.76
+calibrated,0.0290,2.481,1100,98.76

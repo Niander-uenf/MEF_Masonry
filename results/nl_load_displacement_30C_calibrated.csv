@@ -1,4 +1,4 @@
-delta_mm,load_kN,middle_third_strain_permil,joint_contact_pct,ceramica_d_maior_0.5_pct
+delta_mm,load_kN,middle_third_strain_permil,joint_contact_pct,ceramic_d_above_0.5_pct
 0.0200,5.001,0.2438,22.6,0.06
 0.0400,8.938,0.3247,26.7,0.06
 0.0600,14.190,0.4060,31.8,0.07

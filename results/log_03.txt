@@ -1,0 +1,22 @@
+Mesh: 38190 nodes, 68376 W6 wedges, 37 layers; air (holes): 28644, unit: 22650, dry joint: 4146, capping: 1848, steel (plates): 11088
+Joint E = 84.4 MPa (recalibrate with example 02 if the mesh changes)
+
+Test at 600 °C (load 9980.9 kgf), 63 s
+  temperature at loading: surface 576 °C, centre of the web 369 °C, mean of the middle third 492 °C
+  thermal expansion between platens 0.842 mm; shortening under the load 0.477 mm
+  maximum tension in the ceramic: thermal 3.74 MPa (p99 2.10); total 3.76 MPa (p99 2.11); central courses 3.76 MPa
+  ceramic with tension > 1 MPa: 8% of the volume
+
+Test at 800 °C (load 10087.3 kgf), 75 s
+  temperature at loading: surface 789 °C, centre of the web 619 °C, mean of the middle third 726 °C
+  thermal expansion between platens 1.267 mm; shortening under the load 0.482 mm
+  maximum tension in the ceramic: thermal 2.70 MPa (p99 1.45); total 2.72 MPa (p99 1.47); central courses 2.72 MPa
+  ceramic with tension > 1 MPa: 3% of the volume
+
+Test at 1000 °C (load 11662.1 kgf), 90 s
+  temperature at loading: surface 995 °C, centre of the web 874 °C, mean of the middle third 954 °C
+  thermal expansion between platens 1.673 mm; shortening under the load 0.558 mm
+  maximum tension in the ceramic: thermal 1.64 MPa (p99 0.91); total 1.66 MPa (p99 0.93); central courses 1.66 MPa
+  ceramic with tension > 1 MPa: 0% of the volume
+
+Results in /home/claude/en/MEF_Masonry/results

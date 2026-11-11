@@ -64,8 +64,8 @@ fc, Pmax, pts_fc = studies.calibrate_fc(m, M, Pd, Pj, P30, geo=geo)
 print(f"   effective fc = {fc / 1e6:.2f} MPa (literature: {Pd.fc / 1e6:.2f} MPa); "
       f"peak load {Pmax / 1e3:.1f} kN ({time.time() - t0:.0f} s)\n")
 
-lines = [["etapa 1", f"{s * 1e3:.4f}", "", f"{E:.1f}", ""] for s, E, _ in pts_E]
-lines += [["etapa 2", f"{sg * 1e3:.4f}", f"{f / 1e6:.3f}", "", f"{P / 1e3:.2f}"] for f, P in pts_fc]
+lines = [["stage 1", f"{s * 1e3:.4f}", "", f"{E:.1f}", ""] for s, E, _ in pts_E]
+lines += [["stage 2", f"{sg * 1e3:.4f}", f"{f / 1e6:.3f}", "", f"{P / 1e3:.2f}"] for f, P in pts_fc]
 lines.append(["calibrated", f"{sg * 1e3:.4f}", f"{fc / 1e6:.3f}", f"{a.E_prism:.0f}", f"{Pmax / 1e3:.2f}"])
 save_csv(os.path.join(OUT_DIR, "calibration_30C.csv"), lines,
            ["stage", "gap_std_mm", "fc_MPa", "E_chord_MPa", "max_load_kN"])
