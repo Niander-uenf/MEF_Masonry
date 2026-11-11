@@ -11,7 +11,7 @@ Run them from the root of the repository; the results go to results/paper/.
   python examples/paper/oliveira_moved_moisture.py    section 7.3: water moved to the cold shell (test of moisture transport); ~5 s
   python examples/paper/oliveira_explicit_section.py  section 7.3: view factor of the cells and conduction of the webs; ~5 s
   python examples/paper/morris_checks.py              sections 3.5 and 8.1: Morris without the truncated runs and nominal wall with k_tr = 2.35; ~2 min
-  python examples/paper/morris_narrow_alpha.py        section 8.1: Morris screening with α from 5 to 7 ×10⁻⁶/°C; ~12 min on 2 cores
+  python examples/paper/morris_narrow_alpha.py        section 8.1: Morris screening with α from 5 to 7 ×10⁻⁶/°C; ~40 min on 2 cores
   python examples/paper/charts.py                     section 8.2: design charts (5 heights × 3 values of α × 9 load levels); ~10 min
   python examples/paper/figures.py                    figures 1 to 3, from the results above (SVG; PNG and PDF with rsvg-convert)
 

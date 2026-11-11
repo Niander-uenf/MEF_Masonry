@@ -1,0 +1,12 @@
+parameter,band,μ* (min),95% CI of μ*,μ (min),σ (min),σ/μ*,behaviour
+Thermal conductivity of the unit,±20%,42.45,38.7 to 46.6,-42.45,6.55,0.15,monotonic
+Specific heat of the unit,±15%,27.38,25.5 to 29.3,27.38,3.26,0.12,monotonic
+Surface emissivity,0.6 to 0.95,7.95,6.0 to 10.3,7.95,3.69,0.46,monotonic
+Emissivity of the hole walls,0.7 to 0.95,7.58,6.8 to 8.4,-7.58,1.34,0.18,monotonic
+Convection on the exposed face,15 to 35 W/m²·K,0.82,0.6 to 1.1,-0.82,0.43,0.52,small effect
+Thermal expansion of the unit,5 to 7 ×10⁻⁶/°C,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Transient creep of the unit (k_tr),0 to 2.35,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Masonry strength (factor on the law),±15%,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Masonry stiffness (factor on the law),±25%,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Initial imperfection (H divided by),H/1000 to H/250,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Load eccentricity (top and base),-10 to 10 mm,0.0,0.0 to 0.0,0.0,0.0,—,small effect

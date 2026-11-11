@@ -1,7 +1,7 @@
 """Section 8.1 of the paper: the Morris screening of the BCEPQ wall repeated with the α range
 narrowed from 4 to 8 to 5 to 7 ×10⁻⁶/°C (the other ten inputs, the trajectories and the
 seed equal to those of the screening in the paper). Shows how much the first place of α depends on the
-range assigned to it. ~12 min on two cores."""
+range assigned to it. ~40 min on two cores."""
 import os, sys, json
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 sys.path.insert(0, ROOT)
