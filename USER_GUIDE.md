@@ -724,12 +724,12 @@ Choice of the element, non-linear test at 30 °C (Table 5 of the paper; 2 cores;
 
 | Element | Mesh (mm) | Nodes | Peak (kN) | Chord E (MPa) | Time |
 | --- | --- | --- | --- | --- | --- |
-| W6 | 12 × 20 | 15,080 | 98.68 | 1204 | 2.6 min |
-| H8 | 12 × 20 | 15,080 | 97.74 | 1212 | 2.9 min |
-| W6 | 16 × 30 | 7,638 | 97.38 | 1333 | 0.8 min |
-| W15 | 16 × 30 | 35,869 | 96.34 | 1326 | 26 min (1.7 GB) |
+| W6 | 12 × 20 | 15,080 | 98.94 | 1212 | 3.4 min |
+| H8 | 12 × 20 | 15,080 | 98.24 | 1211 | 3.1 min |
+| W6 | 16 × 30 | 7,638 | 97.37 | 1338 | 0.7 min |
+| W15 | 16 × 30 | 35,869 | 95.15 | 1331 | 29 min (1.7 GB) |
 
-The element changes the peak by up to 1.1%; the mesh weighs more on the chord
+The element changes the peak by up to 2.3%; the mesh weighs more on the chord
 modulus.
 
 **2D section.** The same thermal analysis, with stresses in generalised plane
@@ -811,10 +811,10 @@ The heated tests are predictions, without a new fit.
 
 | Test | Peak load of the model | Test (UFV) | Difference | Ceramic with d > 0.5 after heating | Chord E 5–30% |
 | --- | --- | --- | --- | --- | --- |
-| 30 °C | 98.6 kN | 98.7 kN | calibrated | 0.06% | 1210 MPa |
-| 600 °C | 97.1 kN | 97.9 kN | −1% | 13% | 882 MPa |
-| 800 °C | 98.1 kN | 98.9 kN | −1% | 17% | 964 MPa |
-| 1000 °C | 99.0 kN | 114.4 kN | −13% | 18% | 1072 MPa |
+| 30 °C | 98.9 kN | 98.7 kN | calibrated | 0.06% | 1212 MPa |
+| 600 °C | 96.9 kN | 97.9 kN | −1% | 13% | 877 MPa |
+| 800 °C | 97.4 kN | 98.9 kN | −2% | 17% | 960 MPa |
+| 1000 °C | 99.6 kN | 114.4 kN | −13% | 18% | 1072 MPa |
 
 With the fc of the literature (5.76 MPa), the same model gives 230 kN at 30 °C.
 
@@ -835,8 +835,8 @@ and 98.8 kN (variation < 1%), and the chord E 964 and 1162 MPa. The stiffness
 depends more on the distribution of the gaps than the strength does; the
 scatter is similar to that of the BPQ prisms.
 
-Time: 3–4 min at 30 °C and 11–14 min in the heated tests (2 cores).
-Increments accepted without full convergence (minimum step): 0, 3, 1 and 8,
+Time: about 3 min at 30 °C and 10–11 min in the heated tests (2 cores).
+Increments accepted without full convergence (minimum step): 0, 5, 1 and 5,
 respectively; the script reports this count.
 
 **Temperature dependence.** The tables `table_ft_factor`, `table_fc_factor`

@@ -20,7 +20,11 @@ Details of each version, with examples and verification cases, are in
   functions, classes and constants still work; the library accepts the old selectors and keys
   (`library.apply(p, "bloco", "concreto_m15_39")`). Results are returned with the names of version 2.
   The interface lists the runs of versions 1.x and reuses their inputs.
-- The solver is unchanged: the 240 verification cases and the studies of the paper were rerun with the same results.
+- The solver is unchanged: the 240 verification cases and the studies of the paper were rerun and give the same
+  results as the code of version 1.0.1. The prism results of versions 1.0.x (`convergencia_malha_nl.csv`,
+  `comparacao_elementos.csv`, `nl_resumo_calibrado.csv`) had been produced by an earlier code; regenerated, they
+  differ from them by up to 1.2% in the peak load (98.9 instead of 98.6 kN at 30 °C), and Tables 5 and 9 of the
+  paper were updated.
 - `examples/09_convergence_study.py`: option `--element` (W6, H8 or W15), to repeat the comparison of elements of
   Table 5 of the paper.
 
