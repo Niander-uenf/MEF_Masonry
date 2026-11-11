@@ -449,7 +449,7 @@ program already reproduces that test for comparison.
   with the three elements where applicable) and writes
   `results/verification_summary.csv`. Without options it takes about 7 min;
   with `--full`, it includes the long cases (convergence of the wall, prisms of
-  Camacho et al. and others) and takes about 45 min.
+  Camacho et al. and others) and takes about 35 min.
 - The 2D section, the figures, the VTK and the post-processor show the
   vertical section upright (thickness horizontal, height vertical).
 
@@ -649,7 +649,7 @@ Limitations of Wall mode:
 | 13 | `examples/13_verification_horizontal_holes.py` | Verifies the horizontal holes in 12 cases (`--full` also runs the 8-hole prism) | 10 s; 1 min full |
 | 14 | `examples/14_verification_creep.py` | Verifies transient creep in 19 cases (`--full` also runs the sensitivity of the BCEPQ wall and the transient test of the solid brick) | 2 min; 10 min full |
 | 15 | `examples/15_verification_sensitivity.py` | Verifies the Morris method and the wall runs in 31 cases (`--full` also runs a small parallel study and the recommended mesh) | 1 min; 5 min full |
-| — | `examples/00_verify_all.py` | Runs all the verifications and writes the summary | 7 min; 45 min full |
+| — | `examples/00_verify_all.py` | Runs all the verifications and writes the summary | 7 min; 35 min full |
 
 \* Measured on a computer with 2 cores. Default mesh of the linear 3D model:
 h = 8 mm, dz = 12 mm (with h = 6 mm and dz = 10 mm, it needs about 5 GB of
@@ -894,7 +894,7 @@ To check everything at once (for example, after installing or updating):
 
 ```
 python examples/00_verify_all.py           (about 7 min)
-python examples/00_verify_all.py --full    (about 45 min)
+python examples/00_verify_all.py --full    (about 35 min)
 ```
 
 | Script | What it verifies | Cases |

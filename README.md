@@ -84,7 +84,7 @@ A Windows executable that needs no Python is attached to each
 
 ```
 python examples/00_verify_all.py           # 240 cases, about 7 min on two cores
-python examples/00_verify_all.py --full    # with the long cases, about 45 min
+python examples/00_verify_all.py --full    # with the long cases, about 35 min
 ```
 
 Eight scripts compare the program with closed-form solutions, independent

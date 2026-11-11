@@ -6,7 +6,7 @@ results/verification_summary.csv with one line per script.
 
 Usage:
     python examples/00_verify_all.py           (fast, about 7 min)
-    python examples/00_verify_all.py --full    (with the long cases, about 45 min)
+    python examples/00_verify_all.py --full    (with the long cases, about 35 min)
 
 Exits with code 1 if any case fails.
 """
