@@ -211,7 +211,7 @@ if FULL:
 p8 = pj.complete(pj.default_project())
 condition("V8 defaults: k_tr of the mortar 2.0; unit and grout 0",
          (p8["model"]["k_tr_mortar"], p8["model"]["k_tr_unit"], p8["model"]["k_tr_grout"]) == (2.0, 0.0, 0.0),
-         p8["model"]["k_tr_mortar"], p8["model"]["k_tr_unit"], "", "2,0 / 0 / 0")
+         p8["model"]["k_tr_mortar"], p8["model"]["k_tr_unit"], "", "2.0 / 0 / 0")
 bad = [k for k, v in pj.PRESETS.items() if pj.validate(pj.complete(pj.apply(pj.default_project(), v)))]
 condition("V8 ready-made projects pass validation", not bad, len(pj.PRESETS) - len(bad),
          len(pj.PRESETS), "projects", "all")

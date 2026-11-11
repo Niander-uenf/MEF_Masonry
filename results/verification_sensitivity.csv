@@ -8,8 +8,8 @@ V2 linear: largest σ,0.0,0.0,,9.3e-16 (absolute),1e-12 ,ok
 V3 additive: μ* against the mean over the level pairs,0.0,0.0,,4.4e-16 (absolute),1e-12 ,ok
 "V3 additive, r = 2000: μ* of x1² tends to 1",0.996,1.0,,0.4%,2%,ok
 "V3 additive, r = 2000: μ* of 2 x2² tends to 2",1.994666667,2.0,,0.267%,2%,ok
-V3 additive: σ > 0 (non-linear effect),0.333393,0.996,,—,"σ/μ* > 0,2",ok
-V4 interaction x1 x2: σ/μ* for both,0.727286,0.874459,,—,"> 0,3",ok
+V3 additive: σ > 0 (non-linear effect),0.333393,0.996,,—,σ/μ* > 0.2,ok
+V4 interaction x1 x2: σ/μ* for both,0.727286,0.874459,,—,> 0.3,ok
 V4 parameter without effect: μ* + σ,0.0,0.0,,0 (absolute),1e-14 ,ok
 V5 Sobol' g-function: order of the first four,2.775359,0.388395,,—,μ*1 > μ*2 > μ*3 > μ*4,ok
 V5 Sobol' g-function: the last four < 5% of the largest,0.036206,0.138768,,—,negligible,ok

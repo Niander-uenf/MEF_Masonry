@@ -28,13 +28,13 @@ def _ft_mortar(fc):
 _THERM_MOR = {"mor_k": 1.15, "mor_rho": 2000, "mor_c": 1000}     # NBR 15220-2, via LabEEE/UFSC
 
 MORTARS: Dict[str, Dict] = {
-    "1:0,25:3": {"name": "1 : 0.25 : 3 (cement : lime : sand), fa = 19.9 MPa",
+    "1:0.25:3": {"name": "1 : 0.25 : 3 (cement : lime : sand), fa = 19.9 MPa",
                  "changes": {"ceramic": {"mor_fc": 19.9, "mor_E": 11230, **_THERM_MOR}}},
-    "1:0,5:4,5": {"name": "1 : 0,5 : 4,5, fa = 8,6 MPa",
+    "1:0.5:4.5": {"name": "1 : 0.5 : 4.5, fa = 8.6 MPa",
                   "changes": {"ceramic": {"mor_fc": 8.63, "mor_E": 6409, **_THERM_MOR}}},
-    "1:1:6": {"name": "1 : 1 : 6, fa = 4,2 MPa",
+    "1:1:6": {"name": "1 : 1 : 6, fa = 4.2 MPa",
               "changes": {"ceramic": {"mor_fc": 4.20, "mor_E": 4033, **_THERM_MOR}}},
-    "1:2:9": {"name": "1 : 2 : 9, fa = 2,3 MPa",
+    "1:2:9": {"name": "1 : 2 : 9, fa = 2.3 MPa",
               "changes": {"ceramic": {"mor_fc": 2.29, "mor_E": 2042, **_THERM_MOR}}},
     "custom": {"name": "Custom (values given below)", "changes": {}},
 }
@@ -62,7 +62,7 @@ _THERM_GRT = {"grt_k": 1.75, "grt_rho": 2400, "grt_c": 1000}       # concrete, N
 GROUTS: Dict[str, Dict] = {
     "G1": {"name": "G1: 1 : 1.83 : 2.17 (cement : sand : gravel, by mass), w/c 0.67, fgm = 17.7 MPa",
            "changes": {"ceramic": {"grt_fc": 17.73, **_THERM_GRT}}},
-    "G2": {"name": "G2: 1 : 1,20 : 1,80, a/c 0,55, fgm = 26,7 MPa",
+    "G2": {"name": "G2: 1 : 1.20 : 1.80, w/c 0.55, fgm = 26.7 MPa",
            "changes": {"ceramic": {"grt_fc": 26.66, **_THERM_GRT}}},
     "custom": {"name": "Custom (values given below)", "changes": {}},
 }
@@ -194,8 +194,8 @@ UNITS: Dict[str, Dict] = {
                                        bedding="total", filled_head_joints=True, capping=True,
                                        grouting="none"),
                      "ceramic": {**_CONCRETE, "E_unit_gross": 9160,
-                                  **MORTARS["1:0,5:4,5"]["changes"]["ceramic"],
-                                  "material_library": "concrete_nbr15220", "mortar_library": "1:0,5:4,5"},
+                                  **MORTARS["1:0.5:4.5"]["changes"]["ceramic"],
+                                  "material_library": "concrete_nbr15220", "mortar_library": "1:0.5:4.5"},
                      "model": {**_CONCRETE_MODEL, "ft": 1.14, "fc": 18.5}},
         "source": "Mohamad, Lourenço and Roman (2006); NBR 6136; thermal properties from NBR 15220-2 and EN 1992-1-2",
         "note": ("fb = 18.5 MPa on the net area (ratio 0.58). The shells are 25 mm at the top and tapered: the model uses "
@@ -212,7 +212,7 @@ UNITS: Dict[str, Dict] = {
                                        bedding="total", filled_head_joints=True, capping=True,
                                        grouting="all"),
                      "ceramic": {**_CONCRETE, "E_unit_gross": 5300,
-                                  **MORTARS["1:0,5:4,5"]["changes"]["ceramic"],
+                                  **MORTARS["1:0.5:4.5"]["changes"]["ceramic"],
                                   "mor_fc": 6.10, "mor_ft": _ft_mortar(6.10), "mor_E": 5050,
                                   **GROUTS["G1"]["changes"]["ceramic"],
                                   "material_library": "concrete_nbr15220", "mortar_library": "custom",
@@ -232,8 +232,8 @@ UNITS: Dict[str, Dict] = {
                                        bedding="total", filled_head_joints=True, capping=True,
                                        grouting="none"),
                      "ceramic": {**_CONCRETE, "E_unit_gross": 7340,
-                                  **MORTARS["1:0,5:4,5"]["changes"]["ceramic"],
-                                  "material_library": "concrete_nbr15220", "mortar_library": "1:0,5:4,5"},
+                                  **MORTARS["1:0.5:4.5"]["changes"]["ceramic"],
+                                  "material_library": "concrete_nbr15220", "mortar_library": "1:0.5:4.5"},
                      "model": {**_CONCRETE_MODEL, "ft": 1.07, "fc": 17.2}},
         "source": "NBR 6136 (minimum shells of class A); other values estimated",
         "note": ("Shells at the minimum thicknesses (32 mm on the faces, 25 mm on the webs and ends; net area 0.46). "

@@ -9,7 +9,7 @@
    "sigma": 125.88
   },
   {
-   "parameter": "excentr.",
+   "parameter": "eccentr.",
    "mu_star": 156.82,
    "mu": 156.82,
    "sigma": 142.67
@@ -131,7 +131,7 @@
    "sigma": 0.39
   },
   {
-   "parameter": "excentr.",
+   "parameter": "eccentr.",
    "mu_star": null,
    "mu": null,
    "sigma": null
@@ -148,7 +148,7 @@
   "f_str": 5,
   "f_stf": 5,
   "imperf.": 2,
-  "excentr.": 0
+  "eccentr.": 0
  },
  "k_tr_in_nominal_run": {
   "k_tr = 0": {

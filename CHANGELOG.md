@@ -13,7 +13,8 @@ Details of each version, with examples and verification cases, are in
   `sensibilidade` -> `sensitivity`, `biblioteca` -> `library`, `projeto` -> `project`, `saida` -> `output`,
   `curvas` -> `curves`, `estudos` -> `studies`; `projeto_padrao` -> `default_project`, `aplicar` -> `apply`,
   `executar` -> `run`; script options in English (`--completo` -> `--full`, `--calibrado` -> `--calibrated`,
-  `--temperaturas` -> `--temperatures`, ...). Numbers are written with a decimal point.
+  `--temperaturas` -> `--temperatures`, ...). Numbers are written with a decimal point, also in the mortar mixes
+  of the library (`1:0,25:3` -> `1:0.25:3`, `1:0,5:4,5` -> `1:0.5:4.5`).
 - Compatibility (`mef_masonry/legacy.py`): project files of versions 1.x (Portuguese group, field and option names)
   are converted when opened, in the interface and by `project.complete`, `project.apply` and `project.run`; the old
   module names (`import mef_masonry.projeto`, `from mef_masonry import biblioteca`) and the old names of their

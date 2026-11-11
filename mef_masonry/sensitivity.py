@@ -42,7 +42,7 @@ PARAMETERS = [
      "default": (25.0,)},
     {"key": "imp", "name": "Initial imperfection (H divided by)", "short": "imperf.", "kind": "abs", "unit": "",
      "default": (1000.0, 250.0)},
-    {"key": "exc", "name": "Load eccentricity (top and base)", "short": "excentr.", "kind": "abs",
+    {"key": "exc", "name": "Load eccentricity (top and base)", "short": "eccentr.", "kind": "abs",
      "unit": "mm", "default": (-10.0, 10.0)},
 ]
 BY_KEY = {d["key"]: d for d in PARAMETERS}

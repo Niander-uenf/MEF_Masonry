@@ -99,14 +99,14 @@ def main():
     record("V3 additive, r = 2000: μ* of x1² tends to 1", float(e2["mu_star"][0]), 1.0, 0.02)
     record("V3 additive, r = 2000: μ* of 2 x2² tends to 2", float(e2["mu_star"][1]), 2.0, 0.02)
     condition("V3 additive: σ > 0 (non-linear effect)", bool(np.all(e2["sigma"] > 0.2 * e2["mu_star"])), e2["sigma"][0],
-             e2["mu_star"][0], "", "σ/μ* > 0,2")
+             e2["mu_star"][0], "", "σ/μ* > 0.2")
 
     # ---------------------------------------------------------------------------- V4
     X3 = sens.trajectories(3, 40, 4, seed=5)
     e = sens.effects(X3, evaluate(lambda x: x[0] * x[1], X3))
     condition("V4 interaction x1 x2: σ/μ* for both", bool(e["sigma"][0] / e["mu_star"][0] > 0.3 and
                                                         e["sigma"][1] / e["mu_star"][1] > 0.3),
-             e["sigma"][0] / e["mu_star"][0], e["sigma"][1] / e["mu_star"][1], "", "> 0,3")
+             e["sigma"][0] / e["mu_star"][0], e["sigma"][1] / e["mu_star"][1], "", "> 0.3")
     record("V4 parameter without effect: μ* + σ", float(e["mu_star"][2] + e["sigma"][2]), 0.0, 0, tol_abs=1e-14)
 
     # ---------------------------------------------------------------------------- V5

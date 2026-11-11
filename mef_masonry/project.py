@@ -1905,7 +1905,7 @@ def _run_sensitivity(p, geo, S, log):
     S.table("Runs of the study (Morris plan)", hdr, lines, file="sensitivity_runs.csv")
     # ------------------------------------------------------------ figures
     _sensitivity_figures(S, pars, ef)
-    # ------------------------------------------------------------ avisos
+    # ------------------------------------------------------------ notices
     S.notices.append("Morris is a screening method: it ranks the inputs by the mean effect μ*, the mean change of the "
                     "output when the parameter spans its whole range (μ with sign: + when the output grows from the "
                     "first to the second limit). A high σ indicates a non-linear effect or interaction with other "
@@ -1970,7 +1970,7 @@ def _sensitivity_figures(S, pars, ef):
         ms, sg = np.nan_to_num(e["mu_star"]), np.nan_to_num(e["sigma"])
         lim = max(ms.max(), sg.max(), 1e-9) * 1.15
         xs = np.array([0, lim])
-        for rz, lbl in ((1.0, "σ/μ* = 1"), (0.5, "0,5"), (0.1, "0,1")):
+        for rz, lbl in ((1.0, "σ/μ* = 1"), (0.5, "0.5"), (0.1, "0.1")):
             a.plot(xs, rz * xs, color="#b9b7b1", lw=0.9, ls=(0, (4, 3)), zorder=1)
             xe = lim if rz <= 1 else lim / rz
             a.text(xe * 0.98, rz * xe * 0.98, lbl, fontsize=7, color=ink2, ha="right", va="bottom")
