@@ -17,5 +17,8 @@ V4 under tension there is no transient creep,0.0,0.0,,—,< 1e-12 (arredondament
 V6 wall: top displacement under constant load and heating,0.6,0.6,mm,1.22e-12%,1e-07%,ok
 "V6 wall coefficient: unit and joint in series, at 400 °C",747.236394558,747.236394558,×10⁻¹² /Pa,1.52e-14%,1e-10%,ok
 "V7 BCEPQ wall, k_tr = 0: same deflection at the end with creep on (time > 120 min)",-43.67,-43.67,mm,—,equal,ok
+"V7 BCEPQ wall, 240 min, k_tr = 1 (hypothetical): time 172.8 min; deflection at the end",-45.08,,mm,—,without creep: 213.9 min and -43.7 mm,informative
+"V7 BCEPQ wall, 240 min, k_tr = 2 (hypothetical): time 209.1 min; deflection at the end",-46.44,,mm,—,without creep: 213.9 min and -43.7 mm,informative
 V8 defaults: k_tr of the mortar 2.0; unit and grout 0,2.0,0.0,,—,"2,0 / 0 / 0",ok
 V8 ready-made projects pass validation,19,19,projects,—,all,ok
+V9 solid brick in the transient test: creep of the mortar reduces the damage (%),17.07,69.4,%,—,with < without,ok

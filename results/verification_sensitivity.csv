@@ -2,15 +2,15 @@ case,model,reference,unit,error,tolerance,status
 V1 one parameter per step and each parameter once per trajectory,180.0,180.0,changes,—,r × k,ok
 V1 step size Δ,0.666666667,0.666666667,,1.67e-14%,1e-10%,ok
 "V1 points on the p-level grid within [0, 1]",0.0,1.0,,—,"0 ≤ x ≤ 1, on the grid",ok
-V2 linear: largest error of μ relative to a_i,0.0,0.0,,5.6e-17 (absoluto),1e-12 ,ok
-V2 linear: largest error of μ* relative to |a_i|,0.0,0.0,,5.6e-17 (absoluto),1e-12 ,ok
-V2 linear: largest σ,0.0,0.0,,9.3e-16 (absoluto),1e-12 ,ok
-V3 additive: μ* against the mean over the level pairs,0.0,0.0,,4.4e-16 (absoluto),1e-12 ,ok
+V2 linear: largest error of μ relative to a_i,0.0,0.0,,5.6e-17 (absolute),1e-12 ,ok
+V2 linear: largest error of μ* relative to |a_i|,0.0,0.0,,5.6e-17 (absolute),1e-12 ,ok
+V2 linear: largest σ,0.0,0.0,,9.3e-16 (absolute),1e-12 ,ok
+V3 additive: μ* against the mean over the level pairs,0.0,0.0,,4.4e-16 (absolute),1e-12 ,ok
 "V3 additive, r = 2000: μ* of x1² tends to 1",0.996,1.0,,0.4%,2%,ok
 "V3 additive, r = 2000: μ* of 2 x2² tends to 2",1.994666667,2.0,,0.267%,2%,ok
 V3 additive: σ > 0 (non-linear effect),0.333393,0.996,,—,"σ/μ* > 0,2",ok
 V4 interaction x1 x2: σ/μ* for both,0.727286,0.874459,,—,"> 0,3",ok
-V4 parameter without effect: μ* + σ,0.0,0.0,,0 (absoluto),1e-14 ,ok
+V4 parameter without effect: μ* + σ,0.0,0.0,,0 (absolute),1e-14 ,ok
 V5 Sobol' g-function: order of the first four,2.775359,0.388395,,—,μ*1 > μ*2 > μ*3 > μ*4,ok
 V5 Sobol' g-function: the last four < 5% of the largest,0.036206,0.138768,,—,negligible,ok
 "V6 missing run: two effects out of the count, the others exact",2.0,2.0,effects,—,2 and μ = a_i,ok
@@ -30,4 +30,8 @@ V10 fast run = Wall analysis: fire resistance,210.890625,210.9,min,0.00445%,0.05
 V10 fast run = Wall analysis: insulation,112.0,112.0,min,0%,0.05 min,ok
 V10 fast run = Wall analysis: cold capacity,554.188673792,554.2,kN,0.00204%,0.1%,ok
 V10 10% more strength: the cold capacity grows,603.665947,554.188674,kN,—,largest,ok
-V10 time of one fast wall run,18.3663,,s,—,one process,informative
+V10 time of one fast wall run,19.0829,,s,—,one process,informative
+V11 small wall study: parallel = sequential (largest difference),0.0,0.0,,0 (absolute),0%,ok
+"V12 recommended mesh (5 mm, 32 elements): R − R of the fast mesh",-5.75,,min,—,R = 205.1 and 210.9 min,informative
+V12 recommended mesh: I − I of the fast mesh,0.5,,min,—,I = 112.5 and 112.0 min,informative
+V12 run time with the recommended / fast mesh,6.3803,,,—,time ratio,informative

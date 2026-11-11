@@ -1,13 +1,13 @@
 script,what it verifies,cases ok,time (s),status
-01,Thermal and linear thermoelastic (W6),36/36,11.1,ok
-01 H8,The same cases with the H8 hexahedron,36/36,21.7,ok
-01 W15,The same cases with the quadratic W15 wedge,36/36,124.5,ok
-06,Non-linear: damage and joints with friction (W6),11/11,2.3,ok
-06 H8,Non-linear with H8,11/11,2.3,ok
-06 W15,Non-linear with W15,11/11,10.2,ok
-10,Wall mode,10/10,2.6,ok
-11,"c(T), mortar joint and library",12/12,15.8,ok
-12,Rectangular cells and grout,15/15,0.6,ok
-13,Horizontal holes,12/12,9.2,ok
-14,Transient creep,19/19,140.0,ok
-15,Sensitivity (Morris),30/31,55.1,FAILED
+01,Thermal and linear thermoelastic (W6),36/36,11.4,ok
+01 H8,The same cases with the H8 hexahedron,36/36,21.5,ok
+01 W15,The same cases with the quadratic W15 wedge,36/36,124.8,ok
+06,Non-linear: damage and joints with friction (W6),11/11,2.5,ok
+06 H8,Non-linear with H8,11/11,2.4,ok
+06 W15,Non-linear with W15,11/11,9.6,ok
+10,Wall mode,14/14,196.8,ok
+11,"c(T), mortar joint and library",12/12,15.9,ok
+12,Rectangular cells and grout,16/16,552.2,ok
+13,Horizontal holes,14/14,67.0,ok
+14,Transient creep,20/20,633.6,ok
+15,Sensitivity (Morris),32/32,338.6,ok

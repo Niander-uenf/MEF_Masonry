@@ -43,7 +43,7 @@ def record(case, model, ref, tol_rel, unit_str="", tol_abs=0.0):
     error = abs(model - ref) / max(abs(ref), 1e-30)
     ok = error <= tol_rel or abs(model - ref) <= tol_abs
     tol = f"{100 * tol_rel:.2g}%" if tol_abs <= 0 else f"{tol_abs:g} {unit_str}"
-    txt = f"{100 * error:.3g}%" if abs(ref) > 1e-30 else f"{abs(model - ref):.2g} (absoluto)"
+    txt = f"{100 * error:.3g}%" if abs(ref) > 1e-30 else f"{abs(model - ref):.2g} (absolute)"
     lines.append([case, round(model, 9), round(ref, 9), unit_str, txt, tol, "ok" if ok else "FAILED"])
     print(f"{'ok ' if ok else 'XX '} {case}: model {model:.6g} {unit_str}, reference {ref:.6g} ({txt})")
 

@@ -9,5 +9,7 @@ V5 fibre area per metre of wall = width - columns of holes,23.0,23.0,mm²/mm,0.0
 V5 centroid of the fibres on the mid-plane,-0.0,0.0,mm,—,|y| < 1e-6 mm,ok
 V5 no fibre in the columns of holes,0.0,0.0,fibres,—,zero,ok
 V6 hole dimension in the radiation = hole width,33.5,33.5,mm,0.000%,0.0%,ok
+V7 8-hole prism: peak reached (the load falls afterwards),27.103244,6.776246,kN,—,peak before the end,ok
+V7 peak of the 8-hole prism = fc × area of the continuous walls,27.103244,27.002,kN,0.375%,5.0%,ok
 V8 units with horizontal holes that pass validation,2,2,items,0.000%,0.0%,ok
 V8 soil-cement brick (without hole diameter) rejected,1.0,1.0,,—,rejected,ok
