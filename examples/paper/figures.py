@@ -42,7 +42,7 @@ def morris_data():
                     continue
                 p, en_name = NAMES.get(r[0], (r[0], r[0]))
                 lo, hi = [float(x.replace(",", ".")) for x in r[3].split(" to ")] if " to " in r[3] else (0.0, 0.0)
-                lines[(o, p)] = dict(p=p, name=en_name, out=o, outName=name, mu=round(float(r[2]), 1), lo=lo, hi=hi)
+                lines[(o, p)] = dict(p=p, name=en_name, out=o, outName=name, mu=float(r[2]), lo=lo, hi=hi)
     order = [l["p"] for l in sorted((v for (o, _), v in lines.items() if o == "R"), key=lambda v: -v["mu"])]
     rows = []
     for v in lines.values():
@@ -156,7 +156,7 @@ def fig2():
             if r["hi"] > 0:
                 b.append(f"<line x1='{X(r['lo']):.2f}' x2='{X(r['hi']):.2f}' y1='{y}' y2='{y}' stroke='{INK}' stroke-width='1'/>")
             if r["mu"] >= 0.12 * big:
-                lab = str(round(r["mu"])) if r["mu"] >= 10 else str(r["mu"])
+                lab = f"{r['mu']:.0f}" if r["mu"] >= 10 else f"{r['mu']:.1f}"   # one rounding, from the CSV value
                 b.append(t(X(r["hi"]) + 5, y + 4, lab, 11.5))
             if r["mu"] == 0:
                 b.append(t(px(i) + 5, y + 4, "0", 11.5, QUIET))

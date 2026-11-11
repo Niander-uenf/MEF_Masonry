@@ -3,7 +3,11 @@
 Details of each version, with examples and verification cases, are in
 [USER_GUIDE.md](USER_GUIDE.md).
 
+## Unreleased
+- `examples/paper/figures.py`: the labels of Fig. 2 are rounded once from the stored μ* (253 and 87 instead of 254 and 88).
+
 ## 2.0.0
+- Archived at Zenodo: https://doi.org/10.5281/zenodo.24147378.
 - The whole program is in English: modules, functions, classes and variables, comments and docstrings, the browser
   interface and its messages, the fields and option values of the project files, the names of the scripts, results
   and data files, and the documentation (`USER_GUIDE.md`, formerly `LEIA-ME.md`). Main renamings: `exemplos/` ->
