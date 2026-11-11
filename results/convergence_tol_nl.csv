@@ -1,0 +1,3 @@
+mesh_mm,tol_u,tol_d,T_C,nodes,free_dofs_n,ceramic_elements,peak_kN,delta_peak_mm,E_chord_MPa,contact_at_peak_pct,increments,not_converged,time_min
+12x20,0.0001,0.005,30.0,15080,20162,7290,98.94,0.36,1212.0,91.7,26,0,3.5
+12x20,2e-05,0.001,30.0,15080,20162,7290,98.85,0.34,1210.0,91.4,28,0,6.3
