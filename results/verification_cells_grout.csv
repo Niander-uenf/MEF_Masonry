@@ -12,5 +12,8 @@ V4 grout thermal strain at 400 °C (siliceous),4.892,4.892,‰,0.000%,0.1%,ok
 V5 grout area in the 2D section (thermal material),181.44,181.44,cm²,0.000%,0.0%,ok
 V5 wall fibre area = load-bearing area (unit + grout),420.0,420.0,cm²,0.000%,0.0%,ok
 V5 grout fibres in the wall,181.44,181.44,cm²,0.000%,0.0%,ok
+"V6 grout increases the prism strength (MPa, gross area)",13.863597,4.26574,MPa,—,grouted > 1.5 × hollow,ok
+"V6 hollow prism B1 against the test (Camacho et al., 2015)",4.2657,5.63,MPa,-24.2%,—,comparison
+V6 grouted prism B1-G1 against the test,13.8636,11.29,MPa,+22.8%,—,comparison
 V7 library units that run and pass validation,12,12,items,0.000%,0.0%,ok
 V7 units of future phases rejected,1,1,items,0.000%,0.0%,ok
