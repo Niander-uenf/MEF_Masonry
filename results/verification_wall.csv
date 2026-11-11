@@ -9,3 +9,7 @@ V4 inertia per metre of the fibres,211.12189,211.210093,×10⁻⁶ m⁴/m,0.042%
 V5 capacity of the short wall at 20 °C (gross area),1.678267,1.677636,MPa,0.038%,0.3%,ok
 V6 free expansion from 20 to 600 °C under 1% of the load,1.042479,1.044,mm,0.146%,1.0%,ok
 V6 capacity at 600 °C (gross area),1.651716,1.651224,MPa,0.030%,0.3%,ok
+V7 cold capacity with 16 elements (ref. 64),188.333014,188.333014,kN/m,0.000%,1.0%,ok
+V7 fire resistance with 16 elements (ref. 64),35.859375,39.140625,min,8.383%,20.0%,ok
+V7 cold capacity with 32 elements (ref. 64),188.333014,188.333014,kN/m,0.000%,1.0%,ok
+V7 fire resistance with 32 elements (ref. 64),38.8125,39.140625,min,0.838%,2.0%,ok
