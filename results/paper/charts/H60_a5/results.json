@@ -1,0 +1,617 @@
+{
+  "summary": [
+    [
+      "Net-to-gross area ratio",
+      0.7173,
+      ""
+    ],
+    [
+      "Wall height",
+      3600.0,
+      "mm"
+    ],
+    [
+      "Esbeltez H/t",
+      25.71,
+      ""
+    ],
+    [
+      "Fibres in the section",
+      992,
+      ""
+    ],
+    [
+      "Masonry strength at 20 °C (gross area)",
+      1.68,
+      "MPa"
+    ],
+    [
+      "Transient creep: k_tr of the unit, the mortar and the grout",
+      "zero (k_tr = 0)",
+      ""
+    ],
+    [
+      "Wall capacity at 20 °C",
+      512.1,
+      "kN"
+    ],
+    [
+      "Capacity per metre at 20 °C",
+      174.2,
+      "kN/m"
+    ],
+    [
+      "Reduction factor (capacity / section strength)",
+      0.7406,
+      ""
+    ],
+    [
+      "Insulation time (140/180 °C on the unexposed face)",
+      112.0,
+      "min"
+    ],
+    [
+      "Applied load",
+      100,
+      "kN"
+    ],
+    [
+      "Applied load per metre",
+      34.01,
+      "kN/m"
+    ],
+    [
+      "Load / capacity at 20 °C",
+      19.53,
+      "%"
+    ],
+    [
+      "Fire resistance time (loss of equilibrium)",
+      39.03,
+      "min"
+    ],
+    [
+      "Axial contraction criterion (EN 1363-1)",
+      "not reached",
+      ""
+    ],
+    [
+      "Maximum deflection at the end",
+      -52.56,
+      "mm"
+    ],
+    [
+      "Height of the most compressed fibre at the end",
+      1775.0,
+      "mm"
+    ],
+    [
+      "Computation time",
+      0.7027,
+      "min"
+    ]
+  ],
+  "tables": [
+    {
+      "title": "History of ISO 834 under load",
+      "columns": [
+        "time (min)",
+        "mid-height deflection (mm)",
+        "maximum deflection (mm)",
+        "top displacement (mm)"
+      ],
+      "lines": [
+        [
+          0.0,
+          -0.914,
+          -0.914,
+          -0.7275
+        ],
+        [
+          1.0,
+          -2.11,
+          -2.11,
+          -0.6567
+        ],
+        [
+          2.0,
+          -3.969,
+          -3.969,
+          -0.5472
+        ],
+        [
+          3.0,
+          -6.458,
+          -6.458,
+          -0.3998
+        ],
+        [
+          4.0,
+          -9.66,
+          -9.66,
+          -0.1821
+        ],
+        [
+          5.0,
+          -12.913,
+          -12.913,
+          0.045
+        ],
+        [
+          6.0,
+          -15.965,
+          -15.965,
+          0.2572
+        ],
+        [
+          7.0,
+          -18.808,
+          -18.808,
+          0.449
+        ],
+        [
+          8.0,
+          -21.391,
+          -21.391,
+          0.619
+        ],
+        [
+          9.0,
+          -23.714,
+          -23.714,
+          0.7671
+        ],
+        [
+          10.0,
+          -25.812,
+          -25.812,
+          0.8966
+        ],
+        [
+          11.0,
+          -27.716,
+          -27.716,
+          1.0105
+        ],
+        [
+          12.0,
+          -29.453,
+          -29.453,
+          1.1111
+        ],
+        [
+          13.0,
+          -31.049,
+          -31.049,
+          1.201
+        ],
+        [
+          14.0,
+          -32.525,
+          -32.525,
+          1.2824
+        ],
+        [
+          15.0,
+          -33.893,
+          -33.893,
+          1.3559
+        ],
+        [
+          16.0,
+          -35.203,
+          -35.203,
+          1.4239
+        ],
+        [
+          17.0,
+          -36.501,
+          -36.501,
+          1.4887
+        ],
+        [
+          18.0,
+          -37.715,
+          -37.715,
+          1.5479
+        ],
+        [
+          19.0,
+          -38.85,
+          -38.85,
+          1.6022
+        ],
+        [
+          20.0,
+          -39.915,
+          -39.915,
+          1.6526
+        ],
+        [
+          21.0,
+          -40.942,
+          -40.942,
+          1.7011
+        ],
+        [
+          22.0,
+          -41.921,
+          -41.921,
+          1.7473
+        ],
+        [
+          23.0,
+          -42.839,
+          -42.839,
+          1.7909
+        ],
+        [
+          24.0,
+          -43.702,
+          -43.702,
+          1.8321
+        ],
+        [
+          25.0,
+          -44.516,
+          -44.516,
+          1.8714
+        ],
+        [
+          26.0,
+          -45.283,
+          -45.283,
+          1.9092
+        ],
+        [
+          27.0,
+          -46.007,
+          -46.007,
+          1.9457
+        ],
+        [
+          28.0,
+          -46.69,
+          -46.69,
+          1.9812
+        ],
+        [
+          29.0,
+          -47.337,
+          -47.337,
+          2.016
+        ],
+        [
+          30.0,
+          -47.955,
+          -47.955,
+          2.0502
+        ],
+        [
+          31.0,
+          -48.562,
+          -48.562,
+          2.084
+        ],
+        [
+          32.0,
+          -49.14,
+          -49.14,
+          2.1178
+        ],
+        [
+          33.0,
+          -49.69,
+          -49.69,
+          2.1515
+        ],
+        [
+          34.0,
+          -50.219,
+          -50.219,
+          2.1851
+        ],
+        [
+          35.0,
+          -50.733,
+          -50.733,
+          2.2187
+        ],
+        [
+          36.0,
+          -51.222,
+          -51.222,
+          2.2524
+        ],
+        [
+          37.0,
+          -51.684,
+          -51.684,
+          2.2864
+        ],
+        [
+          38.0,
+          -52.12,
+          -52.12,
+          2.3208
+        ],
+        [
+          39.0,
+          -52.545,
+          -52.545,
+          2.3556
+        ],
+        [
+          39.031,
+          -52.565,
+          -52.565,
+          2.3566
+        ]
+      ]
+    },
+    {
+      "title": "Fire resistance × load",
+      "columns": [
+        "load / cold capacity (%)",
+        "load (kN)",
+        "load (kN/m)",
+        "fire resistance (min)"
+      ],
+      "lines": [
+        [
+          10.0,
+          51.2,
+          17.42,
+          61.3
+        ],
+        [
+          20.0,
+          102.4,
+          34.83,
+          38.3
+        ],
+        [
+          30.0,
+          153.6,
+          52.25,
+          26.9
+        ],
+        [
+          40.0,
+          204.8,
+          69.67,
+          19.2
+        ],
+        [
+          50.0,
+          256.0,
+          87.08,
+          13.5
+        ],
+        [
+          60.0,
+          307.2,
+          104.5,
+          10.1
+        ],
+        [
+          70.0,
+          358.4,
+          121.92,
+          7.5
+        ],
+        [
+          80.0,
+          409.6,
+          139.34,
+          4.9
+        ],
+        [
+          90.0,
+          460.9,
+          156.75,
+          2.4
+        ]
+      ]
+    }
+  ],
+  "figures": [
+    {
+      "file": "mesh.png",
+      "title": "Fibre section and wall layout"
+    },
+    {
+      "file": "wall_deflection.png",
+      "title": "Deflection and top displacement during ISO 834"
+    },
+    {
+      "file": "wall_deformed.png",
+      "title": "Deformed shape and temperatures through the thickness"
+    },
+    {
+      "file": "wall_time_load.png",
+      "title": "Fire resistance × load level"
+    },
+    {
+      "file": "section_T.png",
+      "title": "Temperature in the section at the end of ISO 834"
+    }
+  ],
+  "files": [
+    {
+      "name": "wall_history.csv",
+      "description": "History of ISO 834 under load"
+    },
+    {
+      "name": "wall_time_load.csv",
+      "description": "Fire resistance × load"
+    }
+  ],
+  "notices": [
+    "Vertical strip model: the vertical edges of the wall do not restrain bending. Material homogenised from the curves of the prism heated at 5 °C/min (steady-state test); without transient creep (k_tr = 0 or switched off); spalling and integrity (E) are not included.",
+    "Thermal strain from α = 5.0×10⁻⁶/°C (provisional): the thermal deflection and the fire resistance depend directly on this value."
+  ],
+  "visual": "visual.json",
+  "project": {
+    "name": "BCEPQ prism",
+    "version": "2.0",
+    "geometry": {
+      "unit_library": "bcepq",
+      "unit_length": 280,
+      "width": 140,
+      "course_height": 60,
+      "hole_shape": "circular",
+      "hole_diameter": 84,
+      "holes_per_unit": 2,
+      "holes_width": 2,
+      "holes_height": 4,
+      "face_shell": 25,
+      "web": 25,
+      "bed_shell": 8,
+      "end_shell": 25,
+      "wall_cells": 0,
+      "min_shell": 8,
+      "grouting": "none",
+      "units_per_course": 10.5,
+      "n_courses": 60,
+      "bond": "running_bond",
+      "joint_type": "dry",
+      "joint_thickness": 2,
+      "bedding": "total",
+      "filled_head_joints": true,
+      "capping": true,
+      "plate_thickness": 25
+    },
+    "ceramic": {
+      "material_library": "bcepq",
+      "k": 0.52,
+      "rho": 1210,
+      "c": 1285,
+      "E_unit_gross": 2801,
+      "nu": 0.18,
+      "alpha": 5.0,
+      "table_k": [],
+      "table_E_factor": [],
+      "table_thermal_strain": [],
+      "table_c": [],
+      "table_rho": [],
+      "mortar_library": "1:1:6",
+      "mor_fc": 4.2,
+      "mor_ft": 0.78,
+      "mor_E": 4033,
+      "mor_nu": 0.2,
+      "mor_k": 1.15,
+      "mor_rho": 2000,
+      "mor_c": 1000,
+      "mor_alpha": 10.0,
+      "grout_library": "G1",
+      "grt_fc": 17.7,
+      "grt_ft": 2.04,
+      "grt_E": 26100,
+      "grt_nu": 0.2,
+      "grt_k": 1.75,
+      "grt_rho": 2400,
+      "grt_c": 1000,
+      "grt_en1992": true,
+      "grt_alpha": 10.0
+    },
+    "model": {
+      "analysis": "wall",
+      "element": "W6",
+      "wall_law": "bcepq",
+      "wall_strength_factor": 1.0,
+      "wall_stiffness_factor": 1.0,
+      "E_joint": 84.4,
+      "calibrate_joint": false,
+      "E_prism_target": 1100,
+      "ceramic_model": "mazars_damage",
+      "ft": 0.66,
+      "fc": 2.48,
+      "du_t": 0.018,
+      "du_c": 0.33,
+      "table_ft_factor": [],
+      "table_fc_factor": [],
+      "mu": 0.6,
+      "gap_std": 0.028,
+      "initial_contact": 20,
+      "corr_length": 40,
+      "E_contact": 3907,
+      "seed": 1,
+      "creep": true,
+      "k_tr_unit": 0.0,
+      "table_creep_unit": [],
+      "k_tr_mortar": 2.0,
+      "k_tr_grout": 0.0
+    },
+    "test": {
+      "kind": "iso834",
+      "T_initial": 20,
+      "rate": 5,
+      "T_target": 600,
+      "dwell": 30,
+      "cooling_rate": 2,
+      "final_dwell": 60,
+      "iso_duration": 240,
+      "h_convection": 25,
+      "emissivity": 0.8,
+      "hole_emissivity": 0.9,
+      "load": 100,
+      "seating_load": 2,
+      "base_support": "pinned",
+      "top_support": "pinned",
+      "top_eccentricity": 0,
+      "base_eccentricity": 0,
+      "imperfection": 450,
+      "load_levels": 9
+    },
+    "mesh": {
+      "h": 10,
+      "dz": 20,
+      "n_elements": 16,
+      "dt": 30,
+      "delta_max": 0.8,
+      "increment": 0.02,
+      "tol_u": 0.0001,
+      "tol_d": 0.005,
+      "n_fields_ramp": 6,
+      "n_fields_dwell": 2,
+      "iso_interval": 5
+    },
+    "sensitivity": {
+      "trajectories": 10,
+      "levels": 4,
+      "seed": 1,
+      "processes": 0,
+      "fast_mesh": true,
+      "var_k": true,
+      "range_k": 20.0,
+      "var_c": true,
+      "range_c": 15.0,
+      "var_eps_holes": true,
+      "min_eps_holes": 0.7,
+      "max_eps_holes": 0.95,
+      "var_h": true,
+      "min_h": 15.0,
+      "max_h": 35.0,
+      "var_eps": true,
+      "min_eps": 0.6,
+      "max_eps": 0.95,
+      "var_alpha": true,
+      "min_alpha": 4.0,
+      "max_alpha": 8.0,
+      "var_ktr": true,
+      "min_ktr": 0.0,
+      "max_ktr": 2.35,
+      "var_strength": true,
+      "range_strength": 15.0,
+      "var_stiffness": true,
+      "range_stiffness": 25.0,
+      "var_imp": true,
+      "min_imp": 1000.0,
+      "max_imp": 250.0,
+      "var_exc": true,
+      "min_exc": -10.0,
+      "max_exc": 10.0
+    }
+  }
+}
