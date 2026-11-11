@@ -1,6 +1,0 @@
-Coloque aqui os dados do ensaio para validação.
-
-termopares_600.csv, termopares_800.csv, termopares_1000.csv
-  primeira linha: tempo_min,T_C
-  uma linha por leitura (tempo em minutos desde o início do aquecimento, temperatura em °C)
-  um arquivo por termopar ou a média; o exemplo 03 sobrepõe ao gráfico.

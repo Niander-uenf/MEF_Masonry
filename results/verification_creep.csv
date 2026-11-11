@@ -1,0 +1,21 @@
+case,model,reference,unit,error,tolerance,status
+"V1 axial strain under constant load, W6",1.0,1.0,‰,5.22e-13%,1e-07%,ok
+"V1 lateral strain (transient Poisson = ν), W6",4.6,4.6,‰,0%,1e-07%,ok
+"V1 axial strain under constant load, H8",1.0,1.0,‰,9.55e-13%,1e-07%,ok
+"V1 lateral strain (transient Poisson = ν), H8",4.6,4.6,‰,7.72e-14%,1e-07%,ok
+"V1 axial strain under constant load, W15",1.0,1.0,‰,3e-13%,1e-07%,ok
+"V1 lateral strain (transient Poisson = ν), W15",4.6,4.6,‰,1.74e-13%,1e-07%,ok
+"V2 stress during restrained heating to 520 °C (relaxation), tol_tr = 0.0002",-9.873012658,-9.816843611,MPa,0.572%,1%,ok
+"V2 stress during restrained heating to 520 °C (relaxation), tol_tr = 1e-05",-9.821451188,-9.816843611,MPa,0.0469%,0.1%,ok
+V2 stress without creep during the same heating (-E α ΔT),-40.0,,MPa,—,for comparison,informative
+V3 ε_tr a 520 °C = k σ/fc ε_th,-2.4,-2.4,‰,5.55e-14%,1e-07%,ok
+V3 ε_tr after cooling to 270 °C (does not recover),-2.4,-2.4,‰,0%,1e-10%,ok
+V3 ε_tr after reheating to 520 °C (does not add),-2.4,-2.4,‰,0%,1e-10%,ok
+V3 ε_tr at 620 °C (adds only from 520 to 620 °C),-2.88,-2.88,‰,9.25e-14%,1e-07%,ok
+V4 under tension there is no transient creep,0.0,0.0,,—,< 1e-12 (arredondamento),ok
+"V5 ε_tr with tabulated φ(T), at 410 °C",-1.8,-1.8,‰,2.1e-13%,1e-07%,ok
+V6 wall: top displacement under constant load and heating,0.6,0.6,mm,1.22e-12%,1e-07%,ok
+"V6 wall coefficient: unit and joint in series, at 400 °C",747.236394558,747.236394558,×10⁻¹² /Pa,1.52e-14%,1e-10%,ok
+"V7 BCEPQ wall, k_tr = 0: same deflection at the end with creep on (time > 120 min)",-43.67,-43.67,mm,—,equal,ok
+V8 defaults: k_tr of the mortar 2.0; unit and grout 0,2.0,0.0,,—,"2,0 / 0 / 0",ok
+V8 ready-made projects pass validation,19,19,projects,—,all,ok

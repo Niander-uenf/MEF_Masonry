@@ -1,0 +1,37 @@
+case,quantity,MEF,analytical/reference,error,tolerance,unit,status
+V1 3D (W6) dt=60s,"T at the centre, Fo = 0.05",34.16,31.7846,2.38,6,°C,OK
+V1 3D (W6) dt=60s,"T at the centre, Fo = 0.1",62.8349,58.8959,3.94,6,°C,OK
+V1 3D (W6) dt=60s,"T at the centre, Fo = 0.2",160.097,159.782,0.314,6,°C,OK
+V1 3D (W6) dt=60s,"T at the centre, Fo = 0.5",389.211,388.657,0.554,6,°C,OK
+V1 3D (W6) dt=60s,"T at the centre, Fo = 1.0",537.621,538.453,-0.832,6,°C,OK
+V1 3D (W6) dt=15s,"T at the centre, Fo = 0.05",32.3684,31.7846,0.584,2,°C,OK
+V1 3D (W6) dt=15s,"T at the centre, Fo = 0.1",59.9705,58.8959,1.07,2,°C,OK
+V1 3D (W6) dt=15s,"T at the centre, Fo = 0.2",160.478,159.782,0.695,2,°C,OK
+V1 3D (W6) dt=15s,"T at the centre, Fo = 0.5",388.601,388.657,-0.0558,2,°C,OK
+V1 3D (W6) dt=15s,"T at the centre, Fo = 1.0",538.197,538.453,-0.256,2,°C,OK
+V1 2D (triangles) dt=60s,"T at the centre, Fo = 0.05",34.1667,31.7846,2.38,6,°C,OK
+V1 2D (triangles) dt=60s,"T at the centre, Fo = 0.1",62.8401,58.8959,3.94,6,°C,OK
+V1 2D (triangles) dt=60s,"T at the centre, Fo = 0.2",160.1,159.782,0.318,6,°C,OK
+V1 2D (triangles) dt=60s,"T at the centre, Fo = 0.5",389.213,388.657,0.556,6,°C,OK
+V1 2D (triangles) dt=60s,"T at the centre, Fo = 1.0",537.622,538.453,-0.831,6,°C,OK
+V1 2D (triangles) dt=15s,"T at the centre, Fo = 0.05",32.3692,31.7846,0.585,2,°C,OK
+V1 2D (triangles) dt=15s,"T at the centre, Fo = 0.1",59.9716,58.8959,1.08,2,°C,OK
+V1 2D (triangles) dt=15s,"T at the centre, Fo = 0.2",160.479,159.782,0.697,2,°C,OK
+V1 2D (triangles) dt=15s,"T at the centre, Fo = 0.5",388.601,388.657,-0.0556,2,°C,OK
+V1 2D (triangles) dt=15s,"T at the centre, Fo = 1.0",538.197,538.453,-0.256,2,°C,OK
+V2 rigid platen,top displacement (mm),-0.051196,-0.051196,-2.25e-13,0.1,%,OK
+V2 rigid platen,lateral expansion (mm),0.00460764,0.00460764,2.76e-13,0.1,%,OK
+V2 rigid platen,mean szz stress (MPa),-1,-1,-2.1e-13,0.1,%,OK
+V2 pressure on the top,top displacement (mm),-0.051196,-0.051196,9.27e-14,0.1,%,OK
+V2 pressure on the top,lateral expansion (mm),0.00460764,0.00460764,-7.35e-14,0.1,%,OK
+V2 pressure on the top,mean szz stress (MPa),-1,-1,9.31e-14,0.1,%,OK
+V3,free elongation (mm),0.6,0.6,-1.08e-13,0.1,%,OK
+V3,largest |stress| (MPa),3.12368e-13,0,3.12e-13,0.001,MPa,OK
+V4,total shortening (mm),0.154234,0.154234,-3.6e-12,0.1,%,OK
+V4,equivalent modulus (MPa),1932.13,1932.13,3.62e-12,0.1,%,OK
+V5,sxx: largest error / (E alpha dT0),5.02729,5.01718,0.144,3,%,OK
+V5,szz: largest error / (E alpha dT0),5.0268,5.01718,0.137,3,%,OK
+V6,sx: largest error / (E alpha dT0),5.05184,5.01718,0.493,3,%,OK
+V6,sz: largest error / (E alpha dT0),5.05189,5.01718,0.494,3,%,OK
+V7,T section minimum at the end (°C),363.281,363.281,-9.1e-08,0.5,°C,OK
+V7,T nodal mean at the end (°C),476.114,476.114,-1.19e-08,0.5,°C,OK

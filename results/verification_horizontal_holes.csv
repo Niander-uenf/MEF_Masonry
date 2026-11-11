@@ -1,0 +1,13 @@
+case,model,reference,unit,error,tolerance,status
+V1 volume of the horizontal holes in the 3D prism,8918.37,8918.37,cm³,0.000%,0.0%,ok
+V2 solid area in a row of holes (course 2),75.7,75.7,cm²,0.000%,0.0%,ok
+V3 hole area in the vertical section,102.51,102.51,cm²,0.000%,0.0%,ok
+V3 area of the half joints in the vertical section,9.0,9.0,cm²,0.000%,0.0%,ok
+V4 unexposed face at 60 min: vertical 2D section × 3D,397.054013,396.755545,°C,0.075%,1 °C,ok
+V4 vertical web (mid-thickness) at 60 min: 2D × 3D,666.021741,665.739167,°C,0.042%,1 °C,ok
+V5 fibre area per metre of wall = width - columns of holes,23.0,23.0,mm²/mm,0.000%,0.0%,ok
+V5 centroid of the fibres on the mid-plane,-0.0,0.0,mm,—,|y| < 1e-6 mm,ok
+V5 no fibre in the columns of holes,0.0,0.0,fibres,—,zero,ok
+V6 hole dimension in the radiation = hole width,33.5,33.5,mm,0.000%,0.0%,ok
+V8 units with horizontal holes that pass validation,2,2,items,0.000%,0.0%,ok
+V8 soil-cement brick (without hole diameter) rejected,1.0,1.0,,—,rejected,ok

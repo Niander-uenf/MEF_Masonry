@@ -1,0 +1,16 @@
+case,model,reference,unit,error,tolerance,status
+"V1 unit area in course 1, concrete 14×19×39, one and a half units, running bond",505.6,505.6,cm²,0.000%,0.0%,ok
+"V1 unit area in course 2, concrete 14×19×39, one and a half units, running bond",505.6,505.6,cm²,0.000%,0.0%,ok
+"V1 unit area in course 1, clay block with hollow shells",130.88,130.88,cm²,0.000%,0.0%,ok
+V2 grout volume in the 3-course prism,10777.536,10777.536,cm³,0.000%,0.0%,ok
+V2 no void in the fully grouted prism with full bedding,0.0,0.0,cm³,—,zero,ok
+V3 shortening in parallel unit + grout (equal ν),46.322031,46.322031,µm,0.000%,0.0%,ok
+V4 grout conductivity,1.75,1.75,W/m·K,0.000%,0.0%,ok
+V4 volumetric capacity of the grout,2.4,2.4,MJ/m³·K,0.000%,0.0%,ok
+V4 grout E at 600 °C (EN 1992-1-2: 0.45 × 0.0025/0.025),1.1745,1.1745,GPa,0.000%,0.0%,ok
+V4 grout thermal strain at 400 °C (siliceous),4.892,4.892,‰,0.000%,0.1%,ok
+V5 grout area in the 2D section (thermal material),181.44,181.44,cm²,0.000%,0.0%,ok
+V5 wall fibre area = load-bearing area (unit + grout),420.0,420.0,cm²,0.000%,0.0%,ok
+V5 grout fibres in the wall,181.44,181.44,cm²,0.000%,0.0%,ok
+V7 library units that run and pass validation,12,12,items,0.000%,0.0%,ok
+V7 units of future phases rejected,1,1,items,0.000%,0.0%,ok

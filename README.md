@@ -1,6 +1,6 @@
 # MEF_Masonry
 
-*Português: veja [LEIA-ME.md](LEIA-ME.md), the full user documentation.*
+*The full user guide, version by version, is in [USER_GUIDE.md](USER_GUIDE.md).*
 
 MEF_Masonry is an open-source Python program for the thermal and
 thermo-mechanical finite element analysis of block masonry in fire, from the
@@ -12,9 +12,9 @@ perforated clay bricks, with dry or mortar joints.
 
 | | |
 |---|---|
-| Version | 1.0.1 |
+| Version | 2.0.0 |
 | Paper | Cerqueira, N.A., Madalena, J.A.P., Sá, B.S.C. MEF_Masonry: an open finite element program for thermal and thermo-mechanical analysis of block masonry in fire. Submitted to Advances in Engineering Software (2026). |
-| Archive | Zenodo, https://doi.org/10.5281/zenodo.23991396 (all versions); version 1.0.1, cited in the paper: https://doi.org/10.5281/zenodo.24122607; version 1.0.0: https://doi.org/10.5281/zenodo.23991397 |
+| Archive | Zenodo, https://doi.org/10.5281/zenodo.23991396 (all versions); version 1.0.1: https://doi.org/10.5281/zenodo.24122607; version 1.0.0: https://doi.org/10.5281/zenodo.23991397 |
 | Licence | BSD-3-Clause, see [LICENSE](LICENSE) |
 | Contact | Niander Aguiar Cerqueira, Universidade Estadual do Norte Fluminense Darcy Ribeiro (UENF), niander@uenf.br |
 
@@ -39,8 +39,9 @@ perforated clay bricks, with dry or mortar joints.
   WebGL 3D post-processor, a library of units and materials with sources, and
   project files in JSON. Results are written as CSV, PNG, VTK (ParaView) and JSON.
 
-The interface and the identifiers of the code are in Portuguese; this file
-and the paper describe the program in English.
+Since version 2.0.0 the code, the interface, the messages and the documentation
+are in English. Projects saved and scripts written for versions 1.x, with
+Portuguese names, still run: `mef_masonry/legacy.py` converts them.
 
 ## Installation
 
@@ -58,26 +59,32 @@ Optional: `pip install pypardiso` speeds up the 3D mechanical solver.
 python app.py                 # opens the interface in the browser
 ```
 
-On Windows, double-click `Iniciar_MEF_Masonry.bat`, which finds Python,
+On Windows, double-click `Start_MEF_Masonry.bat`, which finds Python,
 installs the dependencies on first use and opens the program. On Linux or
-macOS, `./iniciar.sh` does the same.
+macOS, `./start.sh` does the same.
 
 Without the interface, the same project runs from code:
 
 ```python
-from mef_masonry.projeto import projeto_padrao, executar
-projeto = projeto_padrao()            # the BCEPQ prism of the UFV tests
-executar(projeto, "resultados_app/exemplo")
+from mef_masonry import project as pj, library as lib
+
+p = pj.default_project()                       # the BCEPQ prism of the UFV tests
+p = lib.apply(p, "unit", "concrete_m15_39")    # or a unit from the library
+p = pj.apply(p, {"model": {"analysis": "section_2d", "element": "T3"},
+                 "test": {"kind": "iso834", "iso_duration": 120}})
+res = pj.run(p, "results_app/example")          # CSV, PNG, VTK and JSON files
+for item in res["summary"]:
+    print(item)
 ```
 
 A Windows executable that needs no Python is attached to each
-[release](../../releases) and can be rebuilt with `python empacotar.py`.
+[release](../../releases) and can be rebuilt with `python build_exe.py`.
 
 ## Verification
 
 ```
-python exemplos/00_verificar_tudo.py              # 240 cases, about 7 min on two cores
-python exemplos/00_verificar_tudo.py --completo   # with the long cases, about 45 min
+python examples/00_verify_all.py           # 240 cases, about 7 min on two cores
+python examples/00_verify_all.py --full    # with the long cases, about 45 min
 ```
 
 Eight scripts compare the program with closed-form solutions, independent
@@ -85,8 +92,8 @@ calculations and consistency conditions (heat conduction and
 thermo-elasticity with the three elements, damage and dry joints, wall model,
 temperature-dependent properties and mortar joints, rectangular cells and
 grout, horizontal perforations, transient creep, Morris screening). Each script
-writes a CSV to `resultados/`, the summary goes to
-`resultados/resumo_verificacoes.csv`, and the command exits with code 1 if any
+writes a CSV to `results/`, the summary goes to
+`results/verification_summary.csv`, and the command exits with code 1 if any
 case fails. The same suite runs on every push through GitHub Actions
 (`.github/workflows/verify.yml`).
 
@@ -101,11 +108,11 @@ and figure of the paper, with its run time.
 |---|---|
 | `mef_masonry/` | Solver package (meshes, elements, thermal, mechanical, non-linear, wall, sensitivity, library, project schema) |
 | `app.py`, `mef_masonry/app/` | Local server and browser interface |
-| `exemplos/` | Verification and study scripts; `exemplos/artigo/` holds the studies of the paper |
-| `resultados/` | Verification records and the results of the paper studies |
-| `dados/` | Place for measured thermocouple records; ANSYS input files of the model compared in Section 6 of the paper |
+| `examples/` | Verification and study scripts; `examples/paper/` holds the studies of the paper |
+| `results/` | Verification records and the results of the paper studies |
+| `data/` | Place for measured thermocouple records; ANSYS input files of the model compared in Section 6 of the paper |
 | `mef_bcepq/` | Alias of the old package name (versions up to 0.10), kept so that old scripts still run |
-| `LEIA-ME.md` | Full documentation in Portuguese, version by version |
+| `USER_GUIDE.md` | Full user guide, version by version |
 
 ## Citing
 
@@ -114,7 +121,7 @@ Please cite the paper and the archived version of the software; see
 
 ## Limitations
 
-The main limitations are listed in Section 9 of the paper and in `LEIA-ME.md`:
+The main limitations are listed in Section 9 of the paper and in `USER_GUIDE.md`:
 moisture transport is represented only through the specific heat, the
 cavities through an equivalent conductivity, the wall law through the BCEPQ
 prism curves scaled to other units, and the wall fire resistance has not yet

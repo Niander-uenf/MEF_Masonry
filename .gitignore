@@ -3,6 +3,6 @@ __pycache__/
 build/
 dist/
 *.spec
-resultados_app/
-resultados/vtk/
+results_app/
+results/vtk/
 .DS_Store

@@ -1,10 +1,31 @@
 # Changelog
 
 Details of each version, with examples and verification cases, are in
-[LEIA-ME.md](LEIA-ME.md) (Portuguese).
+[USER_GUIDE.md](USER_GUIDE.md).
+
+## 2.0.0
+- The whole program is in English: modules, functions, classes and variables, comments and docstrings, the browser
+  interface and its messages, the fields and option values of the project files, the names of the scripts, results
+  and data files, and the documentation (`USER_GUIDE.md`, formerly `LEIA-ME.md`). Main renamings: `exemplos/` ->
+  `examples/` (`exemplos/artigo/` -> `examples/paper/`), `resultados/` -> `results/`, `dados/` -> `data/`;
+  modules `parametros` -> `parameters`, `malha` -> `mesh`, `elementos` -> `elements`, `termico` -> `thermal`,
+  `mecanico` -> `mechanical`, `naolinear` -> `nonlinear`, `parede` -> `wall`, `dados_parede` -> `wall_data`,
+  `sensibilidade` -> `sensitivity`, `biblioteca` -> `library`, `projeto` -> `project`, `saida` -> `output`,
+  `curvas` -> `curves`, `estudos` -> `studies`; `projeto_padrao` -> `default_project`, `aplicar` -> `apply`,
+  `executar` -> `run`; script options in English (`--completo` -> `--full`, `--calibrado` -> `--calibrated`,
+  `--temperaturas` -> `--temperatures`, ...). Numbers are written with a decimal point.
+- Compatibility (`mef_masonry/legacy.py`): project files of versions 1.x (Portuguese group, field and option names)
+  are converted when opened, in the interface and by `project.complete`, `project.apply` and `project.run`; the old
+  module names (`import mef_masonry.projeto`, `from mef_masonry import biblioteca`) and the old names of their
+  functions, classes and constants still work; the library accepts the old selectors and keys
+  (`library.apply(p, "bloco", "concreto_m15_39")`). Results are returned with the names of version 2.
+  The interface lists the runs of versions 1.x and reuses their inputs.
+- The solver is unchanged: the 240 verification cases and the studies of the paper were rerun with the same results.
+- `examples/09_convergence_study.py`: option `--element` (W6, H8 or W15), to repeat the comparison of elements of
+  Table 5 of the paper.
 
 ## 1.0.1
-- Solver unchanged. Studies added during the review of the paper, in `exemplos/artigo/` with results in `resultados/artigo/`:
+- Solver unchanged. Studies added during the review of the paper, in `exemplos/artigo/` with results in `resultados/artigo/` (in 2.0.0, `examples/paper/` and `results/paper/`):
   `oliveira_umidade_migrada.py` (moisture moved to the unexposed shell), `oliveira_secao_explicita.py` (view factors of the cells and conduction of the webs),
   `morris_verificacoes.py` (Morris effects without the runs that did not fail; nominal wall with k_tr = 2.35) and `morris_alfa_estreito.py` (screening with α from 5 to 7 × 10⁻⁶/°C).
 - Figures 2 and 3 state that they are illustrative.
@@ -13,7 +34,7 @@ Details of each version, with examples and verification cases, are in
 - The program is renamed MEF_Masonry (package `mef_masonry`); `mef_bcepq` stays as an alias for old scripts, and old projects and browser data still open.
 - Scripts and results of the paper in `exemplos/artigo/` and `resultados/artigo/`, with `REPRODUCE.md` and the figure script.
 - English README, citation metadata (CITATION.cff, .zenodo.json) and continuous verification on GitHub Actions.
-- `mecanico.resolver_3d`: options `base_engastada` (base fixed in all directions) and `regiao_carga` (loaded part of the top face); comparison with the ANSYS model of the BCEPQ prism in `exemplos/artigo/benchmark_ansys.py`, with its input files in `dados/ansys_prisma_bcepq/`.
+- `mecanico.resolver_3d` (`mechanical.solve_3d` in 2.0.0): options `base_engastada` / `fixed_base` (base fixed in all directions) and `regiao_carga` / `load_region` (loaded part of the top face); comparison with the ANSYS model of the BCEPQ prism in `exemplos/artigo/benchmark_ansys.py`, with its input files in `dados/ansys_prisma_bcepq/`.
 
 ## 0.10
 - Global sensitivity of the wall under ISO 834 by the Morris method, with bootstrap intervals and parallel runs.

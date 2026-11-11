@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,168 +7,168 @@
 <link rel="stylesheet" href="/web/app.css">
 </head>
 <body>
-<header class="topo">
-  <div class="marca">
+<header class="topbar">
+  <div class="brand">
     <span class="logo" aria-hidden="true">▦</span>
     <div>
-      <div class="titulo">MEF_Masonry</div>
-      <div class="subtitulo">alvenaria de blocos em temperatura · <span id="versao"></span></div>
+      <div class="app-title">MEF_Masonry</div>
+      <div class="subtitle">block masonry at high temperature · <span id="version"></span></div>
     </div>
   </div>
-  <div class="projeto-barra">
-    <label class="rotulo-inline">Projeto <input id="nome-projeto" type="text" value="Prisma BCEPQ"></label>
-    <select id="predefinidos" title="Carregar um projeto pronto"><option value="">Projetos prontos…</option></select>
-    <button id="bt-novo" class="secundario" title="Valores padrão">Novo</button>
-    <button id="bt-abrir" class="secundario">Abrir…</button>
-    <button id="bt-salvar" class="secundario">Salvar</button>
-    <input id="arquivo-abrir" type="file" accept=".json" hidden>
+  <div class="project-bar">
+    <label class="inline-label">Project <input id="project-name" type="text" value="BCEPQ prism"></label>
+    <select id="presets" title="Load a ready-made project"><option value="">Ready-made projects…</option></select>
+    <button id="bt-new" class="secondary" title="Default values">New</button>
+    <button id="bt-open" class="secondary">Open…</button>
+    <button id="bt-save" class="secondary">Save</button>
+    <input id="file-open" type="file" accept=".json" hidden>
   </div>
 </header>
 
-<div class="corpo">
-  <nav class="menu" id="menu" aria-label="Etapas">
-    <div class="grupo-menu">Entradas</div>
-    <button data-pagina="geometria" class="ativo"><span>1</span> Geometria</button>
-    <button data-pagina="ceramica"><span>2</span> Materiais</button>
-    <button data-pagina="modelo"><span>3</span> Modelos e elementos</button>
-    <button data-pagina="ensaio"><span>4</span> Ensaio e carga</button>
-    <button data-pagina="malha"><span>5</span> Malha e solução</button>
-    <button data-pagina="sensibilidade" hidden><span>6</span> Sensibilidade</button>
-    <div class="grupo-menu">Cálculo</div>
-    <button data-pagina="executar"><span>▶</span> Executar</button>
-    <button data-pagina="resultados"><span>≡</span> Resultados</button>
-    <button data-pagina="pos"><span>◈</span> Pós-processador</button>
-    <button data-pagina="historico"><span>↺</span> Análises anteriores</button>
-    <div class="estado-menu" id="estado-menu"></div>
+<div class="layout">
+  <nav class="menu" id="menu" aria-label="Steps">
+    <div class="menu-group">Inputs</div>
+    <button data-page="geometry" class="active"><span>1</span> Geometry</button>
+    <button data-page="ceramic"><span>2</span> Materials</button>
+    <button data-page="model"><span>3</span> Models and elements</button>
+    <button data-page="test"><span>4</span> Test and load</button>
+    <button data-page="mesh"><span>5</span> Mesh and solution</button>
+    <button data-page="sensitivity" hidden><span>6</span> Sensitivity</button>
+    <div class="menu-group">Computation</div>
+    <button data-page="run"><span>▶</span> Run</button>
+    <button data-page="results"><span>≡</span> Results</button>
+    <button data-page="post"><span>◈</span> Post-processor</button>
+    <button data-page="history"><span>↺</span> Previous analyses</button>
+    <div class="menu-status" id="menu-status"></div>
   </nav>
 
-  <main id="principal">
-    <section class="pagina" id="pg-formulario">
-      <div class="cabecalho-pagina">
-        <h1 id="form-titulo"></h1>
-        <p id="form-descricao" class="descricao"></p>
+  <main id="main">
+    <section class="page" id="pg-form">
+      <div class="page-header">
+        <h1 id="form-title"></h1>
+        <p id="form-description" class="description"></p>
       </div>
-      <form id="formulario" class="formulario" autocomplete="off" onsubmit="return false"></form>
-      <div id="previa-malha" class="cartao previa" hidden>
-        <div class="cartao-cabecalho">
-          <h2>Pré-visualização da malha</h2>
-          <button id="bt-previa" class="secundario">Atualizar</button>
+      <form id="form" class="form-grid" autocomplete="off" onsubmit="return false"></form>
+      <div id="mesh-preview" class="card preview" hidden>
+        <div class="card-header">
+          <h2>Mesh preview</h2>
+          <button id="bt-preview" class="secondary">Update</button>
         </div>
-        <p id="previa-info" class="nota"></p>
-        <img id="previa-img" alt="Malha da seção e corte vertical">
+        <p id="preview-info" class="note"></p>
+        <img id="preview-img" alt="Mesh of the section and vertical cut">
       </div>
-      <div class="navegacao-etapas">
-        <button id="bt-anterior" class="secundario">← Anterior</button>
-        <button id="bt-proximo">Próximo →</button>
+      <div class="step-nav">
+        <button id="bt-previous" class="secondary">← Previous</button>
+        <button id="bt-next">Next →</button>
       </div>
     </section>
 
-    <section class="pagina" id="pg-executar" hidden>
-      <div class="cabecalho-pagina">
-        <h1>Executar</h1>
-        <p class="descricao">Confira o resumo, rode a análise e acompanhe o registro.</p>
+    <section class="page" id="pg-run" hidden>
+      <div class="page-header">
+        <h1>Run</h1>
+        <p class="description">Check the summary, run the analysis and follow the log.</p>
       </div>
-      <div class="grade-2">
-        <div class="cartao">
-          <h2>Resumo do projeto</h2>
-          <dl id="resumo-projeto" class="lista-resumo"></dl>
-          <ul id="erros-validacao" class="erros"></ul>
-          <div class="acoes">
-            <button id="bt-executar" class="primario grande">▶ Executar análise</button>
-            <button id="bt-cancelar" class="perigo" hidden>Cancelar</button>
+      <div class="grid-2">
+        <div class="card">
+          <h2>Project summary</h2>
+          <dl id="project-summary" class="summary-list"></dl>
+          <ul id="validation-errors" class="errors"></ul>
+          <div class="actions">
+            <button id="bt-run" class="primary large">▶ Run analysis</button>
+            <button id="bt-cancel" class="danger" hidden>Cancel</button>
           </div>
         </div>
-        <div class="cartao">
-          <div class="cartao-cabecalho">
-            <h2>Andamento</h2>
-            <span id="cronometro" class="cronometro"></span>
+        <div class="card">
+          <div class="card-header">
+            <h2>Progress</h2>
+            <span id="timer" class="timer"></span>
           </div>
-          <div id="situacao" class="situacao">Nenhuma análise em andamento.</div>
-          <pre id="registro" class="registro" aria-live="polite"></pre>
+          <div id="status" class="status">No analysis running.</div>
+          <pre id="log" class="log" aria-live="polite"></pre>
         </div>
       </div>
     </section>
 
-    <section class="pagina" id="pg-resultados" hidden>
-      <div class="cabecalho-pagina">
-        <h1>Resultados</h1>
-        <p class="descricao" id="res-origem">Rode uma análise ou abra uma anterior.</p>
+    <section class="page" id="pg-results" hidden>
+      <div class="page-header">
+        <h1>Results</h1>
+        <p class="description" id="res-source">Run an analysis or open a previous one.</p>
       </div>
-      <div id="res-conteudo"></div>
+      <div id="res-content"></div>
     </section>
 
-    <section class="pagina pos" id="pg-pos" hidden>
-      <div class="pos-layout">
-        <aside class="pos-controles" id="pos-controles">
-          <h2>Pós-processador</h2>
-          <p class="nota" id="pos-origem">Sem resultado carregado.</p>
-          <label>Estado<select id="pos-estado"></select></label>
-          <input id="pos-estado-slider" type="range" min="0" max="0" value="0" aria-label="Estado">
-          <label>Campo<select id="pos-campo"></select></label>
-          <label>Mapa de cores
-            <select id="pos-mapa">
-              <option value="auto">automático</option>
+    <section class="page post" id="pg-post" hidden>
+      <div class="post-layout">
+        <aside class="post-controls" id="post-controls">
+          <h2>Post-processor</h2>
+          <p class="note" id="post-source">No result loaded.</p>
+          <label>State<select id="post-state"></select></label>
+          <input id="post-state-slider" type="range" min="0" max="0" value="0" aria-label="State">
+          <label>Field<select id="post-field"></select></label>
+          <label>Colour map
+            <select id="post-cmap">
+              <option value="auto">automatic</option>
               <option value="viridis">viridis</option>
               <option value="inferno">inferno</option>
-              <option value="divergente">azul–vermelho</option>
-              <option value="dano">dano</option>
-              <option value="cinza">cinza</option>
+              <option value="diverging">blue–red</option>
+              <option value="damage">damage</option>
+              <option value="grey">grey</option>
             </select>
           </label>
-          <div class="linha-2">
-            <label>Mínimo<input id="pos-min" type="number" step="any"></label>
-            <label>Máximo<input id="pos-max" type="number" step="any"></label>
+          <div class="row-2">
+            <label>Minimum<input id="post-min" type="number" step="any"></label>
+            <label>Maximum<input id="post-max" type="number" step="any"></label>
           </div>
-          <label class="marcar"><input id="pos-auto" type="checkbox" checked> escala automática</label>
+          <label class="check"><input id="post-auto" type="checkbox" checked> automatic scale</label>
           <fieldset>
-            <legend>Forma</legend>
-            <label class="marcar"><input id="pos-deformada" type="checkbox"> deformada</label>
-            <label>Fator de escala<input id="pos-escala" type="number" value="50" step="any" min="0"></label>
-            <label class="marcar"><input id="pos-espelhar" type="checkbox" checked> espelhar a simetria</label>
-            <label class="marcar"><input id="pos-arestas" type="checkbox" checked> arestas dos elementos</label>
+            <legend>Shape</legend>
+            <label class="check"><input id="post-deformed" type="checkbox"> deformed</label>
+            <label>Scale factor<input id="post-scale" type="number" value="50" step="any" min="0"></label>
+            <label class="check"><input id="post-mirror" type="checkbox" checked> mirror the symmetry</label>
+            <label class="check"><input id="post-edges" type="checkbox" checked> element edges</label>
           </fieldset>
           <fieldset>
-            <legend>Cortes (mostra elementos com centro antes do plano)</legend>
-            <label class="corte"><input type="checkbox" id="corte-x"> x <input type="range" id="corte-x-v" min="0" max="100" value="50"></label>
-            <label class="corte"><input type="checkbox" id="corte-y"> y <input type="range" id="corte-y-v" min="0" max="100" value="50"></label>
-            <label class="corte"><input type="checkbox" id="corte-z"> z <input type="range" id="corte-z-v" min="0" max="100" value="50"></label>
+            <legend>Cuts (shows the elements with centre before the plane)</legend>
+            <label class="cut"><input type="checkbox" id="cut-x"> x <input type="range" id="cut-x-v" min="0" max="100" value="50"></label>
+            <label class="cut"><input type="checkbox" id="cut-y"> y <input type="range" id="cut-y-v" min="0" max="100" value="50"></label>
+            <label class="cut"><input type="checkbox" id="cut-z"> z <input type="range" id="cut-z-v" min="0" max="100" value="50"></label>
           </fieldset>
           <fieldset>
-            <legend>Materiais</legend>
-            <div id="pos-materiais"></div>
+            <legend>Materials</legend>
+            <div id="post-materials"></div>
           </fieldset>
-          <div class="acoes-pos">
-            <button class="secundario" data-vista="iso">Isométrica</button>
-            <button class="secundario" data-vista="frente">Frente</button>
-            <button class="secundario" data-vista="lado">Lado</button>
-            <button class="secundario" data-vista="topo">Topo</button>
+          <div class="post-actions">
+            <button class="secondary" data-view="iso">Isometric</button>
+            <button class="secondary" data-view="front">Front</button>
+            <button class="secondary" data-view="side">Side</button>
+            <button class="secondary" data-view="top">Top</button>
           </div>
-          <button id="pos-png" class="secundario largo">Salvar imagem PNG</button>
+          <button id="post-png" class="secondary wide">Save PNG image</button>
         </aside>
-        <div class="pos-tela">
-          <canvas id="pos-canvas"></canvas>
-          <div class="legenda" id="pos-legenda" hidden>
-            <div class="legenda-titulo" id="legenda-titulo"></div>
-            <div class="legenda-barra" id="legenda-barra"></div>
-            <div class="legenda-valores"><span id="legenda-min"></span><span id="legenda-meio"></span><span id="legenda-max"></span></div>
+        <div class="post-screen">
+          <canvas id="post-canvas"></canvas>
+          <div class="legend" id="post-legend" hidden>
+            <div class="legend-title" id="legend-title"></div>
+            <div class="legend-bar" id="legend-bar"></div>
+            <div class="legend-values"><span id="legend-min"></span><span id="legend-mid"></span><span id="legend-max"></span></div>
           </div>
-          <div class="pos-dica">arraste: girar · Shift+arraste ou botão direito: mover · roda: zoom · duplo clique: valor no ponto</div>
-          <div class="pos-sonda" id="pos-sonda" hidden></div>
-          <div class="pos-vazio" id="pos-vazio">Abra um resultado em <b>Resultados</b> ou <b>Análises anteriores</b>.</div>
+          <div class="post-hint">drag: rotate · Shift+drag or right button: pan · wheel: zoom · double click: value at the point</div>
+          <div class="post-probe" id="post-probe" hidden></div>
+          <div class="post-empty" id="post-empty">Open a result in <b>Results</b> or <b>Previous analyses</b>.</div>
         </div>
       </div>
     </section>
 
-    <section class="pagina" id="pg-historico" hidden>
-      <div class="cabecalho-pagina">
-        <h1>Análises anteriores</h1>
-        <p class="descricao">Gravadas em <code id="pasta-res"></code>.</p>
+    <section class="page" id="pg-history" hidden>
+      <div class="page-header">
+        <h1>Previous analyses</h1>
+        <p class="description">Stored in <code id="results-folder"></code>.</p>
       </div>
-      <div class="cartao"><table class="tabela" id="tab-historico"></table></div>
+      <div class="card"><table class="data-table" id="history-table"></table></div>
     </section>
   </main>
 </div>
-<script src="/web/visualizador.js"></script>
+<script src="/web/viewer.js"></script>
 <script src="/web/app.js"></script>
 </body>
 </html>

@@ -1,5 +1,0 @@
-T_alvo_C,pico_modelo_kN,pico_ensaio_kN,diferenca,delta_no_pico_mm,ceramica_danificada_apos_aquecimento_pct,E_corda_5_30_MPa,incrementos_sem_convergir
-30,98.6,98.7,-0%,0.340,0.06,1210,0
-600,97.1,97.9,-1%,0.459,13.05,882,3
-800,98.1,98.9,-1%,0.399,16.51,964,1
-1000,99.0,114.4,-13%,0.376,17.67,1072,8

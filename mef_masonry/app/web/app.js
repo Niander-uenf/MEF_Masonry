@@ -1,430 +1,444 @@
-/* Interface do programa MEF_Masonry: formulários gerados pelo esquema do servidor,
-   execução com acompanhamento, resultados, histórico e pós-processador. */
+/* Interface of the MEF_Masonry program: forms generated from the server schema,
+   run with progress, results, history and post-processor. */
 (function () {
   "use strict";
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
-  const PAGINAS_FORM = ["geometria", "ceramica", "modelo", "ensaio", "malha", "sensibilidade"];
-  const PAREDES = ["parede", "sensibilidade"];
-  // a página Sensibilidade só aparece com essa análise
-  const comSens = () => projeto && projeto.modelo.analise === "sensibilidade";
-  const ordem = () => [...PAGINAS_FORM.filter(p => p !== "sensibilidade" || comSens()), "executar", "resultados", "pos", "historico"];
-  function atualizarMenu() { const b = $('#menu button[data-pagina="sensibilidade"]'); if (b) b.hidden = !comSens(); }
-  let ESQ = null, PADRAO = null, PRED = {}, BIB = {}, projeto = null, pagina = "geometria";
-  const notasBib = {};      // grupo -> nota do último item da biblioteca aplicado
-  let tarefa = null, desde = 0, temporizador = null, resultadoAtual = null, pastaAtual = null, vis = null;
+  const FORM_PAGES = ["geometry", "ceramic", "model", "test", "mesh", "sensitivity"];
+  const WALLS = ["wall", "sensitivity"];
+  // the Sensitivity page only appears with that analysis
+  const withSens = () => project && project.model.analysis === "sensitivity";
+  const order = () => [...FORM_PAGES.filter(p => p !== "sensitivity" || withSens()), "run", "results", "post", "history"];
+  function updateMenu() { const b = $('#menu button[data-page="sensitivity"]'); if (b) b.hidden = !withSens(); }
+  let SCHEMA = null, DEFAULT = null, PRESETS = {}, LIB = {}, project = null, page = "geometry";
+  const libNotes = {};      // group -> note of the last library item applied
+  let task = null, since = 0, timer = null, currentResult = null, currentFolder = null, viewer = null;
 
   const fmt = v => {
     if (typeof v !== "number") return v;
-    if (v !== 0 && (Math.abs(v) < 1e-3 || Math.abs(v) >= 1e6)) return v.toExponential(3).replace(".", ",");
-    return v.toLocaleString("pt-BR", { maximumFractionDigits: 6, useGrouping: false });
+    if (v !== 0 && (Math.abs(v) < 1e-3 || Math.abs(v) >= 1e6)) return v.toExponential(3);
+    return v.toLocaleString("en-GB", { maximumFractionDigits: 6, useGrouping: false });
   };
-  const fmtRes = v => typeof v === "number" ? v.toLocaleString("pt-BR", { maximumSignificantDigits: 4 }) : v;
+  const fmtRes = v => typeof v === "number" ? v.toLocaleString("en-GB", { maximumSignificantDigits: 4 }) : v;
+  // accepts a decimal point or a decimal comma
   const num = s => { const x = parseFloat(String(s).trim().replace(/\s/g, "").replace(",", ".")); return isFinite(x) ? x : NaN; };
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  async function api(rota, corpo) {
-    const r = await fetch(rota, corpo === undefined ? {} : { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) });
+  async function api(route, body) {
+    const r = await fetch(route, body === undefined ? {} : { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
     const j = await r.json().catch(() => ({}));
-    if (!r.ok && !j.erros) throw new Error(j.erro || ("HTTP " + r.status));
+    if (!r.ok && !j.errors) throw new Error(j.error || ("HTTP " + r.status));
     return j;
   }
 
-  // ---------------------------------------------------------------- formulários
-  function visivel(campo) {
-    if (!campo.mostrar_se) return true;
-    return Object.entries(campo.mostrar_se).every(([k, vals]) => {
-      const [g, c] = k.split("."); return vals.includes(projeto[g][c]);
+  // ---------------------------------------------------------------- forms
+  function visible(field) {
+    if (!field.show_if) return true;
+    return Object.entries(field.show_if).every(([k, vals]) => {
+      const [g, c] = k.split("."); return vals.includes(project[g][c]);
     });
   }
 
-  function montarFormulario() {
-    const g = ESQ.find(x => x.id === pagina);
-    $("#form-titulo").textContent = g.titulo;
-    $("#form-descricao").textContent = (g.descricao || "") + (notasBib[g.id] ? " " + notasBib[g.id] : "");
-    const f = $("#formulario"); f.innerHTML = "";
-    for (const c of g.campos) {
-      if (!visivel(c)) continue;
+  function buildForm() {
+    const g = SCHEMA.find(x => x.id === page);
+    $("#form-title").textContent = g.title;
+    $("#form-description").textContent = (g.description || "") + (libNotes[g.id] ? " " + libNotes[g.id] : "");
+    const f = $("#form"); f.innerHTML = "";
+    for (const c of g.fields) {
+      if (!visible(c)) continue;
       const div = document.createElement("div");
-      div.className = "campo " + c.tipo + (c.quebra ? " quebra" : "");
-      const val = projeto[g.id][c.id];
+      div.className = "field " + c.kind + (c.line_break ? " line-break" : "");
+      const val = project[g.id][c.id];
       const idc = `c-${g.id}-${c.id}`;
-      if (c.tipo === "numero") {
-        div.innerHTML = `<label for="${idc}">${esc(c.rotulo)}</label><div class="linha"><input id="${idc}" type="text" inputmode="decimal" value="${esc(fmt(val))}"><span class="unidade">${esc(c.unidade || "")}</span></div>` +
-          (c.ajuda ? `<div class="ajuda">${esc(c.ajuda)}</div>` : "");
+      if (c.kind === "number") {
+        div.innerHTML = `<label for="${idc}">${esc(c.label)}</label><div class="row"><input id="${idc}" type="text" inputmode="decimal" value="${esc(fmt(val))}"><span class="unit">${esc(c.unit || "")}</span></div>` +
+          (c.help ? `<div class="help">${esc(c.help)}</div>` : "");
         const inp = div.querySelector("input");
         inp.addEventListener("change", () => {
           const x = num(inp.value);
-          const ruim = isNaN(x) || (c.min !== undefined && x < c.min) || (c.max !== undefined && x > c.max);
-          div.classList.toggle("invalido", ruim);
-          if (!ruim) { projeto[g.id][c.id] = (c.passo === 1) ? Math.round(x) : x; aoMudar(g.id, c.id); }
+          const bad = isNaN(x) || (c.min !== undefined && x < c.min) || (c.max !== undefined && x > c.max);
+          div.classList.toggle("invalid", bad);
+          if (!bad) { project[g.id][c.id] = (c.step === 1) ? Math.round(x) : x; onChange(g.id, c.id); }
         });
-      } else if (c.tipo === "opcao") {
-        const ops = c.opcoes.map(([v, r]) => {
-          const desab = / em desenvolvimento/.test(r);
-          return `<option value="${esc(v)}" ${v === val ? "selected" : ""} ${desab ? "disabled class='op-desabilitada'" : ""}>${esc(r)}</option>`;
+      } else if (c.kind === "option") {
+        const ops = c.options.map(([v, r]) => {
+          const off = / under development/.test(r);
+          return `<option value="${esc(v)}" ${v === val ? "selected" : ""} ${off ? "disabled class='option-disabled'" : ""}>${esc(r)}</option>`;
         }).join("");
-        div.innerHTML = `<label for="${idc}">${esc(c.rotulo)}</label><div class="linha"><select id="${idc}">${ops}</select></div>` +
-          (c.ajuda ? `<div class="ajuda">${esc(c.ajuda)}</div>` : "");
-        div.querySelector("select").addEventListener("change", e => { projeto[g.id][c.id] = e.target.value; aoMudar(g.id, c.id); });
-      } else if (c.tipo === "logico") {
-        div.innerHTML = `<input id="${idc}" type="checkbox" ${val ? "checked" : ""}><div><label for="${idc}">${esc(c.rotulo)}</label>` +
-          (c.ajuda ? `<div class="ajuda">${esc(c.ajuda)}</div>` : "") + `</div>`;
-        div.querySelector("input").addEventListener("change", e => { projeto[g.id][c.id] = e.target.checked; aoMudar(g.id, c.id); });
-      } else if (c.tipo === "tabela") {
-        div.innerHTML = `<label>${esc(c.rotulo)}</label>` + (c.ajuda ? `<div class="ajuda">${esc(c.ajuda)}</div>` : "") +
-          `<table class="mini-tabela"><thead><tr>${c.colunas.map(x => `<th>${esc(x)}</th>`).join("")}<th></th></tr></thead><tbody></tbody></table>` +
-          `<div><button type="button" class="secundario">+ linha</button> <span class="ajuda">vazia = valor constante</span></div>`;
-        const corpo = div.querySelector("tbody");
-        const desenhar = () => {
-          corpo.innerHTML = "";
-          (projeto[g.id][c.id] || []).forEach((linha, i) => {
+        div.innerHTML = `<label for="${idc}">${esc(c.label)}</label><div class="row"><select id="${idc}">${ops}</select></div>` +
+          (c.help ? `<div class="help">${esc(c.help)}</div>` : "");
+        div.querySelector("select").addEventListener("change", e => { project[g.id][c.id] = e.target.value; onChange(g.id, c.id); });
+      } else if (c.kind === "boolean") {
+        div.innerHTML = `<input id="${idc}" type="checkbox" ${val ? "checked" : ""}><div><label for="${idc}">${esc(c.label)}</label>` +
+          (c.help ? `<div class="help">${esc(c.help)}</div>` : "") + `</div>`;
+        div.querySelector("input").addEventListener("change", e => { project[g.id][c.id] = e.target.checked; onChange(g.id, c.id); });
+      } else if (c.kind === "table") {
+        div.innerHTML = `<label>${esc(c.label)}</label>` + (c.help ? `<div class="help">${esc(c.help)}</div>` : "") +
+          `<table class="mini-table"><thead><tr>${c.columns.map(x => `<th>${esc(x)}</th>`).join("")}<th></th></tr></thead><tbody></tbody></table>` +
+          `<div><button type="button" class="secondary">+ row</button> <span class="help">empty = constant value</span></div>`;
+        const body = div.querySelector("tbody");
+        const draw = () => {
+          body.innerHTML = "";
+          (project[g.id][c.id] || []).forEach((line, i) => {
             const tr = document.createElement("tr");
-            tr.innerHTML = linha.map((v, j) => `<td><input type="text" inputmode="decimal" value="${esc(fmt(v))}" data-j="${j}"></td>`).join("") +
-              `<td><button type="button" class="secundario" title="remover">×</button></td>`;
+            tr.innerHTML = line.map((v, j) => `<td><input type="text" inputmode="decimal" value="${esc(fmt(v))}" data-j="${j}"></td>`).join("") +
+              `<td><button type="button" class="secondary" title="remove">×</button></td>`;
             tr.querySelectorAll("input").forEach(inp => inp.addEventListener("change", () => {
-              const x = num(inp.value); if (!isNaN(x)) projeto[g.id][c.id][i][+inp.dataset.j] = x;
+              const x = num(inp.value); if (!isNaN(x)) project[g.id][c.id][i][+inp.dataset.j] = x;
             }));
-            tr.querySelector("button").addEventListener("click", () => { projeto[g.id][c.id].splice(i, 1); desenhar(); });
-            corpo.appendChild(tr);
+            tr.querySelector("button").addEventListener("click", () => { project[g.id][c.id].splice(i, 1); draw(); });
+            body.appendChild(tr);
           });
         };
         div.querySelector("div > button").addEventListener("click", () => {
-          const t = projeto[g.id][c.id] = projeto[g.id][c.id] || [];
-          const ult = t[t.length - 1];
-          t.push(ult ? [ult[0] + 100, ult[1]] : [20, 1]); desenhar();
+          const t = project[g.id][c.id] = project[g.id][c.id] || [];
+          const last = t[t.length - 1];
+          t.push(last ? [last[0] + 100, last[1]] : [20, 1]); draw();
         });
-        desenhar();
+        draw();
       }
       f.appendChild(div);
     }
-    $("#previa-malha").hidden = !(pagina === "geometria" || pagina === "malha");
-    $("#bt-anterior").disabled = pagina === PAGINAS_FORM[0];
+    $("#mesh-preview").hidden = !(page === "geometry" || page === "mesh");
+    $("#bt-previous").disabled = page === FORM_PAGES[0];
   }
 
-  function aplicarBiblioteca(grupo, campo) {
-    const tab = BIB[`${grupo}.${campo}`];
-    const item = tab && tab[projeto[grupo][campo]];
+  function applyLibrary(group, field) {
+    const tab = LIB[`${group}.${field}`];
+    const item = tab && tab[project[group][field]];
     if (!item) return;
-    for (const [g, d] of Object.entries(item.mudancas || {})) Object.assign(projeto[g], JSON.parse(JSON.stringify(d)));
-    const nota = [item.nota, item.fonte ? "Fonte: " + item.fonte + "." : ""].filter(Boolean).join(" ");
-    for (const g of new Set([grupo, ...Object.keys(item.mudancas || {})])) notasBib[g] = nota ? "Biblioteca: " + nota : "";
+    for (const [g, d] of Object.entries(item.changes || {})) Object.assign(project[g], JSON.parse(JSON.stringify(d)));
+    const note = [item.note, item.source ? "Source: " + item.source + "." : ""].filter(Boolean).join(" ");
+    for (const g of new Set([group, ...Object.keys(item.changes || {})])) libNotes[g] = note ? "Library: " + note : "";
   }
 
-  const CAMPOS_BLOCO = ["comprimento_bloco", "largura", "altura_fiada", "diametro_furo", "furos_por_bloco", "tipo_junta",
-    "espessura_junta", "assentamento", "juntas_verticais_preenchidas", "forma_furo", "parede_externa", "septo",
-    "parede_topo", "celulas_parede", "parede_minima", "furos_largura", "furos_altura", "parede_leito"];
-  const CAMPOS_MATERIAL = ["k", "rho", "c", "E_bloco_bruto", "nu", "alfa"];
+  const UNIT_FIELDS = ["unit_length", "width", "course_height", "hole_diameter", "holes_per_unit", "joint_type",
+    "joint_thickness", "bedding", "filled_head_joints", "hole_shape", "face_shell", "web",
+    "end_shell", "wall_cells", "min_shell", "holes_width", "holes_height", "bed_shell"];
+  const MATERIAL_FIELDS = ["k", "rho", "c", "E_unit_gross", "nu", "alpha"];
 
-  function aoMudar(grupo, campo) {
-    // um valor trocado à mão deixa de ser o item da biblioteca
-    if (grupo === "geometria" && CAMPOS_BLOCO.includes(campo)) { projeto.geometria.bloco_biblioteca = "personalizado"; notasBib.geometria = ""; }
-    if (grupo === "ceramica" && CAMPOS_MATERIAL.includes(campo)) { projeto.ceramica.material_biblioteca = "personalizado"; notasBib.ceramica = ""; }
-    if (grupo === "ceramica" && campo.startsWith("arg_")) projeto.ceramica.argamassa_biblioteca = "personalizada";
-    if (grupo === "ceramica" && campo.startsWith("gra_") && campo !== "gra_en1992") projeto.ceramica.graute_biblioteca = "personalizado";
-    aplicarBiblioteca(grupo, campo);
-    const mo = projeto.modelo;
-    if (grupo === "modelo" && campo === "analise") {
-      if (mo.analise === "secao_2d") mo.elemento = "T3";
-      else if (mo.elemento === "T3") mo.elemento = "W6";
-      if (PAREDES.includes(mo.analise)) {
-        if (mo.analise === "sensibilidade" || !["ambiente", "iso834"].includes(projeto.ensaio.tipo)) projeto.ensaio.tipo = "iso834";
-        if (projeto.malha.h > 8) projeto.malha.h = 5;
-        if (projeto.ensaio.tipo === "iso834" && projeto.ensaio.h_conveccao < 20) projeto.ensaio.h_conveccao = 25;
+  function onChange(group, field) {
+    // a value changed by hand is no longer the library item
+    if (group === "geometry" && UNIT_FIELDS.includes(field)) { project.geometry.unit_library = "custom"; libNotes.geometry = ""; }
+    if (group === "ceramic" && MATERIAL_FIELDS.includes(field)) { project.ceramic.material_library = "custom"; libNotes.ceramic = ""; }
+    if (group === "ceramic" && field.startsWith("mor_")) project.ceramic.mortar_library = "custom";
+    if (group === "ceramic" && field.startsWith("grt_") && field !== "grt_en1992") project.ceramic.grout_library = "custom";
+    applyLibrary(group, field);
+    const mo = project.model;
+    if (group === "model" && field === "analysis") {
+      if (mo.analysis === "section_2d") mo.element = "T3";
+      else if (mo.element === "T3") mo.element = "W6";
+      if (WALLS.includes(mo.analysis)) {
+        if (mo.analysis === "sensitivity" || !["ambient", "iso834"].includes(project.test.kind)) project.test.kind = "iso834";
+        if (project.mesh.h > 8) project.mesh.h = 5;
+        if (project.test.kind === "iso834" && project.test.h_convection < 20) project.test.h_convection = 25;
       }
     }
-    if (grupo === "ensaio" && campo === "tipo") {
-      const en = projeto.ensaio;
-      if (en.tipo === "iso834" && en.h_conveccao < 20) en.h_conveccao = 25;
-      if (en.tipo !== "iso834" && en.h_conveccao === 25) en.h_conveccao = 10;
+    if (group === "test" && field === "kind") {
+      const ts = project.test;
+      if (ts.kind === "iso834" && ts.h_convection < 20) ts.h_convection = 25;
+      if (ts.kind !== "iso834" && ts.h_convection === 25) ts.h_convection = 10;
     }
-    atualizarMenu();
-    montarFormulario();
-    salvarLocal();
-    previaPendente = true;
-    if (["geometria", "malha"].includes(pagina)) agendarPrevia();
+    updateMenu();
+    buildForm();
+    saveLocal();
+    previewPending = true;
+    if (["geometry", "mesh"].includes(page)) schedulePreview();
   }
 
-  let previaPendente = true, tPrevia = null;
-  function agendarPrevia() {
-    clearTimeout(tPrevia);
-    tPrevia = setTimeout(() => { previaPendente = false; previaMalha(); }, 600);
+  let previewPending = true, tPreview = null;
+  function schedulePreview() {
+    clearTimeout(tPreview);
+    tPreview = setTimeout(() => { previewPending = false; meshPreview(); }, 600);
   }
 
-  // ---------------------------------------------------------------- navegação
-  function irPara(p) {
-    pagina = p;
-    $$("#menu button").forEach(b => b.classList.toggle("ativo", b.dataset.pagina === p));
-    const ehForm = PAGINAS_FORM.includes(p);
-    $("#pg-formulario").hidden = !ehForm;
-    $("#pg-executar").hidden = p !== "executar";
-    $("#pg-resultados").hidden = p !== "resultados";
-    $("#pg-pos").hidden = p !== "pos";
-    $("#pg-historico").hidden = p !== "historico";
-    if (ehForm) montarFormulario();
-    if ((p === "geometria" || p === "malha") && previaPendente) agendarPrevia();
-    if (p === "executar") resumoProjeto();
-    if (p === "historico") carregarHistorico();
-    if (p === "pos" && vis) setTimeout(() => vis.desenhar(), 30);
+  // ---------------------------------------------------------------- navigation
+  function goTo(p) {
+    page = p;
+    $$("#menu button").forEach(b => b.classList.toggle("active", b.dataset.page === p));
+    const isForm = FORM_PAGES.includes(p);
+    $("#pg-form").hidden = !isForm;
+    $("#pg-run").hidden = p !== "run";
+    $("#pg-results").hidden = p !== "results";
+    $("#pg-post").hidden = p !== "post";
+    $("#pg-history").hidden = p !== "history";
+    if (isForm) buildForm();
+    if ((p === "geometry" || p === "mesh") && previewPending) schedulePreview();
+    if (p === "run") projectSummary();
+    if (p === "history") loadHistory();
+    if (p === "post" && viewer) setTimeout(() => viewer.draw(), 30);
     window.scrollTo(0, 0);
   }
 
-  // ---------------------------------------------------------------- projeto
-  function salvarLocal() { try { localStorage.setItem("mef_masonry_projeto", JSON.stringify(projeto)); } catch (e) { /* ignora */ } }
-  function definirProjeto(p) {
-    projeto = JSON.parse(JSON.stringify(PADRAO));
-    for (const g in p) { if (typeof p[g] === "object" && p[g] && projeto[g]) Object.assign(projeto[g], p[g]); else projeto[g] = p[g]; }
-    $("#nome-projeto").value = projeto.nome || "Projeto";
-    atualizarMenu();
-    salvarLocal();
-    previaPendente = true;
-    if (["geometria", "malha"].includes(pagina)) agendarPrevia();
-    if (PAGINAS_FORM.includes(pagina)) montarFormulario();
-    if (pagina === "executar") resumoProjeto();
+  // ---------------------------------------------------------------- project
+  function saveLocal() { try { localStorage.setItem("mef_masonry_project", JSON.stringify(project)); } catch (e) { /* ignore */ } }
+  function setProject(p) {
+    project = JSON.parse(JSON.stringify(DEFAULT));
+    for (const g in p) { if (typeof p[g] === "object" && p[g] && project[g]) Object.assign(project[g], p[g]); else project[g] = p[g]; }
+    $("#project-name").value = project.name || "Project";
+    updateMenu();
+    saveLocal();
+    previewPending = true;
+    if (["geometry", "mesh"].includes(page)) schedulePreview();
+    if (FORM_PAGES.includes(page)) buildForm();
+    if (page === "run") projectSummary();
+  }
+  // project read from a file, from the history or from the browser: the server converts
+  // the projects of version 1.x (Portuguese names) to the current format
+  async function setProjectFile(p) {
+    const r = await api("/api/complete", p);
+    setProject(r.project || p);
   }
 
-  async function previaMalha() {
-    $("#previa-info").textContent = "Gerando a malha…";
+  async function meshPreview() {
+    $("#preview-info").textContent = "Generating the mesh…";
     try {
-      const r = await api("/api/malha", projeto);
-      if (r.erros && r.erros.length) { $("#previa-info").textContent = r.erros.join(" "); $("#previa-img").removeAttribute("src"); return; }
-      $("#previa-img").src = "data:image/png;base64," + r.png;
-      $("#previa-info").textContent = r.resumo;
-    } catch (e) { $("#previa-info").textContent = "Erro: " + e.message; }
+      const r = await api("/api/mesh", project);
+      if (r.errors && r.errors.length) { $("#preview-info").textContent = r.errors.join(" "); $("#preview-img").removeAttribute("src"); return; }
+      $("#preview-img").src = "data:image/png;base64," + r.png;
+      $("#preview-info").textContent = r.summary;
+    } catch (e) { $("#preview-info").textContent = "Error: " + e.message; }
   }
 
-  function rotuloOpcao(grupo, campo) {
-    const c = ESQ.find(g => g.id === grupo).campos.find(x => x.id === campo);
-    const op = c.opcoes.find(o => o[0] === projeto[grupo][campo]);
-    return op ? op[1] : projeto[grupo][campo];
+  function optionLabel(group, field) {
+    const c = SCHEMA.find(g => g.id === group).fields.find(x => x.id === field);
+    const op = c.options.find(o => o[0] === project[group][field]);
+    return op ? op[1] : project[group][field];
   }
 
-  async function resumoProjeto() {
-    const g = projeto.geometria, en = projeto.ensaio, ma = projeto.malha;
-    const itens = [
-      ["Geometria", `${fmt(g.blocos_por_fiada)} bloco(s) × ${g.n_fiadas} fiadas; bloco ${fmt(g.comprimento_bloco)} × ${fmt(g.largura)} × ${fmt(g.altura_fiada)} mm (eixo a eixo); ${g.diametro_furo > 0 ? `${g.furos_por_bloco} furo(s) de ${fmt(g.diametro_furo)} mm` : "maciço"}; ${g.amarracao}; ${g.tipo_junta === "argamassa" ? `argamassa de ${fmt(g.espessura_junta)} mm (${g.assentamento === "lateral" ? "só nas paredes externas" : "em toda a face"}${g.juntas_verticais_preenchidas ? "" : ", juntas verticais vazias"})` : `junta seca de ${fmt(g.espessura_junta)} mm`}`],
-      ["Análise", rotuloOpcao("modelo", "analise")],
-      PAREDES.includes(projeto.modelo.analise)
-        ? ["Parede", `${fmt(g.blocos_por_fiada * g.comprimento_bloco)} × ${fmt(g.n_fiadas * g.altura_fiada)} × ${fmt(g.largura)} mm (H/t = ${fmt(Math.round(g.n_fiadas * g.altura_fiada / g.largura * 10) / 10)}); apoios ${en.apoio_base} na base e ${en.apoio_topo} no topo; excentricidades ${fmt(en.excentricidade_topo)} e ${fmt(en.excentricidade_base)} mm; imperfeição ${en.imperfeicao > 0 ? "H/" + fmt(en.imperfeicao) : "nenhuma"}`]
-        : ["Elemento", rotuloOpcao("modelo", "elemento")],
-      ["Ensaio", rotuloOpcao("ensaio", "tipo") + (["quente", "residual", "transiente"].includes(en.tipo) ? ` — ${fmt(en.T_alvo)} °C, ${fmt(en.taxa)} °C/min, patamar ${fmt(en.patamar)} min` : "") + (en.tipo === "transiente" ? `, carga ${fmt(en.carga)} kN` : "") + (en.tipo === "iso834" ? ` — ${fmt(en.duracao_iso)} min` : "") + (PAREDES.includes(projeto.modelo.analise) && en.tipo === "iso834" ? `, carga ${fmt(en.carga)} kN` : "")],
-      ["Malha", comSens() && projeto.sensibilidade.malha_rapida ? `malha rápida da triagem: seção com h = ${fmt(Math.max(ma.h, 10))} mm, ${Math.min(ma.n_elementos, 16)} elementos de viga, Δt = ${fmt(ma.dt)} s`
-        : PAREDES.includes(projeto.modelo.analise) ? `seção com h = ${fmt(ma.h)} mm, ${ma.n_elementos} elementos de viga, Δt = ${fmt(ma.dt)} s`
-        : projeto.modelo.analise === "secao_2d" ? `h = ${fmt(ma.h)} mm, Δt = ${fmt(ma.dt)} s` : `h = ${fmt(ma.h)} mm, dz = ${fmt(ma.dz)} mm, Δt = ${fmt(ma.dt)} s`],
+  async function projectSummary() {
+    const g = project.geometry, ts = project.test, me = project.mesh;
+    const items = [
+      ["Geometry", `${fmt(g.units_per_course)} unit(s) × ${g.n_courses} courses; unit ${fmt(g.unit_length)} × ${fmt(g.width)} × ${fmt(g.course_height)} mm (centre to centre); ${g.hole_diameter > 0 ? `${g.holes_per_unit} hole(s) of ${fmt(g.hole_diameter)} mm` : "solid"}; ${optionLabel("geometry", "bond")}; ${g.joint_type === "mortar" ? `mortar of ${fmt(g.joint_thickness)} mm (${g.bedding === "lateral" ? "on the face shells only" : "over the whole face"}${g.filled_head_joints ? "" : ", empty head joints"})` : `dry joint of ${fmt(g.joint_thickness)} mm`}`],
+      ["Analysis", optionLabel("model", "analysis")],
+      WALLS.includes(project.model.analysis)
+        ? ["Wall", `${fmt(g.units_per_course * g.unit_length)} × ${fmt(g.n_courses * g.course_height)} × ${fmt(g.width)} mm (H/t = ${fmt(Math.round(g.n_courses * g.course_height / g.width * 10) / 10)}); ${ts.base_support} at the base and ${ts.top_support} at the top; eccentricities ${fmt(ts.top_eccentricity)} and ${fmt(ts.base_eccentricity)} mm; imperfection ${ts.imperfection > 0 ? "H/" + fmt(ts.imperfection) : "none"}`]
+        : ["Element", optionLabel("model", "element")],
+      ["Test", optionLabel("test", "kind") + (["hot", "residual", "transient"].includes(ts.kind) ? ` — ${fmt(ts.T_target)} °C, ${fmt(ts.rate)} °C/min, dwell ${fmt(ts.dwell)} min` : "") + (ts.kind === "transient" ? `, load ${fmt(ts.load)} kN` : "") + (ts.kind === "iso834" ? ` — ${fmt(ts.iso_duration)} min` : "") + (WALLS.includes(project.model.analysis) && ts.kind === "iso834" ? `, load ${fmt(ts.load)} kN` : "")],
+      ["Mesh", withSens() && project.sensitivity.fast_mesh ? `fast mesh of the screening: section with h = ${fmt(Math.max(me.h, 10))} mm, ${Math.min(me.n_elements, 16)} beam elements, Δt = ${fmt(me.dt)} s`
+        : WALLS.includes(project.model.analysis) ? `section with h = ${fmt(me.h)} mm, ${me.n_elements} beam elements, Δt = ${fmt(me.dt)} s`
+        : project.model.analysis === "section_2d" ? `h = ${fmt(me.h)} mm, Δt = ${fmt(me.dt)} s` : `h = ${fmt(me.h)} mm, dz = ${fmt(me.dz)} mm, Δt = ${fmt(me.dt)} s`],
     ];
-    if (comSens()) {
-      const se = projeto.sensibilidade;
+    if (withSens()) {
+      const se = project.sensitivity;
       const k = Object.keys(se).filter(c => c.startsWith("var_") && se[c]).length;
-      const n = se.trajetorias * (k + 1) + 1;
-      itens.push(["Sensibilidade", `${k} parâmetros, ${se.trajetorias} trajetórias: ${n} rodadas da parede` +
-        ` (cerca de ${se.malha_rapida ? "10 a 30 s" : "1 a 3 min"} cada uma por processo; ${se.processos > 0 ? se.processos + " processo(s)" : "processos: automático"})`]);
+      const n = se.trajectories * (k + 1) + 1;
+      items.push(["Sensitivity", `${k} parameters, ${se.trajectories} trajectories: ${n} wall runs` +
+        ` (about ${se.fast_mesh ? "10 to 30 s" : "1 to 3 min"} each per process; ${se.processes > 0 ? se.processes + " process(es)" : "processes: automatic"})`]);
     }
-    if (projeto.modelo.analise === "nao_linear") itens.push(["Materiais", `bloco: ft = ${fmt(projeto.modelo.ft)} MPa, fc = ${fmt(projeto.modelo.fc)} MPa` + (g.tipo_junta === "argamassa" ? `; argamassa: fc = ${fmt(projeto.ceramica.arg_fc)} MPa, E = ${fmt(projeto.ceramica.arg_E)} MPa` : `; folga ${fmt(projeto.modelo.desvio_folga)} mm`)]);
-    $("#resumo-projeto").innerHTML = itens.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("");
-    const r = await api("/api/validar", projeto).catch(e => ({ erros: [e.message] }));
-    $("#erros-validacao").innerHTML = (r.erros || []).map(e => `<li>${esc(e)}</li>`).join("");
-    $("#bt-executar").disabled = !!(r.erros && r.erros.length) || (tarefa && tarefa.estado === "rodando");
+    if (project.model.analysis === "nonlinear") items.push(["Materials", `unit: ft = ${fmt(project.model.ft)} MPa, fc = ${fmt(project.model.fc)} MPa` + (g.joint_type === "mortar" ? `; mortar: fc = ${fmt(project.ceramic.mor_fc)} MPa, E = ${fmt(project.ceramic.mor_E)} MPa` : `; gap ${fmt(project.model.gap_std)} mm`)]);
+    $("#project-summary").innerHTML = items.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("");
+    const r = await api("/api/validate", project).catch(e => ({ errors: [e.message] }));
+    $("#validation-errors").innerHTML = (r.errors || []).map(e => `<li>${esc(e)}</li>`).join("");
+    $("#bt-run").disabled = !!(r.errors && r.errors.length) || (task && task.state === "running");
   }
 
-  // ---------------------------------------------------------------- execução
-  async function executar() {
-    projeto.nome = $("#nome-projeto").value || "Projeto";
-    const r = await api("/api/executar", projeto).catch(e => ({ erros: [e.message] }));
-    if (r.erros) { $("#erros-validacao").innerHTML = r.erros.map(e => `<li>${esc(e)}</li>`).join(""); return; }
-    tarefa = { id: r.id, estado: "rodando", pasta: r.pasta }; desde = 0;
-    $("#registro").textContent = "";
-    $("#bt-executar").disabled = true; $("#bt-cancelar").hidden = false;
-    acompanhar();
+  // ---------------------------------------------------------------- run
+  async function run() {
+    project.name = $("#project-name").value || "Project";
+    const r = await api("/api/run", project).catch(e => ({ errors: [e.message] }));
+    if (r.errors) { $("#validation-errors").innerHTML = r.errors.map(e => `<li>${esc(e)}</li>`).join(""); return; }
+    task = { id: r.id, state: "running", folder: r.folder }; since = 0;
+    $("#log").textContent = "";
+    $("#bt-run").disabled = true; $("#bt-cancel").hidden = false;
+    follow();
   }
 
-  function acompanhar() {
-    clearInterval(temporizador);
-    temporizador = setInterval(async () => {
+  function follow() {
+    clearInterval(timer);
+    timer = setInterval(async () => {
       let r;
-      try { r = await api(`/api/tarefa/${tarefa.id}?desde=${desde}`); } catch (e) { return; }
-      desde = r.n;
-      const reg = $("#registro");
-      const noFim = reg.scrollTop + reg.clientHeight >= reg.scrollHeight - 20;
-      if (r.log.length) { reg.textContent += r.log.join("\n") + "\n"; if (noFim) reg.scrollTop = reg.scrollHeight; }
-      const min = Math.floor(r.tempo_s / 60), seg = Math.round(r.tempo_s % 60);
-      $("#cronometro").textContent = `${min} min ${String(seg).padStart(2, "0")} s`;
-      const s = $("#situacao");
-      s.className = "situacao " + (r.estado === "concluída" ? "concluida" : r.estado === "erro" ? "erro" : "rodando");
-      s.textContent = { "rodando": "Rodando…", "na fila": "Na fila…", "concluída": "Concluída.", "erro": "Erro: " + (r.erro || ""), "cancelada": "Cancelada." }[r.estado] || r.estado;
-      $("#estado-menu").textContent = r.estado === "rodando" ? `Análise rodando (${min} min)` : "";
-      tarefa.estado = r.estado;
-      if (r.estado !== "rodando" && r.estado !== "na fila") {
-        clearInterval(temporizador);
-        $("#bt-cancelar").hidden = true; $("#bt-executar").disabled = false;
-        if (r.estado === "concluída") { await abrirResultado(r.pasta); irPara("resultados"); }
+      try { r = await api(`/api/task/${task.id}?since=${since}`); } catch (e) { return; }
+      since = r.n;
+      const log = $("#log");
+      const atEnd = log.scrollTop + log.clientHeight >= log.scrollHeight - 20;
+      if (r.log.length) { log.textContent += r.log.join("\n") + "\n"; if (atEnd) log.scrollTop = log.scrollHeight; }
+      const min = Math.floor(r.time_s / 60), sec = Math.round(r.time_s % 60);
+      $("#timer").textContent = `${min} min ${String(sec).padStart(2, "0")} s`;
+      const s = $("#status");
+      s.className = "status " + (r.state === "done" ? "done" : r.state === "error" ? "error" : "running");
+      s.textContent = { "running": "Running…", "queued": "Queued…", "done": "Done.", "error": "Error: " + (r.error || ""), "cancelled": "Cancelled." }[r.state] || r.state;
+      $("#menu-status").textContent = r.state === "running" ? `Analysis running (${min} min)` : "";
+      task.state = r.state;
+      if (r.state !== "running" && r.state !== "queued") {
+        clearInterval(timer);
+        $("#bt-cancel").hidden = true; $("#bt-run").disabled = false;
+        if (r.state === "done") { await openResult(r.folder); goTo("results"); }
       }
     }, 1000);
   }
 
-  // ---------------------------------------------------------------- resultados
-  async function abrirResultado(pasta) {
-    const r = await api(`/api/resultado/${encodeURIComponent(pasta)}`);
-    if (r.erro) { alert(r.erro); return; }
-    resultadoAtual = r; pastaAtual = pasta;
-    mostrarResultado();
-    if (r.visual) carregarVisual(pasta);
+  // ---------------------------------------------------------------- results
+  async function openResult(folder) {
+    const r = await api(`/api/result/${encodeURIComponent(folder)}`);
+    if (r.error) { alert(r.error); return; }
+    currentResult = r; currentFolder = folder;
+    showResult();
+    if (r.visual) loadVisual(folder);
   }
 
-  function mostrarResultado() {
-    const r = resultadoAtual, p = pastaAtual, base = `/arquivos/${encodeURIComponent(p)}/`;
-    $("#res-origem").innerHTML = `${esc(r.projeto && r.projeto.nome || "")} · pasta <code>${esc(p)}</code>`;
-    let h = `<div class="resumo-res">` + r.resumo.map(([rot, v, u]) =>
-      `<div class="indicador"><div class="r">${esc(rot)}</div><div class="v">${esc(fmtRes(v))}<small>${esc(u || "")}</small></div></div>`).join("") + `</div>`;
-    if (r.avisos && r.avisos.length) h += `<ul class="avisos">${r.avisos.map(a => `<li>${esc(a)}</li>`).join("")}</ul>`;
-    if (r.visual) h += `<p><button id="bt-ir-pos">◈ Abrir no pós-processador</button></p>`;
-    if (r.figuras.length) h += `<div class="figuras">${r.figuras.map(f => `<figure><img src="${base}${encodeURIComponent(f.arquivo)}" alt="${esc(f.titulo)}"><figcaption>${esc(f.titulo)}</figcaption></figure>`).join("")}</div>`;
-    h += `<div class="cartao" style="margin-top:16px"><h2>Tabelas</h2>` + r.tabelas.map(t =>
-      `<details class="tab-res"><summary>${esc(t.titulo)} (${t.linhas.length} linhas)</summary><div class="rolagem"><table class="tabela"><thead><tr>${t.colunas.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${t.linhas.slice(0, 400).map(l => `<tr>${l.map(v => `<td>${esc(fmtRes(v))}</td>`).join("")}</tr>`).join("")}</tbody></table></div></details>`).join("") + `</div>`;
-    h += `<div class="cartao"><h2>Arquivos</h2><div class="arquivos">${r.arquivos.map(a => `<a href="${base}${encodeURIComponent(a.nome)}?baixar=1" title="${esc(a.descricao)}">${esc(a.nome)}</a>`).join("")}<a href="${base}projeto.json?baixar=1">projeto.json</a><a href="${base}resultados.json?baixar=1">resultados.json</a></div></div>`;
-    $("#res-conteudo").innerHTML = h;
-    const b = $("#bt-ir-pos"); if (b) b.addEventListener("click", () => irPara("pos"));
+  function showResult() {
+    const r = currentResult, p = currentFolder, base = `/files/${encodeURIComponent(p)}/`;
+    $("#res-source").innerHTML = `${esc(r.project && r.project.name || "")} · folder <code>${esc(p)}</code>`;
+    let h = `<div class="result-summary">` + r.summary.map(([lbl, v, u]) =>
+      `<div class="indicator"><div class="r">${esc(lbl)}</div><div class="v">${esc(fmtRes(v))}<small>${esc(u || "")}</small></div></div>`).join("") + `</div>`;
+    if (r.notices && r.notices.length) h += `<ul class="notices">${r.notices.map(a => `<li>${esc(a)}</li>`).join("")}</ul>`;
+    if (r.visual) h += `<p><button id="bt-go-post">◈ Open in the post-processor</button></p>`;
+    if (r.figures.length) h += `<div class="figures">${r.figures.map(f => `<figure><img src="${base}${encodeURIComponent(f.file)}" alt="${esc(f.title)}"><figcaption>${esc(f.title)}</figcaption></figure>`).join("")}</div>`;
+    h += `<div class="card" style="margin-top:16px"><h2>Tables</h2>` + r.tables.map(t =>
+      `<details class="result-table"><summary>${esc(t.title)} (${t.lines.length} rows)</summary><div class="scroll"><table class="data-table"><thead><tr>${t.columns.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${t.lines.slice(0, 400).map(l => `<tr>${l.map(v => `<td>${esc(fmtRes(v))}</td>`).join("")}</tr>`).join("")}</tbody></table></div></details>`).join("") + `</div>`;
+    h += `<div class="card"><h2>Files</h2><div class="files">${r.files.map(a => `<a href="${base}${encodeURIComponent(a.name)}?download=1" title="${esc(a.description)}">${esc(a.name)}</a>`).join("")}<a href="${base}project.json?download=1">project.json</a><a href="${base}results.json?download=1">results.json</a></div></div>`;
+    $("#res-content").innerHTML = h;
+    const b = $("#bt-go-post"); if (b) b.addEventListener("click", () => goTo("post"));
   }
 
-  async function carregarHistorico() {
-    const r = await api("/api/historico");
-    $("#pasta-res").textContent = r.pasta;
-    const nomes = { termica: "térmica 3D", linear: "linear 3D", nao_linear: "não linear 3D", secao_2d: "seção 2D", parede: "parede", sensibilidade: "sensibilidade (parede)" };
-    const t = $("#tab-historico");
-    if (!r.execucoes.length) { t.innerHTML = "<tr><td>Nenhuma análise gravada ainda.</td></tr>"; return; }
-    t.innerHTML = `<thead><tr><th>Data e projeto</th><th>Análise</th><th>Ensaio</th><th>Situação</th><th></th></tr></thead><tbody>` +
-      r.execucoes.map(e => `<tr><td>${esc(e.pasta.slice(0, 8))} ${esc(e.pasta.slice(9, 11))}:${esc(e.pasta.slice(11, 13))} · ${esc(e.nome)}</td><td>${esc(nomes[e.analise] || e.analise)}</td><td>${esc(e.ensaio)}</td><td>${e.concluida ? "concluída" : "sem resultados"}</td>
-        <td>${e.concluida ? `<button class="secundario" data-acao="res" data-pasta="${esc(e.pasta)}">Resultados</button> ` : ""}${e.visual ? `<button class="secundario" data-acao="pos" data-pasta="${esc(e.pasta)}">Pós</button> ` : ""}<button class="secundario" data-acao="proj" data-pasta="${esc(e.pasta)}">Usar entradas</button></td></tr>`).join("") + "</tbody>";
+  async function loadHistory() {
+    const r = await api("/api/history");
+    $("#results-folder").textContent = r.folder;
+    const names = { thermal: "thermal 3D", linear: "linear 3D", nonlinear: "non-linear 3D", section_2d: "2D section", wall: "wall", sensitivity: "sensitivity (wall)" };
+    const t = $("#history-table");
+    if (!r.runs.length) { t.innerHTML = "<tr><td>No analysis stored yet.</td></tr>"; return; }
+    t.innerHTML = `<thead><tr><th>Date and project</th><th>Analysis</th><th>Test</th><th>Status</th><th></th></tr></thead><tbody>` +
+      r.runs.map(e => `<tr><td>${esc(e.folder.slice(0, 8))} ${esc(e.folder.slice(9, 11))}:${esc(e.folder.slice(11, 13))} · ${esc(e.name)}</td><td>${esc(names[e.analysis] || e.analysis)}</td><td>${esc(e.test)}</td><td>${e.done ? "done" : "no results"}</td>
+        <td>${e.done ? `<button class="secondary" data-action="res" data-folder="${esc(e.folder)}">Results</button> ` : ""}${e.visual ? `<button class="secondary" data-action="post" data-folder="${esc(e.folder)}">Post</button> ` : ""}<button class="secondary" data-action="proj" data-folder="${esc(e.folder)}">Use inputs</button></td></tr>`).join("") + "</tbody>";
     t.querySelectorAll("button").forEach(b => b.addEventListener("click", async () => {
-      const pasta = b.dataset.pasta;
-      if (b.dataset.acao === "proj") {
-        const p = await (await fetch(`/arquivos/${encodeURIComponent(pasta)}/projeto.json`)).json();
-        definirProjeto(p); irPara("geometria");
-      } else { await abrirResultado(pasta); irPara(b.dataset.acao === "pos" ? "pos" : "resultados"); }
+      const folder = b.dataset.folder;
+      if (b.dataset.action === "proj") {
+        const f = await fetch(`/files/${encodeURIComponent(folder)}/project.json`);
+        const p = f.ok ? await f.json() : await (await fetch(`/files/${encodeURIComponent(folder)}/projeto.json`)).json();   // runs of version 1.x
+        await setProjectFile(p); goTo("geometry");
+      } else { await openResult(folder); goTo(b.dataset.action === "post" ? "post" : "results"); }
     }));
   }
 
-  // ---------------------------------------------------------------- pós-processador
-  function iniciarVisualizador() {
-    if (vis) return vis;
-    try { vis = new Visualizador($("#pos-canvas")); }
-    catch (e) { $("#pos-vazio").textContent = "Não foi possível iniciar o WebGL: " + e.message; return null; }
-    vis.aoMudarEscala = atualizarLegenda;
-    $("#pos-canvas").addEventListener("dblclick", ev => {
+  // ---------------------------------------------------------------- post-processor
+  function startViewer() {
+    if (viewer) return viewer;
+    try { viewer = new Viewer($("#post-canvas")); }
+    catch (e) { $("#post-empty").textContent = "WebGL could not be started: " + e.message; return null; }
+    viewer.onScaleChange = updateLegend;
+    $("#post-canvas").addEventListener("dblclick", ev => {
       const rc = ev.target.getBoundingClientRect();
-      const s = vis.sondar(ev.clientX - rc.left, ev.clientY - rc.top);
-      const caixa = $("#pos-sonda");
-      if (!s) { caixa.hidden = true; return; }
-      caixa.hidden = false;
-      caixa.innerHTML = `<b>${esc(s.campo)}:</b> ${s.valor === null || s.valor !== s.valor ? "—" : esc(fmtRes(s.valor))} ${esc(s.unidade)}<br>` +
-        `nó ${s.no}, elemento ${s.elemento} (${esc(s.material)})<br>x = ${fmtRes(s.x)}, y = ${fmtRes(s.y)}, z = ${fmtRes(s.z)} mm`;
+      const s = viewer.probe(ev.clientX - rc.left, ev.clientY - rc.top);
+      const box = $("#post-probe");
+      if (!s) { box.hidden = true; return; }
+      box.hidden = false;
+      box.innerHTML = `<b>${esc(s.field)}:</b> ${s.value === null || s.value !== s.value ? "—" : esc(fmtRes(s.value))} ${esc(s.unit)}<br>` +
+        `node ${s.node}, element ${s.element} (${esc(s.material)})<br>x = ${fmtRes(s.x)}, y = ${fmtRes(s.y)}, z = ${fmtRes(s.z)} mm`;
     });
-    return vis;
+    return viewer;
   }
 
-  async function carregarVisual(pasta) {
-    if (!iniciarVisualizador()) return;
-    $("#pos-origem").textContent = "Carregando…";
-    const d = await (await fetch(`/arquivos/${encodeURIComponent(pasta)}/visual.json`)).json();
-    vis.carregar(d);
-    $("#pos-vazio").hidden = true;
-    $("#pos-origem").textContent = `${d.descricao} · ${pasta}`;
-    const se = $("#pos-estado");
-    se.innerHTML = d.estados.map((e, i) => `<option value="${i}">${esc(e.rotulo)}</option>`).join("");
-    se.value = vis.op.estado;
-    const sl = $("#pos-estado-slider"); sl.max = Math.max(0, d.estados.length - 1); sl.value = vis.op.estado;
-    $("#pos-campo").innerHTML = d.campos.map(c => `<option value="${c.id}">${esc(c.nome)}${c.unidade ? " (" + esc(c.unidade) + ")" : ""}</option>`).join("") +
+  async function loadVisual(folder) {
+    if (!startViewer()) return;
+    $("#post-source").textContent = "Loading…";
+    const d = await (await fetch(`/files/${encodeURIComponent(folder)}/visual.json`)).json();
+    if (!d.nodes) { $("#post-source").textContent = "This result was written by version 1.x: run it again to see it in the post-processor."; return; }
+    viewer.load(d);
+    $("#post-empty").hidden = true;
+    $("#post-source").textContent = `${d.description} · ${folder}`;
+    const se = $("#post-state");
+    se.innerHTML = d.states.map((e, i) => `<option value="${i}">${esc(e.label)}</option>`).join("");
+    se.value = viewer.op.state;
+    const sl = $("#post-state-slider"); sl.max = Math.max(0, d.states.length - 1); sl.value = viewer.op.state;
+    $("#post-field").innerHTML = d.fields.map(c => `<option value="${c.id}">${esc(c.name)}${c.unit ? " (" + esc(c.unit) + ")" : ""}</option>`).join("") +
       `<option value="material">Material</option>`;
-    $("#pos-campo").value = vis.op.campo || "material";
-    const usados = [...new Set(d.material)].sort();
-    $("#pos-materiais").innerHTML = usados.map(m => `<label class="marcar"><input type="checkbox" data-mat="${m}" ${vis.op.ocultos.has(m) ? "" : "checked"}> <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${COR_MATERIAL[m] || "#bbb"}"></span> ${esc(d.nomes_materiais[m] || m)}</label>`).join("");
-    $$("#pos-materiais input").forEach(c => c.addEventListener("change", () => {
-      const m = +c.dataset.mat; if (c.checked) vis.op.ocultos.delete(m); else vis.op.ocultos.add(m); vis.atualizarGeometria();
+    $("#post-field").value = viewer.op.field || "material";
+    const used = [...new Set(d.material)].sort();
+    $("#post-materials").innerHTML = used.map(m => `<label class="check"><input type="checkbox" data-mat="${m}" ${viewer.op.hidden.has(m) ? "" : "checked"}> <span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${MATERIAL_COLOUR[m] || "#bbb"}"></span> ${esc(d.material_names[m] || m)}</label>`).join("");
+    $$("#post-materials input").forEach(c => c.addEventListener("change", () => {
+      const m = +c.dataset.mat; if (c.checked) viewer.op.hidden.delete(m); else viewer.op.hidden.add(m); viewer.updateGeometry();
     }));
-    $("#pos-deformada").disabled = !d.estados.some(e => e.u);
-    $("#pos-espelhar").disabled = !(d.simetria && d.tipo === "3d");
-    atualizarLegenda();
+    $("#post-deformed").disabled = !d.states.some(e => e.u);
+    $("#post-mirror").disabled = !(d.symmetry && d.kind === "3d");
+    updateLegend();
   }
 
-  function atualizarLegenda() {
-    if (!vis || !vis.dados) return;
-    const id = vis.op.campo, info = vis.infoCampo(id);
-    const leg = $("#pos-legenda"); leg.hidden = false;
+  function updateLegend() {
+    if (!viewer || !viewer.data) return;
+    const id = viewer.op.field, info = viewer.fieldInfo(id);
+    const leg = $("#post-legend"); leg.hidden = false;
     if (!id || id === "material") {
-      $("#legenda-titulo").textContent = "Material";
-      $("#legenda-barra").style.background = "linear-gradient(90deg," + Object.values(COR_MATERIAL).join(",") + ")";
-      $("#legenda-min").textContent = ""; $("#legenda-meio").textContent = ""; $("#legenda-max").textContent = "";
+      $("#legend-title").textContent = "Material";
+      $("#legend-bar").style.background = "linear-gradient(90deg," + Object.values(MATERIAL_COLOUR).join(",") + ")";
+      $("#legend-min").textContent = ""; $("#legend-mid").textContent = ""; $("#legend-max").textContent = "";
       return;
     }
-    $("#legenda-titulo").textContent = info.nome + (info.unidade ? ` (${info.unidade})` : "") + " — " + vis.estados[vis.op.estado].rotulo;
-    $("#legenda-barra").style.background = vis.gradienteCSS();
-    $("#legenda-min").textContent = fmtRes(vis.op.min);
-    $("#legenda-meio").textContent = fmtRes((vis.op.min + vis.op.max) / 2);
-    $("#legenda-max").textContent = fmtRes(vis.op.max);
-    if (vis.op.auto) { $("#pos-min").value = +vis.op.min.toPrecision(4); $("#pos-max").value = +vis.op.max.toPrecision(4); }
+    $("#legend-title").textContent = info.name + (info.unit ? ` (${info.unit})` : "") + " — " + viewer.states[viewer.op.state].label;
+    $("#legend-bar").style.background = viewer.cssGradient();
+    $("#legend-min").textContent = fmtRes(viewer.op.min);
+    $("#legend-mid").textContent = fmtRes((viewer.op.min + viewer.op.max) / 2);
+    $("#legend-max").textContent = fmtRes(viewer.op.max);
+    if (viewer.op.auto) { $("#post-min").value = +viewer.op.min.toPrecision(4); $("#post-max").value = +viewer.op.max.toPrecision(4); }
   }
 
-  function ligarControlesPos() {
-    const ok = () => vis && vis.dados;
-    $("#pos-estado").addEventListener("change", e => { if (!ok()) return; vis.op.estado = +e.target.value; $("#pos-estado-slider").value = e.target.value; vis.op.deformada ? vis.atualizarPosicoes() : null; vis.atualizarCores(); });
-    $("#pos-estado-slider").addEventListener("input", e => { if (!ok()) return; vis.op.estado = +e.target.value; $("#pos-estado").value = e.target.value; if (vis.op.deformada) vis.atualizarPosicoes(); vis.atualizarCores(); });
-    $("#pos-campo").addEventListener("change", e => { if (!ok()) return; vis.op.campo = e.target.value; vis.atualizarCores(); });
-    $("#pos-mapa").addEventListener("change", e => { if (!ok()) return; vis.op.mapa = e.target.value; vis.atualizarCores(); });
-    $("#pos-auto").addEventListener("change", e => { if (!ok()) return; vis.op.auto = e.target.checked; vis.atualizarCores(); });
-    for (const k of ["min", "max"]) $("#pos-" + k).addEventListener("change", e => {
-      if (!ok()) return; vis.op.auto = false; $("#pos-auto").checked = false; vis.op[k] = num(e.target.value); vis.atualizarCores();
+  function bindPostControls() {
+    const ok = () => viewer && viewer.data;
+    $("#post-state").addEventListener("change", e => { if (!ok()) return; viewer.op.state = +e.target.value; $("#post-state-slider").value = e.target.value; if (viewer.op.deformed) viewer.updatePositions(); viewer.updateColours(); });
+    $("#post-state-slider").addEventListener("input", e => { if (!ok()) return; viewer.op.state = +e.target.value; $("#post-state").value = e.target.value; if (viewer.op.deformed) viewer.updatePositions(); viewer.updateColours(); });
+    $("#post-field").addEventListener("change", e => { if (!ok()) return; viewer.op.field = e.target.value; viewer.updateColours(); });
+    $("#post-cmap").addEventListener("change", e => { if (!ok()) return; viewer.op.cmap = e.target.value; viewer.updateColours(); });
+    $("#post-auto").addEventListener("change", e => { if (!ok()) return; viewer.op.auto = e.target.checked; viewer.updateColours(); });
+    for (const k of ["min", "max"]) $("#post-" + k).addEventListener("change", e => {
+      if (!ok()) return; viewer.op.auto = false; $("#post-auto").checked = false; viewer.op[k] = num(e.target.value); viewer.updateColours();
     });
-    $("#pos-deformada").addEventListener("change", e => { if (!ok()) return; vis.op.deformada = e.target.checked; vis.atualizarPosicoes(); });
-    $("#pos-escala").addEventListener("change", e => { if (!ok()) return; vis.op.escala = num(e.target.value) || 0; if (vis.op.deformada) vis.atualizarPosicoes(); });
-    $("#pos-espelhar").addEventListener("change", e => { if (!ok()) return; vis.op.espelhar = e.target.checked; vis.atualizarGeometria(); vis.vista("iso"); });
-    $("#pos-arestas").addEventListener("change", e => { if (!ok()) return; vis.op.arestas = e.target.checked; vis.desenhar(); });
+    $("#post-deformed").addEventListener("change", e => { if (!ok()) return; viewer.op.deformed = e.target.checked; viewer.updatePositions(); });
+    $("#post-scale").addEventListener("change", e => { if (!ok()) return; viewer.op.scale = num(e.target.value) || 0; if (viewer.op.deformed) viewer.updatePositions(); });
+    $("#post-mirror").addEventListener("change", e => { if (!ok()) return; viewer.op.mirror = e.target.checked; viewer.updateGeometry(); viewer.view("iso"); });
+    $("#post-edges").addEventListener("change", e => { if (!ok()) return; viewer.op.edges = e.target.checked; viewer.draw(); });
     for (const a of ["x", "y", "z"]) {
-      const f = () => { if (!ok()) return; vis.op.cortes[a] = $("#corte-" + a).checked ? +$("#corte-" + a + "-v").value / 100 : null; vis.atualizarGeometria(); };
-      $("#corte-" + a).addEventListener("change", f); $("#corte-" + a + "-v").addEventListener("input", f);
+      const f = () => { if (!ok()) return; viewer.op.cuts[a] = $("#cut-" + a).checked ? +$("#cut-" + a + "-v").value / 100 : null; viewer.updateGeometry(); };
+      $("#cut-" + a).addEventListener("change", f); $("#cut-" + a + "-v").addEventListener("input", f);
     }
-    $$("[data-vista]").forEach(b => b.addEventListener("click", () => vis && vis.vista(b.dataset.vista)));
-    $("#pos-png").addEventListener("click", () => {
+    $$("[data-view]").forEach(b => b.addEventListener("click", () => viewer && viewer.view(b.dataset.view)));
+    $("#post-png").addEventListener("click", () => {
       if (!ok()) return;
-      const a = document.createElement("a"); a.href = vis.png(); a.download = `${pastaAtual || "mef"}_${vis.op.campo}.png`; a.click();
+      const a = document.createElement("a"); a.href = viewer.png(); a.download = `${currentFolder || "mef"}_${viewer.op.field}.png`; a.click();
     });
   }
 
-  // ---------------------------------------------------------------- início
-  async function iniciar() {
-    const r = await api("/api/esquema");
-    ESQ = r.esquema; PADRAO = r.padrao; PRED = r.predefinidos; BIB = r.biblioteca || {};
-    $("#versao").textContent = "versão " + r.versao;
-    const sel = $("#predefinidos");
-    for (const k of Object.keys(PRED)) { const o = document.createElement("option"); o.value = k; o.textContent = k; sel.appendChild(o); }
-    sel.addEventListener("change", () => { if (sel.value) { definirProjeto({ ...PRED[sel.value], nome: sel.value }); sel.value = ""; } });
-    let salvo = null; try { salvo = JSON.parse(localStorage.getItem("mef_masonry_projeto") || localStorage.getItem("mef_bcepq_projeto")); } catch (e) { /* ignora */ }
-    definirProjeto(salvo || PADRAO);
-    $$("#menu button").forEach(b => b.addEventListener("click", () => irPara(b.dataset.pagina)));
-    $("#bt-proximo").addEventListener("click", () => { const o = ordem(); irPara(o[Math.min(o.length - 1, o.indexOf(pagina) + 1)]); });
-    $("#bt-anterior").addEventListener("click", () => { const o = ordem(); irPara(o[Math.max(0, o.indexOf(pagina) - 1)]); });
-    $("#bt-previa").addEventListener("click", previaMalha);
-    $("#bt-executar").addEventListener("click", executar);
-    $("#bt-cancelar").addEventListener("click", () => tarefa && api(`/api/cancelar/${tarefa.id}`, {}));
-    $("#nome-projeto").addEventListener("change", e => { projeto.nome = e.target.value; salvarLocal(); });
-    $("#bt-novo").addEventListener("click", () => definirProjeto(PADRAO));
-    $("#bt-salvar").addEventListener("click", () => {
-      projeto.nome = $("#nome-projeto").value;
+  // ---------------------------------------------------------------- start
+  async function start() {
+    const r = await api("/api/schema");
+    SCHEMA = r.schema; DEFAULT = r.default; PRESETS = r.presets; LIB = r.library || {};
+    $("#version").textContent = "version " + r.version;
+    const sel = $("#presets");
+    for (const k of Object.keys(PRESETS)) { const o = document.createElement("option"); o.value = k; o.textContent = k; sel.appendChild(o); }
+    sel.addEventListener("change", () => { if (sel.value) { setProject({ ...PRESETS[sel.value], name: sel.value }); sel.value = ""; } });
+    let saved = null, old = null;
+    try {
+      saved = JSON.parse(localStorage.getItem("mef_masonry_project"));
+      if (!saved) old = JSON.parse(localStorage.getItem("mef_masonry_projeto") || localStorage.getItem("mef_bcepq_projeto"));   // version 1.x
+    } catch (e) { /* ignore */ }
+    if (old) await setProjectFile(old).catch(() => setProject(DEFAULT));
+    else setProject(saved || DEFAULT);
+    $$("#menu button").forEach(b => b.addEventListener("click", () => goTo(b.dataset.page)));
+    $("#bt-next").addEventListener("click", () => { const o = order(); goTo(o[Math.min(o.length - 1, o.indexOf(page) + 1)]); });
+    $("#bt-previous").addEventListener("click", () => { const o = order(); goTo(o[Math.max(0, o.indexOf(page) - 1)]); });
+    $("#bt-preview").addEventListener("click", meshPreview);
+    $("#bt-run").addEventListener("click", run);
+    $("#bt-cancel").addEventListener("click", () => task && api(`/api/cancel/${task.id}`, {}));
+    $("#project-name").addEventListener("change", e => { project.name = e.target.value; saveLocal(); });
+    $("#bt-new").addEventListener("click", () => setProject(DEFAULT));
+    $("#bt-save").addEventListener("click", () => {
+      project.name = $("#project-name").value;
       const a = document.createElement("a");
-      a.href = URL.createObjectURL(new Blob([JSON.stringify(projeto, null, 2)], { type: "application/json" }));
-      a.download = (projeto.nome || "projeto").replace(/[^\w\-]+/g, "_") + ".json"; a.click();
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(project, null, 2)], { type: "application/json" }));
+      a.download = (project.name || "project").replace(/[^\w\-]+/g, "_") + ".json"; a.click();
     });
-    $("#bt-abrir").addEventListener("click", () => $("#arquivo-abrir").click());
-    $("#arquivo-abrir").addEventListener("change", async e => {
+    $("#bt-open").addEventListener("click", () => $("#file-open").click());
+    $("#file-open").addEventListener("change", async e => {
       const f = e.target.files[0]; if (!f) return;
-      try { definirProjeto(JSON.parse(await f.text())); } catch (err) { alert("Arquivo inválido: " + err.message); }
+      try { await setProjectFile(JSON.parse(await f.text())); } catch (err) { alert("Invalid file: " + err.message); }
       e.target.value = "";
     });
-    ligarControlesPos();
-    irPara("geometria");
-    // retoma uma análise em andamento (página recarregada)
-    const at = await api("/api/atual").catch(() => ({}));
-    if (at.id && (at.estado === "rodando" || at.estado === "na fila")) {
-      tarefa = { id: at.id, estado: at.estado, pasta: at.pasta }; desde = 0; $("#bt-cancelar").hidden = false; acompanhar();
+    bindPostControls();
+    goTo("geometry");
+    // resumes an analysis in progress (page reloaded)
+    const cur = await api("/api/current").catch(() => ({}));
+    if (cur.id && (cur.state === "running" || cur.state === "queued")) {
+      task = { id: cur.id, state: cur.state, folder: cur.folder }; since = 0; $("#bt-cancel").hidden = false; follow();
     }
   }
-  iniciar().catch(e => { document.body.insertAdjacentHTML("afterbegin", `<p style="color:#c00;padding:12px">Erro ao iniciar: ${esc(e.message)}</p>`); });
+  start().catch(e => { document.body.insertAdjacentHTML("afterbegin", `<p style="color:#c00;padding:12px">Error at start-up: ${esc(e.message)}</p>`); });
 })();

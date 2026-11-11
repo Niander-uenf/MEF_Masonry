@@ -1,17 +1,17 @@
-"""MEF_Masonry: elementos finitos para alvenaria de blocos em temperatura (interface no navegador).
+"""MEF_Masonry: finite elements for block masonry in fire (browser interface).
 
-Uso: python app.py            (abre o navegador em http://127.0.0.1:8765/)
-     python app.py --porta 9000 --pasta minhas_analises --sem-navegador
+Usage: python app.py            (opens the browser at http://127.0.0.1:8765/)
+       python app.py --port 9000 --folder my_analyses --no-browser
 """
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from mef_masonry.app.servidor import principal  # noqa: E402
+from mef_masonry.app.server import main  # noqa: E402
 
 if __name__ == "__main__":
-    # a sensibilidade roda a parede em processos separados; no executável do Windows
-    # (PyInstaller), os processos filhos passam por aqui e param no freeze_support
+    # the sensitivity study runs the wall in separate processes; in the Windows executable
+    # (PyInstaller), the child processes pass through here and stop at freeze_support
     import multiprocessing
     multiprocessing.freeze_support()
-    principal()
+    main()

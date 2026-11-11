@@ -1,0 +1,13 @@
+case,model,reference,unit,error,tolerance,status
+V1 temperature with c(T) at 10 min,308.981584,309.176179,°C,0.063%,0.5%,ok
+V1 temperature with c(T) at 20 min,442.390231,442.52497,°C,0.030%,0.5%,ok
+V1 temperature with c(T) at 40 min,494.75992,494.785983,°C,0.005%,0.5%,ok
+V2 shortening of the brick + mortar column (series),181.15942,181.15942,µm,0.000%,0.2%,ok
+V3 brick in tension and mortar in lateral compression (Hilsdorf),0.1335,-0.7231,MPa (σx brick / mortar),—,signs,ok
+V4 peak load of the column = fa × area (equal nu/E),92.393841,92.0,kN,0.428%,2.0%,ok
+"V4 confined mortar (equal Poisson's ratios, smaller E) resists more",108.485,92.394,kN,—,largest,ok
+V5 mortar conductivity in the thermal solver,1.15,1.15,W/m·K,0.000%,0.0%,ok
+V5 volumetric capacity of the mortar,2.0,2.0,MJ/m³·K,0.000%,0.0%,ok
+V5 thermal strain of the mortar at 520 °C,5.0,5.0,‰,0.000%,0.0%,ok
+V6 library items that run and pass validation,12,12,items,0.000%,0.0%,ok
+V6 items of future phases rejected by validation,1,1,items,0.000%,0.0%,ok
