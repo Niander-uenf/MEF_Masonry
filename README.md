@@ -14,7 +14,7 @@ perforated clay bricks, with dry or mortar joints.
 |---|---|
 | Version | 1.0.1 |
 | Paper | Cerqueira, N.A., Madalena, J.A.P., Sá, B.S.C. MEF_Masonry: an open finite element program for thermal and thermo-mechanical analysis of block masonry in fire. Submitted to Advances in Engineering Software (2026). |
-| Archive | Zenodo, https://doi.org/10.5281/zenodo.23991396 (all versions; version 1.0.0 is https://doi.org/10.5281/zenodo.23991397) |
+| Archive | Zenodo, https://doi.org/10.5281/zenodo.23991396 (all versions); version 1.0.1, cited in the paper: https://doi.org/10.5281/zenodo.24122500; version 1.0.0: https://doi.org/10.5281/zenodo.23991397 |
 | Licence | BSD-3-Clause, see [LICENSE](LICENSE) |
 | Contact | Niander Aguiar Cerqueira, Universidade Estadual do Norte Fluminense Darcy Ribeiro (UENF), niander@uenf.br |
 
