@@ -1,0 +1,165 @@
+{
+ "runs": 120,
+ "truncated_runs": 59,
+ "R_as_in_paper": [
+  {
+   "parameter": "α",
+   "mu_star": 253.49,
+   "mu": -253.49,
+   "sigma": 125.88
+  },
+  {
+   "parameter": "excentr.",
+   "mu_star": 156.82,
+   "mu": 156.82,
+   "sigma": 142.67
+  },
+  {
+   "parameter": "imperf.",
+   "mu_star": 54.6,
+   "mu": -54.6,
+   "sigma": 70.12
+  },
+  {
+   "parameter": "k_tr",
+   "mu_star": 23.92,
+   "mu": 23.92,
+   "sigma": 41.03
+  },
+  {
+   "parameter": "f_stf",
+   "mu_star": 19.94,
+   "mu": 19.94,
+   "sigma": 31.73
+  },
+  {
+   "parameter": "k",
+   "mu_star": 9.68,
+   "mu": -9.55,
+   "sigma": 20.09
+  },
+  {
+   "parameter": "ε face",
+   "mu_star": 9.14,
+   "mu": -9.14,
+   "sigma": 16.99
+  },
+  {
+   "parameter": "c",
+   "mu_star": 8.16,
+   "mu": 8.16,
+   "sigma": 10.88
+  },
+  {
+   "parameter": "ε holes",
+   "mu_star": 3.21,
+   "mu": 3.21,
+   "sigma": 4.43
+  },
+  {
+   "parameter": "f_str",
+   "mu_star": 2.21,
+   "mu": 1.71,
+   "sigma": 4.12
+  },
+  {
+   "parameter": "h",
+   "mu_star": 0.32,
+   "mu": -0.32,
+   "sigma": 0.4
+  }
+ ],
+ "R_without_truncated_runs": [
+  {
+   "parameter": "α",
+   "mu_star": 176.39,
+   "mu": -176.39,
+   "sigma": 130.11
+  },
+  {
+   "parameter": "k_tr",
+   "mu_star": 47.84,
+   "mu": 47.84,
+   "sigma": 48.54
+  },
+  {
+   "parameter": "imperf.",
+   "mu_star": 44.7,
+   "mu": -44.7,
+   "sigma": 17.54
+  },
+  {
+   "parameter": "f_stf",
+   "mu_star": 39.88,
+   "mu": 39.88,
+   "sigma": 35.65
+  },
+  {
+   "parameter": "c",
+   "mu_star": 20.4,
+   "mu": 20.4,
+   "sigma": 4.73
+  },
+  {
+   "parameter": "k",
+   "mu_star": 19.36,
+   "mu": -19.11,
+   "sigma": 26.08
+  },
+  {
+   "parameter": "ε face",
+   "mu_star": 18.29,
+   "mu": -18.29,
+   "sigma": 21.0
+  },
+  {
+   "parameter": "ε holes",
+   "mu_star": 6.41,
+   "mu": 6.41,
+   "sigma": 4.3
+  },
+  {
+   "parameter": "f_str",
+   "mu_star": 4.42,
+   "mu": 3.41,
+   "sigma": 5.56
+  },
+  {
+   "parameter": "h",
+   "mu_star": 0.53,
+   "mu": -0.53,
+   "sigma": 0.39
+  },
+  {
+   "parameter": "excentr.",
+   "mu_star": null,
+   "mu": null,
+   "sigma": null
+  }
+ ],
+ "valid_effects_per_parameter_without_truncated": {
+  "k": 5,
+  "c": 4,
+  "ε holes": 5,
+  "h": 6,
+  "ε face": 5,
+  "α": 4,
+  "k_tr": 5,
+  "f_str": 5,
+  "f_stf": 5,
+  "imperf.": 2,
+  "excentr.": 0
+ },
+ "k_tr_in_nominal_run": {
+  "k_tr = 0": {
+   "R": 210.890625,
+   "R_censored": false,
+   "I": 112.0
+  },
+  "k_tr = 2.35": {
+   "R": 223.828125,
+   "R_censored": false,
+   "I": 112.0
+  }
+ }
+}

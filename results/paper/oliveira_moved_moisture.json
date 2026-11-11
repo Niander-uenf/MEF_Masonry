@@ -1,0 +1,126 @@
+{
+ "en1992": {
+  "reference": {
+   "u_exposed": 1.5,
+   "u_webs": 1.5,
+   "u_cold": 1.5,
+   "water_rel": 0.016176000000000003,
+   "I_min": 42.5,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "A": {
+   "u_exposed": 0.0,
+   "u_webs": 1.5,
+   "u_cold": 2.9999999999999996,
+   "water_rel": 0.016176,
+   "I_min": 44.5,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "B": {
+   "u_exposed": 0.0,
+   "u_webs": 0.0,
+   "u_cold": 5.029850746268656,
+   "water_rel": 0.016176000000000003,
+   "I_min": 45.5,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "cold_10": {
+   "u_exposed": 0.0,
+   "u_webs": 0.0,
+   "u_cold": 10,
+   "water_rel": 0.03216000000000001,
+   "I_min": 52.0,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "cold_20": {
+   "u_exposed": 0.0,
+   "u_webs": 0.0,
+   "u_cold": 20,
+   "water_rel": 0.06432000000000002,
+   "I_min": 63.0,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  }
+ },
+ "latent": {
+  "reference": {
+   "u_exposed": 1.5,
+   "u_webs": 1.5,
+   "u_cold": 1.5,
+   "water_rel": 0.016176000000000003,
+   "I_min": 42.5,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "A": {
+   "u_exposed": 0.0,
+   "u_webs": 1.5,
+   "u_cold": 2.9999999999999996,
+   "water_rel": 0.016176,
+   "I_min": 44.5,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "B": {
+   "u_exposed": 0.0,
+   "u_webs": 0.0,
+   "u_cold": 5.029850746268656,
+   "water_rel": 0.016176000000000003,
+   "I_min": 46.0,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "cold_10": {
+   "u_exposed": 0.0,
+   "u_webs": 0.0,
+   "u_cold": 10,
+   "water_rel": 0.03216000000000001,
+   "I_min": 53.0,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  },
+  "cold_20": {
+   "u_exposed": 0.0,
+   "u_webs": 0.0,
+   "u_cold": 20,
+   "water_rel": 0.06432000000000002,
+   "I_min": 64.5,
+   "areas_mm2": {
+    "exposed": 3216.0,
+    "webs": 4352.0,
+    "cold": 3216.0000000000005
+   }
+  }
+ }
+}

@@ -1,0 +1,529 @@
+{
+  "name": "BCEPQ prism",
+  "version": "2.0",
+  "geometry": {
+    "unit_library": "custom",
+    "unit_length": 201,
+    "width": 100,
+    "course_height": 100,
+    "hole_shape": "rectangular",
+    "hole_diameter": 84,
+    "holes_per_unit": 3,
+    "holes_width": 2,
+    "holes_height": 4,
+    "face_shell": 16,
+    "web": 16,
+    "bed_shell": 8,
+    "end_shell": 16,
+    "wall_cells": 0,
+    "min_shell": 8,
+    "grouting": "none",
+    "units_per_course": 1,
+    "n_courses": 10,
+    "bond": "running_bond",
+    "joint_type": "dry",
+    "joint_thickness": 2,
+    "bedding": "total",
+    "filled_head_joints": true,
+    "capping": true,
+    "plate_thickness": 25
+  },
+  "ceramic": {
+    "material_library": "concrete_nbr15220",
+    "k": 1.75,
+    "rho": 2300,
+    "c": 1000,
+    "E_unit_gross": 2801,
+    "nu": 0.2,
+    "alpha": 10.0,
+    "table_k": [
+      [
+        20,
+        1.333028
+      ],
+      [
+        120,
+        1.205008
+      ],
+      [
+        220,
+        1.088388
+      ],
+      [
+        320,
+        0.983168
+      ],
+      [
+        420,
+        0.889348
+      ],
+      [
+        520,
+        0.8069280000000001
+      ],
+      [
+        620,
+        0.735908
+      ],
+      [
+        720,
+        0.676288
+      ],
+      [
+        820,
+        0.6280680000000001
+      ],
+      [
+        920,
+        0.591248
+      ],
+      [
+        1020,
+        0.5658280000000001
+      ],
+      [
+        1120,
+        0.551808
+      ]
+    ],
+    "table_E_factor": [
+      [
+        20,
+        1.0
+      ],
+      [
+        100,
+        0.625
+      ],
+      [
+        200,
+        0.4318
+      ],
+      [
+        300,
+        0.3036
+      ],
+      [
+        400,
+        0.1875
+      ],
+      [
+        500,
+        0.1
+      ],
+      [
+        600,
+        0.045
+      ],
+      [
+        700,
+        0.03
+      ],
+      [
+        800,
+        0.015
+      ],
+      [
+        900,
+        0.008
+      ],
+      [
+        1000,
+        0.004
+      ],
+      [
+        1100,
+        0.001
+      ],
+      [
+        1200,
+        0.001
+      ]
+    ],
+    "table_thermal_strain": [
+      [
+        20,
+        0.0002
+      ],
+      [
+        40,
+        0.1815
+      ],
+      [
+        60,
+        0.365
+      ],
+      [
+        80,
+        0.5518
+      ],
+      [
+        100,
+        0.743
+      ],
+      [
+        120,
+        0.9397
+      ],
+      [
+        140,
+        1.1431
+      ],
+      [
+        160,
+        1.3542
+      ],
+      [
+        180,
+        1.5741
+      ],
+      [
+        200,
+        1.804
+      ],
+      [
+        220,
+        2.0449
+      ],
+      [
+        240,
+        2.298
+      ],
+      [
+        260,
+        2.5642
+      ],
+      [
+        280,
+        2.8449
+      ],
+      [
+        300,
+        3.141
+      ],
+      [
+        320,
+        3.4537
+      ],
+      [
+        340,
+        3.784
+      ],
+      [
+        360,
+        4.1331
+      ],
+      [
+        380,
+        4.5021
+      ],
+      [
+        400,
+        4.892
+      ],
+      [
+        420,
+        5.304
+      ],
+      [
+        440,
+        5.7392
+      ],
+      [
+        460,
+        6.1987
+      ],
+      [
+        480,
+        6.6836
+      ],
+      [
+        500,
+        7.195
+      ],
+      [
+        520,
+        7.734
+      ],
+      [
+        540,
+        8.3017
+      ],
+      [
+        560,
+        8.8992
+      ],
+      [
+        580,
+        9.5276
+      ],
+      [
+        600,
+        10.188
+      ],
+      [
+        620,
+        10.8815
+      ],
+      [
+        640,
+        11.6093
+      ],
+      [
+        660,
+        12.3724
+      ],
+      [
+        680,
+        13.1719
+      ],
+      [
+        700,
+        14.009
+      ],
+      [
+        1200,
+        14.0
+      ]
+    ],
+    "table_c": [
+      [
+        20,
+        900
+      ],
+      [
+        100,
+        900
+      ],
+      [
+        100.01,
+        1470
+      ],
+      [
+        115,
+        1470
+      ],
+      [
+        200,
+        1000
+      ],
+      [
+        400,
+        1100
+      ],
+      [
+        1200,
+        1100
+      ]
+    ],
+    "table_rho": [
+      [
+        20,
+        2300
+      ],
+      [
+        115,
+        2300
+      ],
+      [
+        200,
+        2254.0
+      ],
+      [
+        400,
+        2185.0
+      ],
+      [
+        1200,
+        2024.0
+      ]
+    ],
+    "mortar_library": "1:1:6",
+    "mor_fc": 4.2,
+    "mor_ft": 0.78,
+    "mor_E": 4033,
+    "mor_nu": 0.2,
+    "mor_k": 1.15,
+    "mor_rho": 2000,
+    "mor_c": 1000,
+    "mor_alpha": 10.0,
+    "grout_library": "G1",
+    "grt_fc": 17.7,
+    "grt_ft": 2.04,
+    "grt_E": 26100,
+    "grt_nu": 0.2,
+    "grt_k": 1.75,
+    "grt_rho": 2400,
+    "grt_c": 1000,
+    "grt_en1992": true,
+    "grt_alpha": 10.0
+  },
+  "model": {
+    "analysis": "section_2d",
+    "element": "T3",
+    "wall_law": "bcepq",
+    "wall_strength_factor": 1.0,
+    "wall_stiffness_factor": 1.0,
+    "E_joint": 84.4,
+    "calibrate_joint": false,
+    "E_prism_target": 1100,
+    "ceramic_model": "mazars_damage",
+    "ft": 0.66,
+    "fc": 2.48,
+    "du_t": 0.018,
+    "du_c": 0.33,
+    "table_ft_factor": [
+      [
+        20,
+        1.0
+      ],
+      [
+        100,
+        1.0
+      ],
+      [
+        600,
+        0.0
+      ],
+      [
+        1200,
+        0.0
+      ]
+    ],
+    "table_fc_factor": [
+      [
+        20,
+        1.0
+      ],
+      [
+        100,
+        1.0
+      ],
+      [
+        200,
+        0.95
+      ],
+      [
+        300,
+        0.85
+      ],
+      [
+        400,
+        0.75
+      ],
+      [
+        500,
+        0.6
+      ],
+      [
+        600,
+        0.45
+      ],
+      [
+        700,
+        0.3
+      ],
+      [
+        800,
+        0.15
+      ],
+      [
+        900,
+        0.08
+      ],
+      [
+        1000,
+        0.04
+      ],
+      [
+        1100,
+        0.01
+      ],
+      [
+        1200,
+        0.0
+      ]
+    ],
+    "mu": 0.6,
+    "gap_std": 0.028,
+    "initial_contact": 20,
+    "corr_length": 40,
+    "E_contact": 3907,
+    "seed": 1,
+    "creep": true,
+    "k_tr_unit": 0.0,
+    "table_creep_unit": [],
+    "k_tr_mortar": 2.0,
+    "k_tr_grout": 0.0
+  },
+  "test": {
+    "kind": "iso834",
+    "T_initial": 20,
+    "rate": 5,
+    "T_target": 600,
+    "dwell": 30,
+    "cooling_rate": 2,
+    "final_dwell": 60,
+    "iso_duration": 150,
+    "h_convection": 25,
+    "emissivity": 0.7,
+    "hole_emissivity": 0.7,
+    "load": 97.9,
+    "seating_load": 2,
+    "base_support": "pinned",
+    "top_support": "pinned",
+    "top_eccentricity": 0,
+    "base_eccentricity": 0,
+    "imperfection": 450,
+    "load_levels": 5
+  },
+  "mesh": {
+    "h": 4,
+    "dz": 20,
+    "n_elements": 32,
+    "dt": 30,
+    "delta_max": 0.8,
+    "increment": 0.02,
+    "tol_u": 0.0001,
+    "tol_d": 0.005,
+    "n_fields_ramp": 6,
+    "n_fields_dwell": 2,
+    "iso_interval": 5
+  },
+  "sensitivity": {
+    "trajectories": 10,
+    "levels": 4,
+    "seed": 1,
+    "processes": 0,
+    "fast_mesh": true,
+    "var_k": true,
+    "range_k": 20.0,
+    "var_c": true,
+    "range_c": 15.0,
+    "var_eps_holes": true,
+    "min_eps_holes": 0.7,
+    "max_eps_holes": 0.95,
+    "var_h": true,
+    "min_h": 15.0,
+    "max_h": 35.0,
+    "var_eps": true,
+    "min_eps": 0.6,
+    "max_eps": 0.95,
+    "var_alpha": true,
+    "min_alpha": 4.0,
+    "max_alpha": 8.0,
+    "var_ktr": true,
+    "min_ktr": 0.0,
+    "max_ktr": 2.35,
+    "var_strength": true,
+    "range_strength": 15.0,
+    "var_stiffness": true,
+    "range_stiffness": 25.0,
+    "var_imp": true,
+    "min_imp": 1000.0,
+    "max_imp": 250.0,
+    "var_exc": true,
+    "min_exc": -10.0,
+    "max_exc": 10.0
+  }
+}

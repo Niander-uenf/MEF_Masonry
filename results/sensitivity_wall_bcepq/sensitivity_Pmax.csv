@@ -1,0 +1,12 @@
+parameter,band,μ* (kN),95% CI of μ*,μ (kN),σ (kN),σ/μ*,behaviour
+Load eccentricity (top and base),-10 to 10 mm,147.78,89.6 to 202.8,140.04,109.03,0.74,almost monotonic
+Masonry strength (factor on the law),±15%,147.68,130.9 to 165.0,147.68,28.86,0.2,monotonic
+Initial imperfection (H divided by),H/1000 to H/250,87.47,71.9 to 103.4,-63.31,69.39,0.79,almost monotonic
+Masonry stiffness (factor on the law),±25%,25.14,15.9 to 33.5,25.14,15.33,0.61,almost monotonic
+Convection on the exposed face,15 to 35 W/m²·K,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Thermal conductivity of the unit,±20%,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Emissivity of the hole walls,0.7 to 0.95,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Specific heat of the unit,±15%,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Transient creep of the unit (k_tr),0 to 2.35,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Thermal expansion of the unit,4 to 8 ×10⁻⁶/°C,0.0,0.0 to 0.0,0.0,0.0,—,small effect
+Surface emissivity,0.6 to 0.95,0.0,0.0 to 0.0,0.0,0.0,—,small effect
